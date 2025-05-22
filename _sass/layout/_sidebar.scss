@@ -18,6 +18,8 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
   width: v.$sidebar-width;
   background: var(--sidebar-bg);
   border-right: 1px solid var(--sidebar-border-color);
+  background: url("{{ site.baseurl }}/assets/img/sidebar-bg.jpg") no-repeat center center;
+  background-size: cover;
 
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none; /* IE and Edge */
@@ -256,3 +258,4 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
     }
   }
 }
+
