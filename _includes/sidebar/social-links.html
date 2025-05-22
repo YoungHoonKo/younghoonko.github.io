@@ -1,0 +1,21 @@
+{% assign links = site.social.links %}
+{% for link in links %}
+  {% assign url = link %}
+  {% if url contains "github.com" %}
+    {% assign icon = "fab fa-github" %}
+  {% elsif url contains "instagram.com" %}
+    {% assign icon = "fab fa-instagram" %}
+  {% elsif url contains "twitter.com" or url contains "x.com" %}
+    {% assign icon = "fab fa-x-twitter" %}
+  {% elsif url contains "mailto:" %}
+    {% assign icon = "fas fa-envelope" %}
+  <!-- {% elsif url contains "rss" %}
+    {% assign icon = "fas fa-rss" %} -->
+  {% else %}
+    {% assign icon = "fas fa-link" %}
+  {% endif %}
+
+  <a href="{{ url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ icon }}">
+    <i class="{{ icon }}"></i>
+  </a>
+{% endfor %}
