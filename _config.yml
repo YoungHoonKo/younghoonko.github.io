@@ -27,12 +27,19 @@ description: >- # used by seo meta and the atom feed
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
 url: "https://younghoonko.github.io"
+url: "https://www.instagram.com/yh._2k_/"
 
 github:
   username: younghoonko # change to your GitHub username
 
-twitte:
-  username: twitter_username # change to your Twitter username
+instagram:
+  username: yh._2k_
+
+
+# twitte:
+#   username: twitter_username # change to your Twitter username
+
+
 
 social:
   # Change to your full name.
@@ -102,7 +109,7 @@ theme_mode:
 cdn: "https://chirpy-img.netlify.app"
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "assets/img/profile_2.jpg"
+avatar: "/assets/img/profile_1.jpg"
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
