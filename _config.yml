@@ -17,9 +17,9 @@ author:
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Dr. Hund's Lab # the main title
+title: YoungHoonKo # the main title
 
-tagline: Between Science and Philoshopy # it will display as the subtitle
+tagline: Department of Software and Communications Engineering # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
@@ -102,7 +102,7 @@ theme_mode:
 cdn: "https://chirpy-img.netlify.app"
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "/assets/img/profile.jpg"
+avatar: "assets/img/profile_2.jpg"
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
