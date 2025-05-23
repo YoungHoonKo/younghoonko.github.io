@@ -4,15 +4,16 @@ Author: YoungHoon Ko
 date: 2022-11-28 20:00:00 +0900
 categories: [University(2022-Second-Semester), Circuit Analysis]
 tags: [circuit_analysis, python]
+image: /assets/img/py.png
 ---
 
 [toc]
 
-## 2022-11-28 회로이론 과제
+# 회로이론 실습
 
-### 파이썬으로 OP Amp 가중치 덧셈 프로그램
+## 파이썬으로 OP Amp 가중치 덧셈 프로그램
 
-#### 코드
+### 코드
 
 ```python
 # 가중치 덧셈 프로그램
@@ -55,9 +56,9 @@ print("The output voltage is %.1f" %res(Rnum, Rval, Vval, Vsrc))
 print("~"*54)
 ```
 
+---
 
-
-#### 출력
+### 출력
 
 ```python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -78,3 +79,7 @@ Type the value of the voltage source ? 1
 The output voltage is -10.7
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
+
+---
+
+End
