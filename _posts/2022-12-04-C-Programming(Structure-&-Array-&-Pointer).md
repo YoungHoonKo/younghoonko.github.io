@@ -5,7 +5,6 @@ date: 2022-12-04 12:24:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
 image: /assets/img/structure.png
-image: /assets/img/structure array.png
 image: /assets/img/structure pointer.png
 ---
 
@@ -57,11 +56,9 @@ int main(void)
 }
 ```
 
+![structure](/Users/goyeonghun/Desktop/Hoon/My-blog/assets/img/structure.png)
 
-
-<img src="/assets/img/structure.png" alt="이미지" style="zoom:50%;" />
-
-
+---
 
 ### 구조체 배열을 사용해 1번과 같은 결과를 출력하시오
 
@@ -98,11 +95,9 @@ int main(void)
 }
 ```
 
+![structure](/Users/goyeonghun/Desktop/Hoon/My-blog/assets/img/structure.png)
 
-
-<img src="/assets/img/structure array.png" alt="이미지" style="zoom:50%;" />
-
-
+---
 
 ### 구조체 포인터를 사용해 void aging(Person *p)를 정의하고 나이를 1살 증가시켜 출력하시오.
 
@@ -148,6 +143,8 @@ void aging(Person *p)
 }
 ```
 
+![structure pointer](/Users/goyeonghun/Desktop/Hoon/My-blog/assets/img/structure pointer.png)
 
+---
 
-<img src="/assets/img/structure pointer.png" alt="이미지" style="zoom:50%;" />
+End
