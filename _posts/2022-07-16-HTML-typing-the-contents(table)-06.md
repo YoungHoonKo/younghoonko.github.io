@@ -4,7 +4,7 @@ Author: YoungHoon Ko
 date: 2022-07-16 18:49:20 +0900
 categories: [HTML, HTML-Study]
 tags: [html]
-image: assets/img/html/html-logo.png
+image: /assets/img/lang/html.png
 ---
 
 # 4. 웹 문서에 내용 입력하기
@@ -13,16 +13,21 @@ image: assets/img/html/html-logo.png
 
 ## 4-3. 표 만들기
 
-#### 1. 표의 구성 요소
+이번 학습에서는 HTML에서 테이블을 만드는 다양한 태그들을 정리하였다. 표는 정보를 구조적으로 표현할 수 있는 중요한 구성 요소로, 콘텐츠를 행(row)과 열(column)로 구분하여 표시할 수 있게 해준다.
 
-- 표(table)은 행(row)과 열(col) 그리고 셀(cell)로 이루어짐
-  - 셀은 행과 열이 만나 이루어진 곳으로 내용이 들어가는 자리
+---
 
-#### 2. `<table>` 태그,  `<caption>` 태그
+### 1. 표의 기본 구성 요소
 
-- 표의 시작과 끝을 알려줌(`<table></table>`의 형식으로 사용함)
--  `<caption>` 태그는 표의 제목을 넣을 때 사용함
-  -  `<table>` 태그 바로 아랫줄에  `<caption>` 태그를 사용하면 됨( `<caption>제목</caption>`)
+- HTML 표는 **행(row), 열(column), 셀(cell)**로 이루어져 있다.
+- 셀은 행과 열이 만나는 지점으로 실제 내용이 표시되는 공간이다.
+
+---
+
+### 2. `<table>` 태그와 `<caption>` 태그
+
+- `<table>` 태그는 표 전체를 정의하는 태그로, 표의 시작과 끝을 감싼다.
+- `<caption>` 태그는 표의 제목 역할을 하며, `<table>` 태그 바로 아래 위치시킨다.
 
 ~~~html
 <table>
@@ -30,16 +35,13 @@ image: assets/img/html/html-logo.png
 </table>
 ~~~
 
+---
 
+### 3. `<tr>`, `<td>`, `<th>` 태그
 
-#### 3.  `<tr>` 태그,  `<td>` 태그,  `<th>` 태그
-
--  `<tr>` 태그는 전체 행을 만듬
--  `<td>` 태그는 행 안에 셀을 만듬
--   `<table>` 태그 안에 `<tr>` 태그,  `<td>` 태그가 모두 모여야 하나의 셀을 만들 수 있음
--  `<th>` 태그는  표의 제목 행에 셀을 만들때 사용함
-  - 글자가 진하게 표시됨
-  - 셀 안에 중앙에 배치됨
+- `<tr>`: 한 행(row)을 의미
+- `<td>`: 일반 셀 데이터를 나타냄 (table data)
+- `<th>`: 제목 셀을 의미하며, **진하게 중앙 정렬됨**
 
 ~~~html
 <table>
@@ -54,80 +56,101 @@ image: assets/img/html/html-logo.png
 </table>
 ~~~
 
+---
 
+### 4. `<thead>`, `<tbody>`, `<tfoot>` 태그
 
-#### 4.   `<thead>` 태그,   `<tbody>` 태그,   `<tfooter>` 태그
+표를 **제목, 본문, 요약**의 세 부분으로 나누어 구조화할 수 있다. 이는 접근성 향상 및 스크립트 제어에도 유리하다.
 
-- 일부 표에서는 제목, 본문, 요약 등으로 표의 내용을 나눔
-- 이때 표의 구조를 나누어 주는 것이 좋음
-- 구조를 지정하면 화면 낭독기를 돌릴 때 이용자가 편리하게 이용할 수 있음
--  `<thead>` 태그는 **제목**을 표시함
-  - 자바스크립트를 사용해서 고정 가능
--  `<tbody>` 태그는 **본문**을 표시함
-  - 본문이 길 경우 본문 내용만 스크롤할 수 있음(자바스크립트 사용)
--  `<tfooter>` 태그는 요약을 표시함
+- `<thead>`: 표의 제목 행을 감싸며, 보통 `<th>` 태그와 함께 사용
+- `<tbody>`: 표의 본문 내용을 감싸며, 반복되는 데이터에 활용
+- `<tfoot>`: 표의 요약 정보를 작성할 때 사용
 
 ~~~html
 <table>
   <caption>title</caption>
   <thead>
-    <th>진한 글씨</th>
-    <th>중앙에 배치됨</th>
+    <tr>
+      <th>진한 글씨</th>
+      <th>중앙에 배치됨</th>
+    </tr>
   </thead>
   <tbody>
-    <td>내용</td>
-    <td>내용</td>
+    <tr>
+      <td>내용</td>
+      <td>내용</td>
+    </tr>
   </tbody>
-  <tfooter>
-    <td>요약</td>
-    <td>요약</td>
-  </tfooter>
+  <tfoot>
+    <tr>
+      <td>요약</td>
+      <td>요약</td>
+    </tr>
+  </tfoot>
 </table>
 ~~~
 
+---
 
+### 5. `<rowspan>`, `<colspan>` 속성 — 셀 병합
 
-#### 5.  `<rowspan>` 태그,  `<colspan>` 태그
+표에서 셀을 가로 또는 세로로 병합하려면 `<td>` 또는 `<th>` 태그에 `rowspan`, `colspan` 속성을 지정한다.
 
-- 표는  `<tr>` 태그와  `<th>` 태그,  `<td>` 태그를 이용해서 여러 셀로 구성함
-- 이때 여러 셀을 합치거나 나누어서 다양한 형태로 바꿀 수 있음
-- **행이나 열을 실제로 합치거나 나누는 것으로  `<td>` 태그와  `<th>` 태그에서 이루어짐**
--  `<rowspan>` 태그는 행(row)을 합치는 태그임
-  - `<td rowspan="2">행을 합쳤습니다</td>` 의 형태로 사용함
--  `<colspan>` 태그는 열(col)을 합치는 태그임
-  - `<th colspan="2">열을 합쳤습니다</th>` 의 형태로 사용함
+- `rowspan`: 행(row) 병합
+- `colspan`: 열(column) 병합
 
 ~~~html
 <table>
   <caption>title</caption>
   <thead>
-    <th rowspan="2">진한 글씨</th>
-    <th>중앙에 배치됨</th>
+    <tr>
+      <th rowspan="2">진한 글씨</th>
+      <th>중앙에 배치됨</th>
+    </tr>
   </thead>
   <tbody>
-    <td>내용</td>
-    <td>내용</td>
+    <tr>
+      <td>내용</td>
+    </tr>
   </tbody>
-  <tfooter>
-    <td colspan="2">요약</td>
-    <td>요약</td>
-  </tfooter>
+  <tfoot>
+    <tr>
+      <td colspan="2">요약</td>
+    </tr>
+  </tfoot>
 </table>
-//위의 코드는 rowspan과 colspan을 보여주기 위한 예시입니다.
 ~~~
 
+---
 
+### 6. `<col>`, `<colgroup>` 태그 — 열 속성 설정
 
-#### 6. `<col>` 태그,  `<colgroup>` 태그
+- 표 전체에서 **특정 열의 스타일이나 속성을 지정**할 때 사용
+- `<col>`: 하나의 열에 스타일 적용
+- `<colgroup>`: 여러 열을 그룹화하여 한 번에 지정
+- **위치는 반드시 `<caption>` 다음에 위치해야 한다**
 
-- 단순히 표를 만드는 것이 아니라 특정 열에 배경색을 넣거나 너비를 바꾸려면 특정 열을 선택해야함
-- 그때 사용하는 태그가  `<col>` 태그,  `<colgroup>` 태그임
-- `<col>` 태그는 열을 1개만 지정할 때 사용함
--  `<colgroup>` 태그는 2개 이상의 열을 지정할 때 사용함
-- **반드시** `<caption>` 태그 다음에 써야함(**중요**)
-  - 표의 내용이 시작되기 전에 열의 상태를 알려주는 것
-- `<col>` 태그를 사용할 때는  `<colgroup>` 태그 안에 포함하여 사용하는데,  **표 전체 열의 개수만큼  `<col>` 태그를 넣어야함**
-  - 스타일을 지정하지 않은 열이 있으면 그냥  `<col>` 태그를 넣음
+~~~html
+<table>
+  <caption>표 제목</caption>
+  <colgroup>
+    <col style="background-color: lightyellow;">
+    <col>
+  </colgroup>
+  <thead>
+    <tr><th>항목</th><th>값</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>예시</td><td>데이터</td></tr>
+  </tbody>
+</table>
+~~~
 
-<hr />
+---
 
+> 📌 정리  
+HTML 표는 `<table>`을 중심으로 다양한 하위 태그를 활용해 구조를 설계할 수 있다. 구조적 의미를 고려하여 `<thead>`, `<tbody>`, `<tfoot>` 등을 적절히 사용하고, 셀 병합이나 열 스타일 지정도 이해하고 있어야 웹 페이지 구성에 유용하다.
+
+---
+
+End
