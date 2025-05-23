@@ -4,8 +4,7 @@ Author: YoungHoon Ko
 date: 2022-12-04 12:24:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
-image: /assets/img/structure.png
-image: /assets/img/structure pointer.png
+image: /assets/img/profile_3.png
 ---
 
 [toc]
@@ -56,7 +55,7 @@ int main(void)
 }
 ```
 
-![structure](/Users/goyeonghun/Desktop/Hoon/My-blog/assets/img/structure.png)
+![structure](/assets/img/structure.png)
 
 ---
 
@@ -95,7 +94,7 @@ int main(void)
 }
 ```
 
-![structure](/Users/goyeonghun/Desktop/Hoon/My-blog/assets/img/structure.png)
+![structure](/assets/img/structure.png)
 
 ---
 
@@ -143,7 +142,7 @@ void aging(Person *p)
 }
 ```
 
-![structure pointer](/Users/goyeonghun/Desktop/Hoon/My-blog/assets/img/structure pointer.png)
+![structure pointer](/assets/img/structure pointer.png)
 
 ---
 
