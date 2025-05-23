@@ -4,7 +4,7 @@ Author: YoungHoon Ko
 date: 2022-12-04 12:24:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
-image: /assets/img/profile_3.png
+image: /assets/img/C.png
 ---
 
 [toc]
