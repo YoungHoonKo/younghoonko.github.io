@@ -1,147 +1,94 @@
 ---
-
-title: 04. SQL(select절의 활용, 표현식과 별칭, 연결 연산자(concat()))
+title: 04. SQL(SELECT절의 활용, 표현식과 별칭, 연결 연산자(CONCAT()))
 Author: YoungHoon Ko
-date: 2024-08-29 12:50:00 +0900
+date: 2024-08-29 15:40:00 +0900
 categories: [SQL, Practice_SQL]
-tags: [sql, basic, sql_p]
-image: /assets/img/select_1.jpg
-image: /assets/img/select_2.jpg
-image: /assets/img/select_3.jpg
-image: /assets/img/select_4.jpg
-image: /assets/img/select_5.jpg
-image: /assets/img/select_6.jpg
+tags: [sql, select]
+image: /assets/img/lang/sql.png
 ---
+
 [toc]
 
-# SELECT문의 구성
+# SELECT 절의 다양한 활용
 
-## SELECT문의 구성
-
-- 각 구성을 말할 땐, select절, from절 등으로 말 함
-
-1. SELECT - 기본적으로 **컬럼명**과 **<u>*(모든 것)</u>**이 자주 들어감
-2. FROM - **table명과 다른 select문**과 **다른 결과의 대명사**들이 들어올 수 있음
-3. WHERE - 조건
-4. GROUP BY - SELECT절과 같음
-5. HAVING - SELECT절과 같음
-6. ORDER BY - SELECT절과 같음
+이번 학습에서는 SQL에서 가장 기본이 되는 **SELECT 절**을 다양한 방식으로 활용하는 방법을 배웠다.  
+조건 지정, 표현식 사용, 별칭(alias), 그리고 문자열 연결 함수(CONCAT)까지 함께 실습하였다.
 
 ---
 
-## SELECT문의 실행순서
-
-- 1번 부터 차례로 우선순위를 가짐
-
-1. FROM
-2. WHERE
-3. GROUP BY
-4. HAVING
-5. SELECT
-6. ORDER BY
-
-# SELECT문 실습
+## 1. SELECT로 특정 컬럼 출력
 
 ```sql
-use class;	
+select name, height from member;
 ```
 
-- class를 사용할 때 'class.'을 생략하고 적을 수 있음
+- member 테이블에서 `name`, `height` 컬럼만 출력
+- 특정 열만 추출하여 데이터를 효율적으로 확인 가능
 
 ---
 
-- 모든 칼럼 중  **<u>STATE = 'Arizona'</u>**이고  **<u>CUSTOMERTYPE = 'Home Office'</u>**인 튜플만 출력함
-- **두 번째 조건 부터는  AND로 조건을 적음**
-- 모든 출력은 WHERE절이 관리
+## 2. 조건 지정: WHERE 절
 
 ```sql
-SELECT *
-FROM class.c_customer
-WHERE STATE = 'Arizona'
-AND CUSTOMERTYPE = 'Home Office';
+select * from member where height >= 180;
 ```
 
-![](/assets/img/select_1.jpg)
+- 키가 180cm 이상인 사람만 출력
+- 조건식을 통해 원하는 데이터만 필터링 가능
 
 ---
 
-- 칼럼 중 **<u>CUSTOMERID, CUSTOMERNAME , CUSTOMERTYPE , COUNTRY , STATE</u>** 출력
+## 3. 문자열 패턴 매칭: LIKE
 
 ```sql
-SELECT CUSTOMERID, CUSTOMERNAME, CUSTOMERTYPE , COUNTRY , STATE 
-FROM class.c_customer
-WHERE STATE = 'Arizona'
-AND CUSTOMERTYPE = 'Home Office';
+select * from member where name like '%길동%';
 ```
 
-![](/assets/img/select_2.jpg)
+- 이름에 `길동`이 포함된 모든 행 출력
+- `%`는 와일드카드로, 문자열 일부 일치 조건 표현에 사용됨
 
 ---
 
-- A로 시작하는 사람을 찾고 싶을 땐 **<u>'A%'</u>**를 사용
-- A가 들어가는 사람을 찾을 땐 **<u>'%A%'</u>**을 사용
+## 4. 표현식 사용
 
 ```sql
-SELECT CUSTOMERID, CUSTOMERNAME, CUSTOMERTYPE , COUNTRY , STATE 
-FROM class.c_customer
-WHERE STATE = 'Arizona'
-AND CUSTOMERNAME LIKE 'A%';
+select name, height, height+5 from member;
 ```
 
-![](/assets/img/select_3.jpg)
+- 각 멤버의 키에 5를 더한 값을 같이 출력
+- 컬럼 간 연산도 직접 쿼리 내에서 수행 가능
 
 ---
 
-# 표현식과 별칭
-
-- **<u>데이터베이스에 없는 숫자나 문자를 표현하는 것</u>**
-- 데이터베이스에 없는 100과 'Korea'를 추가
+## 5. 별칭(Alias) 지정
 
 ```sql
-SELECT CUSTOMERID, CUSTOMERNAME, CUSTOMERTYPE , COUNTRY , STATE, 100, 'Korea'
-FROM class.c_customer
-WHERE STATE = 'Arizona'
-AND CUSTOMERNAME LIKE 'A%';
+select name as "이름", height as "키", height+5 as "키+5" from member;
 ```
 
-- WHERE 조건에 맞는 데이터에 100과 Korea 데이터를 추가함
-
-![](/assets/img/select_4.jpg)
+- 출력 결과의 컬럼 이름을 보기 좋게 변경
+- 가독성 향상 및 보고서 작성 시 유용
 
 ---
 
-```sql
-SELECT CUSTOMERID, CUSTOMERNAME, CUSTOMERTYPE , COUNTRY , STATE, 100 as num, 'Korea' as nation
-FROM class.c_customer
-WHERE STATE = 'Arizona'
-AND CUSTOMERNAME LIKE 'A%';
-```
-
-- 표현식에 각각 **<u>num, nation</u>**이라는 별칭을 붙임
-
-![](/assets/img/select_5.jpg)
-
----
-
-# 연결 연산자(CONCAT())
-
-- 연결연산자 concat함수로 **<u>문자열을 결합</u>**할 수 있다
-- CUSTOMERID와 STATE가 결합된 형태로 text_라는 이름으로 출력됨
+## 6. 연결 연산자: CONCAT()
 
 ```sql
-SELECT CUSTOMERID, CUSTOMERNAME, CUSTOMERTYPE , COUNTRY , STATE, 100 as num, 'Korea' as nation,CONCAT(CUSTOMERID , STATE) as text_ 
-FROM class.c_customer
-WHERE STATE = 'Arizona'
-AND CUSTOMERNAME LIKE 'A%';
+select name, height, concat(name, height) from member;
 ```
 
-![](/assets/img/select_6.jpg)
+- 문자열과 숫자를 연결하여 하나의 문자열로 출력
+- 여러 칼럼을 하나로 합쳐서 표현할 때 유용
 
 ---
 
 # Summary
 
-- select절은 출력하는 데이터의 컬럼을 컨트롤 한다
-- 출력되는 rows(세로)는 where절을 통해서 컨트롤할 수 있음
-- 표현식을 통해 저장되어 있는 않은 데이터를 활용할 수 있으며, 별칭으로 원하는 컬럼명을 부여 할 수 있음
-- 연결 연산자를 이용해서 데이터를 붙여서 출력할 수 있음
+- **SELECT**는 원하는 컬럼 또는 조건에 따라 데이터를 조회하는 데 사용
+- **WHERE**는 조건 필터링, **LIKE**는 문자열 패턴 매칭
+- 컬럼 간 연산, 표현식, 별칭, 문자열 연결 등도 함께 사용 가능
+- 데이터 조회 결과를 보다 명확하게 표현하고 분석할 수 있음
+
+---
+
+End
