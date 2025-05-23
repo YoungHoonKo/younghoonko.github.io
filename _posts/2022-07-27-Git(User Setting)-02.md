@@ -4,39 +4,61 @@ Author: YoungHoon Ko
 date: 2022-07-27 16:12:38 +0900
 categories: [Git, Git-Study]
 tags: [git, terminal, github]
-image: /assets/img/CleanShot 2022-09-11 at 16.20.14@2x.png
+image: /assets/img/lang/git.png
 ---
 
 [toc]
 
-# Getting Started with git
+# Getting Started with Git
 
 ## 1. Install Git
 
-- <https://git-scm.com/book/ko/v2/%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-Git-%EC%84%A4%EC%B9%98>
-- 설치는 위의 링크의 지시에 따라 설치한다.(윈도우와 맥, 리눅스까지 취급함)
+- 공식 사이트: [https://git-scm.com/book/ko/v2/시작하기-Git-설치](https://git-scm.com/book/ko/v2/%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-Git-%EC%84%A4%EC%B9%98)
+- Git은 Windows, macOS, Linux 모두에서 설치 가능하며, 위 링크에 설치법이 자세히 안내되어 있다.
 
+---
 
+## 2. 설치 확인 (Check)
 
-## 2. Check
+1. **Mac**: 터미널 실행  
+   **Windows**: 설치된 **Git Bash** 실행
+2. 아래 명령어 입력:
 
-1. Mac은 터미널창, Windows는 설치된 git bash를 누른다.
-2. 입력창에 `git`을 입려한다.
+```bash
+git
+```
 
-![image](/assets/img/CleanShot 2022-09-11 at 16.20.14@2x.png)
+3. 다음과 같은 옵션 목록이 출력되면 설치가 정상적으로 완료된 것이다.
 
-3. 위와 같이 사용할 수 있는 여러 옵션이 뜬다.(git 설치 완료)
+---
 
+## 3. 사용자 설정 (User Setting)
 
+Git을 사용하기 전, **사용자 정보(user.name, user.email)**를 반드시 설정해야 한다.  
+이는 Git이 버전 기록을 남길 때 **누가** 작업했는지를 기록하기 위해서이다.
 
-## 3. Setting
+### ✅ 설정 방법
 
-- 깃을 사용하기 전에 먼저 사용자 정보를 입력해야 한다.
-- 버전을 저장할 때 마다 사용자의 정보도 같이 저장하기 때문이다.
+```bash
+git config --global user.name "사용자 이름"
+git config --global user.email "사용자 이메일"
+```
 
-- 설정은 간단하다.
+- `--global` 옵션은 시스템 전체에 설정을 적용하며, 일반적으로 사용한다.
+- 이름은 한글도 가능하지만 **영문 이름을 권장**한다.
 
-1. `git config --global user.name "사용자 이름(영문 추천)"`
-2. `git config --global user.email "사용자 이메일"`
+### 📌 설정 확인
 
-- 설정 완료
+```bash
+git config --global user.name
+git config --global user.email
+```
+
+---
+
+> 📌 정리  
+Git을 설치한 후 가장 먼저 해야 할 일은 사용자 정보 설정이다. 올바르게 설정해두면 협업 시 이력 추적이 명확해지고, 커밋 정보가 일관되게 관리된다.
+
+---
+
+End
