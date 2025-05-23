@@ -49,8 +49,6 @@ image: /assets/img/lang/c.png
 
 > 목적 파일이 없다면 프로그램 개발 시간이 훨씬 더 길어졌을 것이다.
 
-![C 언어 목적 파일의 역할](/assets/img/C-obj-file.png)
-
 ---
 
 ## 4. 실행 파일 (*.exe)
