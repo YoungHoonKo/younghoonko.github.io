@@ -4,7 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-28 15:07:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
 tags: [r, statistics]
-image: /assets/img/r.png
+image: /assets/img/lang/r.png
 ---
 
 [toc]
@@ -23,7 +23,7 @@ R의 OrchardSprays는 8가지 농도(A > B > ... > H)의 석회황유화액(lime
 
 ## 그림 1. 농도별 자당 감소량 boxplot
 
-![Boxplot of Decrease by Treatment](/assets/img/orchard_boxplot_mac.png)
+![Boxplot of Decrease by Treatment](/assets/img/r/orchard_boxplot_mac.png)
 
 ---
 
@@ -44,7 +44,7 @@ R의 OrchardSprays는 8가지 농도(A > B > ... > H)의 석회황유화액(lime
 
 ## 그림 2. 일원분산분석 결과 (ANOVA Table)
 
-![ANOVA Table](/assets/img/orchard_anova_result_mac.png)
+![ANOVA Table](/assets/img/r/orchard_anova_result_mac.png)
 
 - 유의확률 p = 9.499e-13 이므로, 농도에 따른 자당 감소 효과는 동일하지 않다 (통계적으로 유의미한 차이가 존재).
 
@@ -52,7 +52,7 @@ R의 OrchardSprays는 8가지 농도(A > B > ... > H)의 석회황유화액(lime
 
 ## 그림 3. 던컨 다중비교 (Tukey HSD 결과)
 
-![Tukey HSD Test](/assets/img/orchard_duncan_test_mac.png)
+![Tukey HSD Test](/assets/img/r/orchard_duncan_test_mac.png)
 
 - Tukey HSD 결과에 따르면:
   - 농도 F, G, E는 동일 그룹으로 묶인다.
