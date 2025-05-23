@@ -4,57 +4,70 @@ Author: YoungHoon Ko
 date: 2022-07-23 19:49:00 +0900
 categories: [C, C-Study]
 tags: [c]
-image: /assets/img/ASCII.png
-Image: /assets/img/Extexed ASCII.jpeg
+image: /assets/img/lang/c.png
 ---
 
 [toc]
 
-# A promise to express letters in numbers, ASCII
+# A Promise to Express Letters in Numbers: ASCII
 
 ## Origin of ASCII
 
-- 분리되어 있는 두 장치가 통신을 할 때, a라는 문자를 전송하는 방법은 두 가지가 있다
-  1. **스캔(Scan)**
-     - 팩스(Fax)처럼 a라는 문자를 그대로 스캔(Scan)하여 전송하는 방법
-  2. **변수지정(Specify variables)**
-     - 만약에 두 장치가 97을 a라고 미리 약속하고 97이 전송되면 a가 전송되었다고 처리하는 것
-- 첫 번째 방법은 이미지의 크기에 따라 전송할 데이터도 달라지고 점(Pixel)들의 최소 수만큼 전송해야 하기 때문에 데이터가 커질 수 밖에 없다.
-- 따라서 효율성이라는 면에서 볼 때, `문자를 숫자로 바꿔서 전송`하면 크기도 일정해질 뿐만 아니라 문자 한 개를 보낼 때 1 ~ 2 Byte로도 가능하기 때문에 효율적이다.
-- 따라서 컴퓨터는 대부분의 문자를 숫자로 변환해서 전송하는 방법을 사용한다.
-- 그러나 이러한 변환 장치를 만든 회사가 여러 곳이여서 서로 약속한 정보가 달라 제대로 전송할 수 없었다.
-- 이러한 이유에서 문자를 숫자로 표기하기 위한 표준이 필요했다.
-- 이 필요성 때문에 등장한 여러 가지 표준이 있는데 그 중 개인용 컴퓨터(PC)에서 가장 많이 사용하는 **ASCII**이다.
+두 장치가 통신할 때 문자를 전송하는 방법에는 크게 두 가지가 있다:
+
+1. **스캔(Scan)**  
+   - 팩스처럼 a라는 문자를 그대로 스캔하여 전송하는 방법  
+2. **변수 지정(Specify variables)**  
+   - 예를 들어 두 장치가 97을 'a'라고 미리 약속하고, 97이 전송되면 문자 'a'로 인식하는 방식
+
+첫 번째 방법은 이미지의 크기에 따라 전송 데이터가 달라지며, 최소한의 픽셀 정보도 커서 **데이터 용량이 큼**.  
+두 번째 방법은 **숫자 한 개로 문자를 표현**할 수 있기 때문에 훨씬 **효율적**이다.
+
+하지만 제조사마다 문자를 숫자로 표현하는 방식이 달라 **통신 간 정보 해석 오류**가 발생했고, 이를 해결하기 위해 **표준 코드 체계**가 필요했다.  
+그렇게 등장한 것이 바로 우리가 사용하는 **ASCII**다.
+
+---
 
 ## What is ASCII?
 
-#### **ASCII**
+### ASCII (American Standard Code for Information Interchange)
 
--  **American Standard Code for Information Interchange(미국 정보 교환 표준 코드)**의 약어이다.
+- 1967년 표준으로 제정되어, 1986년에 마지막 개정
+- **7 Bit 인코딩** 방식으로 구성되어 있으며, 총 128개의 문자(0~127)를 표현
+  - **제어 문자(Control Characters)**: 0~31번 (총 33개, 출력 불가)
+  - **출력 가능한 문자(Printable Characters)**: 32~126번 (총 95개)
+- 총 7비트로 구성되며, 8비트 중 1비트는 보조로 사용됨
 
-- ASCII는 1967에 표준으로 제정되어 1986에 마지막으로 개정되었다.
-- ASCII는 초창기에 7 Bit 방식의 인코딩(Encoding)되었기 때문에 출력 불가능한 제어 문자 33개(0 ~ 32번)와 공백을 비롯한 출력 가능한 문자 95개로 이루어져 있다.
-- 따라서 ASCII는 **128개(8비트 중 7비트(존 비트 3개, 디지트 비트 4개)**의 코드로 구성된다.
+![ASCII](/assets/img/c/c_6.png)  
+출처: [wondangcom.com](https://wondangcom.com/1780)
 
-![ASCII](/assets/img/ASCII.png)
+---
 
-#### **Extended ASCII**
+## Extended ASCII
 
-- 컴퓨터의 발달로 더 다양한 표현이 필요해짐에 따라 **8 Bit 인코딩(Encoding)**을 사용하도록 **확장**되었다.(기존 128개 -> 256개)
+컴퓨터의 발전으로 더 다양한 문자를 표현해야 했고, 이에 따라 **7비트에서 8비트로 확장**된 버전이 등장했다.
 
-![Extexded ASCII](/assets/img/Extended ASCII.jpeg)
+### ✅ 특징
 
-- 위의 표를 보면 알 수 있듯이, 총 256개의 숫자로 문자를 표현하기 때문에 **0 ~ 255**범위를 가지며 이 범위는 **부호를 고려하지 않는 1 Byte 메모리**에 저장할 수 있다.
-- 따라서 컴퓨터에 문자가 아스키코드로 작성되었다면 **1 Byte 메모리에 저장하는 것이 가장 효율적**이다.
+- **8 Bit 인코딩 방식**으로, 총 256개의 문자를 표현 (0~255)
+- **기존 ASCII(0~127)** + **확장 문자(128~255)**
+- 주로 특수 문자, 유럽 문자, 블록 문자 등이 추가됨
 
+![Extended ASCII](/assets/img/c/c_6_1.jpg)  
+출처: [keepandshare.com](https://www.keepandshare.com/doc/947949/how-to-enter-ascii-codes-on-windows?ifr=y)
 
+---
 
+### 왜 1 Byte가 적절한가?
 
+- 확장 ASCII는 0~255 범위이므로 **부호 없는 1 Byte(8 Bit)**로 표현 가능
+- 따라서 컴퓨터가 문자를 아스키코드로 저장할 경우, **1 Byte가 가장 효율적**
 
+---
 
+> 📌 정리  
+문자를 숫자로 표현하는 방식은 효율적인 데이터 통신을 가능하게 하며, 그 대표적 표준이 ASCII이다. ASCII는 컴퓨터 시스템 간 문자 해석을 통일시켰으며, 확장 ASCII는 보다 많은 문자를 포괄하여 다양한 언어 환경을 지원하게 되었다.
 
+---
 
-
-아스키코드 출처: <https://wondangcom.com/1780>
-
-확장 아스키코드 이미지 출처 : <https://www.keepandshare.com/doc/947949/how-to-enter-ascii-codes-on-windows?ifr=y>
+End
