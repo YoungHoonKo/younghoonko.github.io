@@ -4,6 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-09 13:30:00 +0900
 categories: [University(2022-First-Semester), Introduction and practice of engineering computer]
 tags: [c, computer_engineering]
+image: /assets/img/lang/c.png
 ---
 
 [toc]
@@ -35,7 +36,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 배열 실습2
 
@@ -70,7 +71,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 베열 실습3
 
@@ -104,7 +105,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 2차원 배열 실습
 
@@ -147,7 +148,7 @@ int main() {
 }
 ```
 
-
+---
 
 ## 난수를 생성 후 10으로 나눈 나머지가 가장 많이 생성된 수를 찾기
 
@@ -174,7 +175,7 @@ int main(void) {
 }
 ```
 
-
+---
 
 ## swap함수 실습
 
@@ -203,3 +204,6 @@ void swap(int *px, int *py)
 }
 ```
 
+---
+
+End.

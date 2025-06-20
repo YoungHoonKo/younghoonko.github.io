@@ -4,6 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-07 03:12:00 +0900
 categories: [University(2022-First-Semester), Introduction and practice of engineering computer]
 tags: [c, computer_engineering]
+image: /assets/img/lang/c.png
 ---
 
 [toc]
@@ -28,9 +29,7 @@ int main(void)
 }
 ```
 
-
-
-
+---
 
 ## 2차 함수 계산
 
@@ -50,7 +49,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 몫과 나머지를 계산
 
@@ -81,7 +80,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 세 개의 정수를 입력받아 최대값 찾기
 
@@ -105,7 +104,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 점수를 입력해 가입여부 결정
 
@@ -134,7 +133,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 가위바위보 게임(1번만 실행)
 
@@ -175,7 +174,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 과세의 표준을 입력하여 소득세 계산하기
 
@@ -205,3 +204,6 @@ int main(void)
 }
 ```
 
+---
+
+End.

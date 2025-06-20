@@ -4,6 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-11 02:45:00 +0900
 categories: [University(2022-First-Semester), Introduction and practice of engineering computer]
 tags: [c, computer_engineering]
+image: /assets/img/lang/c.png
 ---
 
 [toc]
@@ -70,7 +71,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 숫자를 입력받아서 구구단 출력
 
@@ -92,7 +93,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 상품의 가격과 수량을 입력 받아서 총가격을 출력하자
 
@@ -120,7 +121,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 내년 나이를 맞추는 프로그램
 
@@ -143,7 +144,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 세 수를 입력 받아서 평균을 구하는 프로그램
 
@@ -176,7 +177,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 삼각형의 두 각을 입력하면 나머지 한 각을 찾는 프로그램
 
@@ -204,7 +205,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 10진수를 16진수, 8진수로 바꾸는 프로그램
 
@@ -225,7 +226,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 변수의 값을 교환하는 프로그램
 
@@ -257,7 +258,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 부동소수점은 부정확할 수 있다?(yes)
 
@@ -274,7 +275,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 구의 표면적과 부피를 구하는 프로그램
 
@@ -302,3 +303,6 @@ int main(void)
 }
 ```
 
+---
+
+End.

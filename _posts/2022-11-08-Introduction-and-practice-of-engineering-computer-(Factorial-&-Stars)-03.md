@@ -4,6 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-08 09:00:00 +0900
 categories: [University(2022-First-Semester), Introduction and practice of engineering computer]
 tags: [c, computer_engineering]
+image: /assets/img/lang/c.png
 ---
 
 [toc]
@@ -31,7 +32,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 정수를 입력 받아 factorial을 구해보자
 
@@ -56,7 +57,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 정수를 입력 받아 입력한 범위까지 소수 찾기
 
@@ -90,7 +91,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 정수를 입력하여 그 수 많큼 별 출력하기
 
@@ -115,3 +116,6 @@ int main(void)
 }
 ```
 
+---
+
+End.

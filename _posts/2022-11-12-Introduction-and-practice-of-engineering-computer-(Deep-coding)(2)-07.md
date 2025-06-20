@@ -4,6 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-12 06:50:32 +0900
 categories: [University(2022-First-Semester), Introduction and practice of engineering computer]
 tags: [c, computer_engineering]
+image: /assets/img/lang/c.png
 ---
 
 [toc]
@@ -32,7 +33,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 사용자로 문자를 받아서 아스키 코드를 출력하는 프로그램
 
@@ -54,7 +55,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 자동판매기 프로그램
 
@@ -88,9 +89,9 @@ int main(void)
 }
 ```
 
+---
 
-
-## a 부터 z까지 출력하는 프로그램을 배열을 사용해서 만듬
+## a 부터 z까지 출력하는 프로그램
 
 ```c
 #include <stdio.h>
@@ -112,9 +113,9 @@ int main(void)
 }
 ```
 
+---
 
-
-## 학생들의 성적을 입력받아서 평균을 구하는 프로그램입니다.
+## 학생들의 성적을 입력받아서 평균을 구하는 프로그램
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -142,7 +143,7 @@ int main(void)
 }
 ```
 
-
+---
 
 ## 화씨온도를 섭씨온도로 바꾸는 함수
 
@@ -167,7 +168,7 @@ double FtoC(double temp_f){
 }
 ```
 
-
+---
 
 ## 소수를 찾는 함수
 
@@ -201,9 +202,9 @@ int check_prime(int n)
 }
 ```
 
+---
 
-
-## 팩토리얼을 순환호출을 사용해서 작성했습니다.
+## 팩토리얼을 순환호출을 사용
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -232,7 +233,7 @@ int factorial(int n)
 }
 ```
 
-
+---
 
 ## 정수의 합을 소수의 합으로 구하는 함수
 
@@ -279,3 +280,6 @@ int check_prime(int n)
 }
 ```
 
+---
+
+End.
