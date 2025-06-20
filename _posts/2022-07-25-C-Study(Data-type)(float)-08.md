@@ -4,7 +4,7 @@ Author: YoungHoon Ko
 date: 2022-07-25 18:26:00 +0900
 categories: [C, C-Study]
 tags: [c]
-image: /assets/img/lang/C.png
+image: /assets/img/lang/c.png
 ---
 
 [toc]
