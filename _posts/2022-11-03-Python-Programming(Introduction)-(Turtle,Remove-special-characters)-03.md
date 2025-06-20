@@ -4,8 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-03 14:15:34 +0900
 categories: [University(2022-First-Semester), Python-Programming(Introduction)]
 tags: [python, introduction]
-image: /assets/img/r-circle1.png
-image: /assets/img/r-circle2.png
+image: /assets/img/lang/py.png
 ---
 
 [toc]
@@ -74,7 +73,7 @@ print("변경 내용 --> %s" % outStr)
 변경 내용 --> n#o#g#u#Y#s#_#m#n#y#_#H
 ```
 
-
+---
 
 ## `특수문자 제거하는 코드`
 
@@ -140,7 +139,7 @@ print(output_string)
 파이썬  YoungHoon   열공중 
 ```
 
-
+---
 
 ## turtle 프로그램으로 원모양 글자 그리기
 
@@ -205,8 +204,10 @@ turtle.done()
 
 
 
-<img src="/assets/img/r-circle1.png" alt="이미지" style="zoom:50%;" />
+<img src="/assets/img/python/원형거북이.png" alt="이미지" style="zoom:50%;" />
 
 
 
-<img src="/assets/img/r-circle2.png" alt="이미지" style="zoom:50%;" />
+---
+
+End.

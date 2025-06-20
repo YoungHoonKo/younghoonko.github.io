@@ -4,7 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-23 16:31:45 +0900
 categories: [University(2022-First-Semester), Python-Programming(Introduction)]
 tags: [python, introduction]
-image: /assets/img/drink_muchine.png
+image: /assets/img/lang/py.png
 ---
 
 [toc]
@@ -80,14 +80,18 @@ print('자판기 종료합니다.')
 print('거스름돈 : ', d.money, '원')
 ```
 
-
+---
 
 ## 결과
 
-<img src="/assets/img/drink_muchine.png" alt="이미지" style="zoom:50%;" />
+<img src="/assets/img/python/자판기.png" alt="이미지" style="zoom:50%;" />
 
-
+---
 
 ## 소감
 
 - 여러번 실행했을 때 어떤 항목을 몇개 구입했는지 카운트하는 코드를 적었으면 더 좋았을 것 같다.
+
+---
+
+End.

@@ -4,9 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-04 14:40:11 +0900
 categories: [University(2022-First-Semester), Python-Programming(Introduction)]
 tags: [python, introduction]
-image: /assets/img/Object-oriented-draw.png
-image: /assets/img/multi1.png
-image: /assets/img/multi2.png
+image: /assets/img/lang/py.png
 ---
 
 [toc]
@@ -139,9 +137,9 @@ if __name__ == "__main__" :
     window.mainloop()
 ```
 
-<img src="/assets/img/Object-oriented-draw.png" alt="이미지" style="zoom:50%;" />
+<img src="/assets/img/python/객체지향.png" alt="이미지" style="zoom:50%;" />
 
-
+---
 
 ## 멀티 스레드(Multi Thread) 실습
 
@@ -193,6 +191,11 @@ if __name__ == "__main__":
     w.mainloop()
 ```
 
-<img src="/assets/img/multi1.png" alt="이미지" style="zoom:50%;" />
+<img src="/assets/img/python/멀티스레드.png" alt="이미지" style="zoom:50%;" />
 
-<img src="/assets/img/multi2.png" alt="이미지" style="zoom:50%;" />
+---
+
+End.
+
+
+

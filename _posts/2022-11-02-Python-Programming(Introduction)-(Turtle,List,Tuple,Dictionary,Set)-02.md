@@ -4,7 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-02 13:50:09 +0900
 categories: [University(2022-First-Semester), Python-Programming(Introduction)]
 tags: [python, introduction]
-image: /assets/img/t-pic.png
+image: /assets/img/lang/py.png
 ---
 
 [toc]
@@ -54,9 +54,9 @@ if __name__ == "__main__":
     turtle.done()
 ```
 
-<img src="/assets/img/t-pic.png" alt="이미지" style="zoom:30%;" />
+<img src="/assets/img/python/난수거북.png" alt="이미지" style="zoom:30%;" />
 
-
+---
 
 ## 리스트
 
@@ -79,7 +79,7 @@ print(numList2)
 [0, 4, 16, 36]
 ```
 
-
+---
 
 ### zip함수
 
@@ -119,7 +119,7 @@ g --> G
 {'a': 'A', 'b': 'B', 'c': 'C', 'd': 'D', 'e': 'E', 'f': 'F', 'g': 'G'}
 ```
 
-
+---
 
 ## 튜플
 
@@ -146,8 +146,6 @@ for i in range(0, 3):
   7   8   9
 ```
 
-
-
 ### 튜플을 리스트로 받아서 항목 변경하는 코드
 
 ```python
@@ -164,7 +162,7 @@ print(myTuple)
 (1, 2, 3, 4, 5)
 ```
 
-
+---
 
 ## 딕셔너리
 
@@ -197,8 +195,6 @@ dict_values(['20221234', '홍길동', '소프트웨어융합학과'])
 True
 ```
 
-
-
 ### 딕셔너리의 모든 값을 출력하는 코드
 
 ```python
@@ -222,8 +218,6 @@ c --> 3
 d --> 4
 ```
 
-
-
 ### 딕셔너리를 정렬하는 코드
 
 ```python
@@ -243,7 +237,7 @@ print(aList)
 [('홍길동', 1), ('류민지', 2), ('김현준', 3), ('최태준', 4)]
 ```
 
-
+---
 
 ## 세트
 
@@ -271,8 +265,6 @@ print
 {2}
 {2, 5, 7, 8, 9}
 ```
-
-
 
 ##  예제
 
@@ -330,3 +322,6 @@ if __name__ == "__main__" :
 퍼시     5       6
 ```
 
+---
+
+End.

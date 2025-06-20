@@ -4,6 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-01 13:45:23 +0900
 categories: [University(2022-First-Semester), Python-Programming(Introduction)]
 tags: [python, introduction]
+image: /assets/img/lang/py1.png
 ---
 
 [toc]
@@ -121,7 +122,7 @@ while True:
             print(" 승: %d, 패: %d, 비김: %d" % (win, lose, draw))
 ```
 
-
+---
 
 ## Up-Down 게임
 
@@ -147,3 +148,6 @@ while True:
     print("down")
 ```
 
+---
+
+End.

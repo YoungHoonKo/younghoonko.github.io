@@ -4,9 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-05 15:45:45 +0900
 categories: [University(2022-First-Semester), Python-Programming(Introduction)]
 tags: [python, introduction]
-image: /assets/img/normal.png
-image: /assets/img/zoomin.png
-image: /assets/img/zoomout.png
+image: /assets/img/lang/py.png
 ---
 
 [toc]
@@ -54,7 +52,7 @@ print(sSpc)
 특수문자 : &()**)&(
 ```
 
-
+---
 
 ## 이미지를 불러와 확대, 축소하는 프로그램
 
@@ -69,7 +67,7 @@ def func_open():
     filename = askopenfilename(parent=window, filetypes=(
         ("GIF 파일", "*.gif"), ("모든 파일", "*.*")))
     photo = PhotoImage(
-        file="/Users/goyeonghun/Desktop/All/Hongik-Univ/1학년-1학기/파이썬입문 및 실습(주복규교수님)/파이썬 기말고사/Rotating_earth_(large).gif")
+    file="'/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/python/Rotating_earth_(large).gif'")
     pLabel.configure(image=photo)
     pLabel.image = photo
 
@@ -123,19 +121,20 @@ window.mainloop()
 
 - 처음 불러왔을 때
 
-<img src="/assets/img/normal.png" alt="normal" style="zoom:50%;" />
+<img src="/assets/img/python/normal.png" alt="normal" style="zoom:50%;" />
 
 
 
 - 확대(5)
 
-<img src="/assets/img/zoomin.png" alt="zoomin" style="zoom:50%;" />
+<img src="/assets/img/python/zoomin.png" alt="zoomin" style="zoom:50%;" />
 
 
 
 - 축소(5)
 
-<img src="/assets/img/zoomout.png" alt="zoomout" style="zoom:50%;" />
+<img src="/assets/img/python/zoomout.png" alt="zoomout" style="zoom:50%;" />
 
+---
 
-
+End.
