@@ -4,13 +4,14 @@ Author: YoungHoon Ko
 date: 2022-11-26 15:34:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
+image: /assets/img/lang/C.png
 ---
 
 [toc]
 
-## C Programming 실습5 
+# C Programming 실습5 
 
-### 헤더파일 생성 후 불러와서 사용하기
+## 헤더파일 생성 후 불러와서 사용하기
 
 - 헤더파일을 만들어서 제곱함수를 저장하고 호출하여 사용하기
 
@@ -33,7 +34,7 @@ int power(int x, int y)
 
 ```
 
-
+---
 
 - myfunc header 파일
 
@@ -48,7 +49,7 @@ int power(int x, int y)
 int power(int x, int y);
 ```
 
-
+---
 
 - main 파일
 
@@ -75,3 +76,6 @@ int main(void)
 }
 ```
 
+---
+
+End.

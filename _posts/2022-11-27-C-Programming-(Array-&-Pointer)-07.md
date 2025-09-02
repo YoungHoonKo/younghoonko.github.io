@@ -4,13 +4,14 @@ Author: YoungHoon Ko
 date: 2022-11-27 15:34:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
+image: /assets/img/lang/C.png
 ---
 
 [toc]
 
-## C Programming 실습7
+# C Programming 실습7
 
-### 배열과 포인터
+## 배열과 포인터
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -30,9 +31,9 @@ int main(void)
 }
 ```
 
+---
 
-
-### 배열과 함수(평균을 구하는 함수)
+## 배열과 함수(평균을 구하는 함수)
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -73,9 +74,9 @@ double avg(int t[])
 }
 ```
 
+---
 
-
-### 포인터와 함수(평균을 구하는 함수)
+## 포인터와 함수(평균을 구하는 함수)
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -115,9 +116,9 @@ double avg(int *pT)
 }
 ```
 
+---
 
-
-### 매모리 할당(malloc)
+## 매모리 할당(malloc)
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -149,5 +150,7 @@ int main(void)
 }
 ```
 
+---
 
+End.
 

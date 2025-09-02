@@ -4,15 +4,16 @@ Author: YoungHoon Ko
 date: 2022-11-26 15:34:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
+image: /assets/img/lang/C.png
 ---
 
 [toc]
 
-## C Programming 실습4
+# C Programming 실습4
 
 - 함수에서 전달받는 인수를 parameter(매개변수) 또는 가인수라 하고, 출력하는 인수를 실인수(argument)라고 한다.
 
-### 기본적인 함수사용
+## 기본적인 함수사용
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -35,9 +36,9 @@ int main(void){
 }
 ```
 
+---
 
-
-### 함수 변수를 넣어 사용하기1
+## 함수 변수를 넣어 사용하기1
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -57,9 +58,9 @@ int main(void){
 }
 ```
 
+---
 
-
-### 함수 변수를 넣어 사용하기2
+## 함수 변수를 넣어 사용하기2
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -93,9 +94,9 @@ int main(void){
 }
 ```
 
+---
 
-
-### 전역변수와 지역변수
+## 전역변수와 지역변수
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -125,9 +126,9 @@ int main(void){
 }
 ```
 
+---
 
-
-### static 사용
+## static 사용
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -159,3 +160,6 @@ int main(void)
 }
 ```
 
+---
+
+End.

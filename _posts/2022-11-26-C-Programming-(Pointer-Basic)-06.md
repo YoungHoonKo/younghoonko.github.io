@@ -4,15 +4,16 @@ Author: YoungHoon Ko
 date: 2022-11-26 15:34:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
+image: /assets/img/lang/C.png
 ---
 
 [toc]
 
-## C Programming 실습6
+# C Programming 실습6
 
 - Pointer
 
-### 포인터 기초
+## 포인터 기초
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -29,9 +30,9 @@ int main(void) {
 }
 ```
 
+---
 
-
-### 포인터와 그 주소
+## 포인터와 그 주소
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -52,9 +53,9 @@ int main(void)
 }
 ```
 
+---
 
-
-### int *pA = &a ---> *pA = a
+## int *pA = &a ---> *pA = a
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -77,9 +78,9 @@ int main(void)
 }
 ```
 
+---
 
-
-### 포인터값과 어드레스값
+## 포인터값과 어드레스값
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -107,15 +108,13 @@ int main(void)
 }
 ```
 
+---
 
-
-### swap함수
+## swap함수
 
 - swap함수는 두 변수의 값을 교환하는 것으로 파이썬과 다르게 포인터로 어드레스값을 바꿔줘야한다.
 
-
-
-#### 잘못된 코드
+### 잘못된 코드
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -152,9 +151,9 @@ void swap(int x, int y)
 }
 ```
 
+---
 
-
-#### 정확한 코드
+### 정확한 코드
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -191,3 +190,6 @@ void swap(int *x, int *y)
 }
 ```
 
+---
+
+End.

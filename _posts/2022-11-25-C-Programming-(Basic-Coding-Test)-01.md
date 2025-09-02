@@ -4,13 +4,14 @@ Author: YoungHoon Ko
 date: 2022-11-25 08:50:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
+image: /assets/img/lang/C.png
 ---
 
 [toc]
 
-## C Programming 실습1
+# C Programming 실습1
 
-### 정사각형의 넓이 구하기
+## 정사각형의 넓이 구하기
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -26,9 +27,9 @@ int main(void){
 }
 ```
 
+---
 
-
-### 삼각형 넓이 구하기
+## 삼각형 넓이 구하기
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -46,9 +47,9 @@ int main(void){
 }
 ```
 
+---
 
-
-### 부호반전
+## 부호반전
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -71,9 +72,9 @@ int main(void){
 }
 ```
 
+---
 
-
-### 홀수 짝수 판별
+## 홀수 짝수 판별
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -96,9 +97,9 @@ int main(void){
 }
 ```
 
+---
 
-
-### 여러가지 조건을 한 번에 걸기
+## 여러가지 조건을 한 번에 걸기
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -121,9 +122,9 @@ int main(void){
 }
 ```
 
+---
 
-
-### switch문 
+## switch문 
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -161,3 +162,6 @@ int main(void){
 }
 ```
 
+---
+
+End.

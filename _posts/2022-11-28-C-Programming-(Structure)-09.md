@@ -4,13 +4,14 @@ Author: YoungHoon Ko
 date: 2022-11-28 20:24:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
+image: /assets/img/lang/C.png
 ---
 
 [toc]
 
-## C Programming 실습9
+# C Programming 실습9
 
-### 구조체 기본
+## 구조체 기본
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -33,9 +34,9 @@ int main(void)
 }
 ```
 
+---
 
-
-### 함수와 구조체
+## 함수와 구조체
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -70,9 +71,9 @@ void show(struct Car c)
 }
 ```
 
+---
 
-
-### 포인터와 구조체
+## 포인터와 구조체
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -105,9 +106,9 @@ void show(struct Car *pC)
 }
 ```
 
+---
 
-
-### 배열과 구조체
+## 배열과 구조체
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -137,9 +138,9 @@ int main(void)
 }
 ```
 
+---
 
-
-### 구조체의 포인터
+## 구조체의 포인터
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -175,3 +176,6 @@ int main(void)
 }
 ```
 
+---
+
+End.

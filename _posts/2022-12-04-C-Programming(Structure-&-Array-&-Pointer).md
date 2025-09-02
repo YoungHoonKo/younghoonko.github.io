@@ -4,14 +4,14 @@ Author: YoungHoon Ko
 date: 2022-12-04 12:24:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
-image: /assets/img/C.png
+image: /assets/img/lang/C.png
 ---
 
 [toc]
 
-## 구조체 실습
+# 구조체 실습
 
-### 1. 구조체를 이용해 사람의 나이, 몸무게, 키를 입력받은 뒤 출력하시오.
+## 1. 구조체를 이용해 사람의 나이, 몸무게, 키를 입력받은 뒤 출력하시오.
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -59,7 +59,7 @@ int main(void)
 
 ---
 
-### 2. 구조체 배열을 사용해 1번과 같은 결과를 출력하시오
+## 2. 구조체 배열을 사용해 1번과 같은 결과를 출력하시오
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -98,7 +98,7 @@ int main(void)
 
 ---
 
-### 3. 구조체 포인터를 사용해 void aging(Person *p)를 정의하고 나이를 1살 증가시켜 출력하시오.
+## 3. 구조체 포인터를 사용해 void aging(Person *p)를 정의하고 나이를 1살 증가시켜 출력하시오.
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS

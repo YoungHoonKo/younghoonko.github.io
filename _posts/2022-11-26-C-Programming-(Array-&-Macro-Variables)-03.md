@@ -4,13 +4,14 @@ Author: YoungHoon Ko
 date: 2022-11-26 10:34:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
+image: /assets/img/lang/C.png
 ---
 
 [toc]
 
-## C Programming 실습3
+# C Programming 실습3
 
-### 배열기초
+## 배열기초
 
 ```c
 #include <stdio.h>
@@ -34,9 +35,9 @@ int main(void)
 }
 ```
 
+---
 
-
-### 배열과 for
+## 배열과 for
 
 ```c
 #include <stdio.h>
@@ -59,9 +60,9 @@ int main(void)
 }
 ```
 
+---
 
-
-### 배열 Indexing
+## 배열 Indexing
 
 ```c
 #include <stdio.h>
@@ -80,9 +81,9 @@ int main(void)
 }
 ```
 
+---
 
-
-### 매크로 변수1
+## 매크로 변수1
 
 ```c
 #include <stdio.h>
@@ -101,9 +102,9 @@ int main(void)
 }
 ```
 
+---
 
-
-### 매크로 변수2
+## 매크로 변수2
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -145,9 +146,9 @@ int main(void)
 }
 ```
 
+---
 
-
-### 매크로 변수3
+## 매크로 변수3
 
 ```c
 #include <stdio.h>
@@ -181,3 +182,6 @@ int main(void)
 }
 ```
 
+---
+
+End.

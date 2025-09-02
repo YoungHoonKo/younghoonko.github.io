@@ -4,13 +4,14 @@ Author: YoungHoon Ko
 date: 2022-11-27 01:34:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
+image: /assets/img/lang/C.png
 ---
 
 [toc]
 
-## C Programming 실습8
+# C Programming 실습8
 
-### 1번 문제
+## 1번 문제
 
 ```markdown
 문자열의 길이를 검사하는 함수 int length(char str[])을 작성하시오.
@@ -49,9 +50,9 @@ int length(char str[])
 }
 ```
 
+---
 
-
-### 2번 문제
+## 2번 문제
 
 ```markdown
 문자열 안에 포함되어 있는 'a'의 개수를 검사하는 함수 int search(char str[])을 작성하시오.
@@ -94,9 +95,9 @@ int search(char str[])
 }
 ```
 
+---
 
-
-### 3번 문제
+## 3번 문제
 
 ```markdown
 문자열을 비교하는 함수 int compare(char str1[], char str2[])을 작성하시오.<br>
@@ -148,15 +149,15 @@ int compare(char str1[], char str2[])
 }
 ```
 
+---
 
-
-### 4번 문제
+## 4번 문제
 
 ```markdown
 1 ~ 3번 문제 포인터 연산으로 바꿔라
 ```
 
-#### 1번 포인터 변환
+### 1번 포인터 변환
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -191,9 +192,9 @@ int length(char *str)
 }
 ```
 
+---
 
-
-#### 2번 포인터 변환
+### 2번 포인터 변환
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -231,9 +232,9 @@ int search(char *str)
 }
 ```
 
+---
 
-
-#### 3번 포인터 변환
+### 3번 포인터 변환
 
 ```c
 #define _CRT_SECURE_NO_WARINGS
@@ -281,9 +282,9 @@ int compare(char *str1, char *str2)
 }
 ```
 
+---
 
-
-### 5번 문제
+## 5번 문제
 
 ```markdown
 표준 라이브러리 <ctype>의 영문자를 대문자로 변환하는 toupper() 함수,<br>
@@ -319,3 +320,6 @@ int main(void)
 }
 ```
 
+---
+
+End.
