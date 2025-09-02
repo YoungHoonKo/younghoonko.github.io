@@ -4,15 +4,22 @@ Author: YoungHoon Ko
 date: 2022-10-10 17:45:00 +0900
 categories: [University(2022-Second-Semester), Circuit Analysis]
 tags: [circuit_analysis, python]
+image: /assets/img/lang/py.png
 ---
 
 [toc]
 
-## 2022-10-10 회로이론 과제
+# Circuit Analasis HW3
 
-### 파이썬으로 직렬-병렬 저항의 합 구하는 코드 구현
+## 문제
 
-#### 코드
+ ```markdown
+ 파이썬으로 직렬-병렬 저항의 합 구하는 코드 구현
+ ```
+
+---
+
+### 코드
 
 ```python
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
@@ -181,9 +188,9 @@ print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 ```
 
+---
 
-
-#### 결과
+### 결과
 
 ```python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -203,8 +210,6 @@ abcdef, the equivalent register value of the circuit is 40.9 Ω
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 
-
-
-
+---
 
 - 함수를 썼으면 더 간단하게 할 수 있는 것을 구현하지 못함

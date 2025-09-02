@@ -4,14 +4,20 @@ Author: YoungHoon Ko
 date: 2022-11-28 20:00:00 +0900
 categories: [University(2022-Second-Semester), Circuit Analysis]
 tags: [circuit_analysis, python]
-image: /assets/img/py.png
+image: /assets/img/lang/py.png
 ---
 
 [toc]
 
-# 회로이론 실습
+# Circuit Analasis HW5
 
-## 파이썬으로 OP Amp 가중치 덧셈 프로그램
+## 문제
+
+ ```markdown
+ 파이썬으로 OP Amp 가중치 덧셈 프로그램을 작성하라
+ ```
+
+---
 
 ### 코드
 

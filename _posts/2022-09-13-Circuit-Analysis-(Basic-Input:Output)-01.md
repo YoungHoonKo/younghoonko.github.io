@@ -4,15 +4,22 @@ Author: YoungHoon Ko
 date: 2022-09-13 16:33:00 +0900
 categories: [University(2022-Second-Semester), Circuit Analysis]
 tags: [circuit_analysis, python]
+image: /assets/img/lang/py.png
 ---
 
 [toc]
 
-## 2022-09-13 회로이론 과제
+# Circuit Analasis HW1
 
-### 파이썬으로 학번, 이름, 입학년도, 휴학 여부 입력 받아서 한 문장으로 출력하기
+## 문제
 
-#### 코드
+ ```markdown
+ 파이썬으로 학번, 이름, 입학년도, 휴학 여부 입력 받아서 한 문장으로 출력하기
+ ```
+
+---
+
+### 코드
 
 ```python
 a = input('What is your name? ')
@@ -41,9 +48,9 @@ elif d == 'N':
 
 ```
 
+---
 
-
-#### 결과
+### 결과
 
 ```python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -55,3 +62,4 @@ YoungHoon Ko, (abcdef), you are 1st year student in this year, aren’t you? You
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 
+---

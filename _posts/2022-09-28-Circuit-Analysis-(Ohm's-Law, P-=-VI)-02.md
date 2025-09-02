@@ -4,15 +4,22 @@ Author: YoungHoon Ko
 date: 2022-09-28 16:55:00 +0900
 categories: [University(2022-Second-Semester), Circuit Analysis]
 tags: [circuit_analysis, python]
+image: /assets/img/lang/py.png
 ---
 
 [toc]
 
-## 2022-09-27 회로이론 과제
+# Circuit Analasis HW2
 
-### 파이썬으로 P = VI 공식을 이용하여 0이 입력된 값을 구하기
+## 문제
 
-#### 코드
+ ```markdown
+ 파이썬으로 P = VI 공식을 이용하여 0이 입력된 값을 구하기
+ ```
+
+---
+
+### 코드
 
 - I, V, P, Direction of I 를 입력하면 됨
 
@@ -48,9 +55,9 @@ if p == 0:
 
 ```
 
+---
 
-
-#### 결과
+### 결과
 
 ```python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,3 +66,4 @@ The unknown Voltage of the node is -4.0 V
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 
+---
