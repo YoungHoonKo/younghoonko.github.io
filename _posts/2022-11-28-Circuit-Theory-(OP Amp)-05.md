@@ -1,15 +1,15 @@
 ---
-title: 05. Circuit Analysis(OP Amp)
+title: 05. Circuit Theory(OP Amp)
 Author: YoungHoon Ko
 date: 2022-11-28 20:00:00 +0900
-categories: [University(2022-Second-Semester), Circuit Analysis]
-tags: [circuit_analysis, python]
+categories: [University(2022-Second-Semester), Circuit Theory]
+tags: [circuit_theory, python]
 image: /assets/img/lang/py.png
 ---
 
 [toc]
 
-# Circuit Analasis HW5
+# Circuit Theory HW5
 
 ## 문제
 

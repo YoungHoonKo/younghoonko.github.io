@@ -1,15 +1,15 @@
 ---
-title: 02. Circuit Analysis(Ohm's Law, P = VI)
+title: 02. Circuit Theory(Ohm's Law, P = VI)
 Author: YoungHoon Ko
 date: 2022-09-28 16:55:00 +0900
-categories: [University(2022-Second-Semester), Circuit Analysis]
-tags: [circuit_analysis, python]
+categories: [University(2022-Second-Semester), Circuit Theory]
+tags: [circuit_theory, python]
 image: /assets/img/lang/py.png
 ---
 
 [toc]
 
-# Circuit Analasis HW2
+# Circuit Theory HW2
 
 ## 문제
 

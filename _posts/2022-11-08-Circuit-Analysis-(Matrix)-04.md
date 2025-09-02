@@ -1,15 +1,15 @@
 ---
-title: 04. Circuit Analysis(Matrix)
+title: 04. Circuit Theory(Matrix)
 Author: YoungHoon Ko
 date: 2022-11-08 02:20:00 +0900
-categories: [University(2022-Second-Semester), Circuit Analysis]
-tags: [circuit_analysis, python]
+categories: [University(2022-Second-Semester), Circuit Theory]
+tags: [circuit_theory, python]
 image: /assets/img/lang/py.png
 ---
 
 [toc]
 
-# Circuit Analasis HW4
+# Circuit Theory HW4
 
 ## 문제
 

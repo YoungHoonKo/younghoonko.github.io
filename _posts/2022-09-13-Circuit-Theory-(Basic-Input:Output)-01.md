@@ -1,15 +1,15 @@
 ---
-title: 01. Circuit Analysis(Basic Input/Output)
+title: 01. Circuit Theory(Basic Input/Output)
 Author: YoungHoon Ko
 date: 2022-09-13 16:33:00 +0900
-categories: [University(2022-Second-Semester), Circuit Analysis]
-tags: [circuit_analysis, python]
+categories: [University(2022-Second-Semester), Circuit Theory]
+tags: [circuit_theory, python]
 image: /assets/img/lang/py.png
 ---
 
 [toc]
 
-# Circuit Analasis HW1
+# Circuit Theory HW1
 
 ## 문제
 
