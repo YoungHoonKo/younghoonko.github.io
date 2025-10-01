@@ -4,7 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-24 13:07:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
 tags: [r, statistics]
-image: /assets/img/문맹률과 기대수명에 대한 회귀분석표.png
+image: /assets/img/lang/r.png
 ---
 
 [toc]
@@ -20,8 +20,6 @@ image: /assets/img/문맹률과 기대수명에 대한 회귀분석표.png
 (자료: state.x77 in R, U.S. Department of Commerce, Bureau of the Census (1977)) 단순회귀분석을 실시하여 아래의 표2과 표3를 얻었다.
 ```
 
-
-
 #### 표2. 분산분석: 종속변수 y는 기대수명 (세) , 독립변수 x는 문맹률 (%)
 
 | 요인      | 제곱합(sum sq) | 자유도(df) | 평균제곱(mean sq) | F-value | 유의확률 pr(>\|t\|) |
@@ -29,8 +27,6 @@ image: /assets/img/문맹률과 기대수명에 대한 회귀분석표.png
 | 회귀 모형 | 30.578(SSR)    | 1          | 30.5785           | 25.429  | 6.969e-06           |
 | 잔차      | 57.721(SSE)    | 48         | 1.2025            |         |                     |
 | 합계      | 88.299(SST)    | 49         |                   |         |                     |
-
-
 
 #### 표3. 계수추정표
 
@@ -40,13 +36,9 @@ image: /assets/img/문맹률과 기대수명에 대한 회귀분석표.png
 x 							-1.2960        0.2570      -5.043        6.97e-06 ***   
 ```
 
-
-
 #### 그림2. 미국 50개 주에 대한 문맹률(%)과 기대수명((세)의 산점도와 회귀직선
 
 <img src="/assets/img/문맹률과 기대수명에 대한 회귀분석표.png" alt="이미지" style="zoom:50%;" />
-
-
 
 #### 코드
 
@@ -91,9 +83,7 @@ F-statistic: 25.43 on 1 and 48 DF,  p-value: 6.969e-06
 > abline(fit)
 ```
 
-
-
-
+---
 
 ### 문제
 
@@ -131,3 +121,7 @@ F-statistic: 25.43 on 1 and 48 DF,  p-value: 6.969e-06
 ```
 
 - R^2 = 결정계수 = SSR/SST
+
+---
+
+End.

@@ -4,8 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-24 12:33:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
 tags: [r, statistics]
-image: /assets/img/마력과 연비에 대한 회귀분석 표.png
-image: /assets/img/mfrow.png
+image: /assets/img/lang/r.png
 ---
 
 [toc]

@@ -4,7 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-17 13:33:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
 tags: [r, statistics]
-image: /assets/img/boxplot2.png
+image: /assets/img/lang/r.png
 ---
 
 [toc]
