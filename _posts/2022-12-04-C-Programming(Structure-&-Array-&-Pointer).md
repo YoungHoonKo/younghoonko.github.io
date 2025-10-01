@@ -55,7 +55,7 @@ int main(void)
 }
 ```
 
-![structure](/assets/img/structure.png)
+![structure](/assets/img/c/structure.png)
 
 ---
 
@@ -94,7 +94,7 @@ int main(void)
 }
 ```
 
-![structure](/assets/img/structure.png)
+![structure](/assets/img/c/structure.png)
 
 ---
 
@@ -142,7 +142,7 @@ void aging(Person *p)
 }
 ```
 
-![structure pointer](/assets/img/structure pointer.png)
+![structure pointer](/assets/img/c/structure_pointer.png)
 
 ---
 
