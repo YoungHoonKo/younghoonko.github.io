@@ -4,8 +4,7 @@ Author: YoungHoon Ko
 date: 2022-11-13 00:45:00 +0900
 categories: [University(2022-Second-Semester), Python-Programming(Application)]
 tags: [python, application]
-image: /assets/img/wordcloud.png
-image: /assets/img/CleanShot 2022-11-14 at 08.15.24@2x.png
+image: /assets/img/lang/py.png
 ---
 
 [toc]
