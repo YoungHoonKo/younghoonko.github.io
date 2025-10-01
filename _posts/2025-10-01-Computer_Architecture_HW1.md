@@ -134,7 +134,7 @@ main:
 
 ## 결과
 
-![HW_1](/assets/img/assembly/HW_1.png)
+`![HW_1](/assets/img/assembly/HW_1.png)
 
 ---
 

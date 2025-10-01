@@ -4,6 +4,7 @@ Author: YoungHoon Ko
 date: 2025-08-11 11:00:32 +0900
 categories: [University(2025-First-Semester), Digital_Engineering]
 tags: [c, c_programming]
+image: /assets/img/lang/C.png
 ---
 
 [toc]
