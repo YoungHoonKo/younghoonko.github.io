@@ -39,8 +39,7 @@ The final result is 20
 .data
     prompt_i: .asciiz "Type a number for i: "   # j를 입력 받을 때 출력할 문자열
     prompt_j: .asciiz "Type a number for j: "   # j를 입력 받을 때 출력할 문자열
-    rst_1: .asciiz "The final result of "
-    stdnt_id: .asciiz "A12345"               # 학번
+    rst_1: .asciiz "The final result"             # 학번
     rst_2: .asciiz " is "
     newline: .asciiz "\n"
     buffer: .space 20     # 문자열 입력 받을 버퍼(20바이트 크기)
@@ -92,14 +91,9 @@ main:
     syscall
 
     # 결과 출력
-    ## "The final result of " 출력
+    ## "The final result" 출력
     li $v0, 4
     la $a0, rst_1
-    syscall
-
-    ## 학번 출력
-    li $v0, 4
-    la $a0, stdnt_id
     syscall
 
     ## " is " 출력
