@@ -7,7 +7,7 @@ order: 4
 
 ## 👋 Hello, I'm YoungHoonKo
 
-I'm a student majoring in **Software and Communications Engineering** at Hongik University.  
+I'm a student majoring in **Software & Data Engineering** at Hongik University.  
 I enjoy reading philosophy 📘, engaging in debates 💬, and exploring data and artificial intelligence 🤖.
 
 ---
