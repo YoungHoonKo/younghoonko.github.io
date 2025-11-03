@@ -1,5 +1,5 @@
 ---
-title: 01. Computer_Architecture_HW1
+title: 01. Computer_Architecture_1
 Author: YoungHoon Ko
 date: 2025-10-01 17:03:32 +0900
 categories: [University(2025-Second-Semester), Computer Architecture]
@@ -9,7 +9,7 @@ image: /assets/img/lang/asm.png
 
 [toc]
 
-# Computer_Architecture_HW1
+# Computer Architecture 1
 
 ## 문제
 

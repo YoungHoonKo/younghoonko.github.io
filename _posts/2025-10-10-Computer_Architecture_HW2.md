@@ -1,5 +1,5 @@
 ---
-title: 02. Computer_Architecture_HW2
+title: 02. Computer_Architecture_2
 Author: YoungHoon Ko
 date: 2025-10-10 16:12:32 +0900
 categories: [University(2025-Second-Semester), Computer Architecture]
@@ -9,7 +9,7 @@ image: /assets/img/lang/asm.png
 
 [toc]
 
-# Computer Architecture HW2
+# Computer Architecture 2
 
 ## 문제
 
