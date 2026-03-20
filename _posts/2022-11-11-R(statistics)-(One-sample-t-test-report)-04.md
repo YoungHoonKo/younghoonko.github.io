@@ -26,7 +26,7 @@ R의 state.x77 데이터에서 기대수명(Life.Exp)이 71세라고 말할 수 
 
 ### Boxplot
 
-![boxplot_lifeexp](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/boxplot_lifeexp.png)
+![boxplot_lifeexp](/assets/img/r/boxplot_lifeexp.png)
 
 ---
 
@@ -53,7 +53,7 @@ sd(x)
 
 ### 결과
 
-![one_sample_t-test](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/one_sample_t-test.png)
+![one_sample_t-test](/assets/img/r/one_sample_t-test.png)
 
 ```markdown
 자료가 정규분포를 따르는지 확인하기 위하여, 샤피로의 검정을 실시하였다.
@@ -71,7 +71,7 @@ qqline(x)
 
 ### 결과
 
-![shapiro](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/shapiro.png)
+![shapiro](/assets/img/r/shapiro.png)
 
 ---
 

@@ -11,28 +11,26 @@ image: /assets/img/lang/r.png
 
 # 문맹률이 수명에 미치는 영향에 관한 회귀분석 보고서
 
-## 보고서
-
 ```markdown
 (1)-(2) 문맹이 수명에 미치는 영향을 알아보기 위하여, 미국 50 개 주의 문맹률 % (1970년)과 기대수명 (세)(1969–71년)을 조사하 였다.
 (자료: state.x77 in R, U.S. Department of Commerce, Bureau of the Census (1977)) 단순회귀분석을 실시하여 아래의 표2과 표3를 얻었다.
 ```
 
-### Plot. 분산분석: 종속변수 y는 기대수명 (세) , 독립변수 x는 문맹률 (%)
+## Plot. 분산분석: 종속변수 y는 기대수명 (세) , 독립변수 x는 문맹률 (%)
 
-### 표3. 계수추정표
+## 표3. 계수추정표
 
-![문맹1](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문맹1.png)
+![문맹1](/assets/img/r/문맹1.png)
 
 ---
 
 #### 미국 50개 주에 대한 문맹률(%)과 기대수명((세)의 산점도와 회귀직선
 
-![문맹2](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문맹2.png)
+![문맹2](/assets/img/r/문맹2.png)
 
 ---
 
-### 코드
+## 코드
 
 ```R
 # 데이터 준비
@@ -54,12 +52,12 @@ plot(mydata$Illiteracy, mydata$`Life Exp`,
 abline(fit)
 ```
 
-![문맹3](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문맹3.png)
+![문맹3](/assets/img/r/문맹3.png)
 
 
 ---
 
-### 문제
+## 문제
 
 ```markdown
 1. 표2에 대한 설명으로 틀린 것은 어느 것인가?

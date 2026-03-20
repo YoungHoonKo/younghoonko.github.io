@@ -11,7 +11,7 @@ image: /assets/img/lang/r.png
 
 # R 함수를 활용한 문제 풀이
 
-### ![문제1](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제1.png)
+### ![문제1](/assets/img/r/문제1.png)
 
 ## 코드
 
@@ -58,13 +58,13 @@ quantile(x)
 #Q1 - 1.5 * IQR을 벗어나는 이상치는 없다(min > Q1 - 1.5 * IQR)
 ```
 
-![문제1a](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제1a.png)
+![문제1a](/assets/img/r/문제1a.png)
 
-![문제1b](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제1b.png)
+![문제1b](/assets/img/r/문제1b.png)
 
 ---
 
-### ![문제2](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제2.png)
+### ![문제2](/assets/img/r/문제2.png)
 
 ```R
 # mtcars에서 mpg를 y축, wt를 x축 변수로 두자. 산점도를 그려라. mpg=a+b*wt를 만족하는 최적직선식에서 a와 b를 구하라.
@@ -81,11 +81,11 @@ fit
 # wt = -5.344, mpg = 37.285
 ```
 
-![문제2a](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제2a.png)
+![문제2a](/assets/img/r/문제2a.png)
 
 ---
 
-### ![문제3](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제3.png)
+### ![문제3](/assets/img/r/문제3.png)
 
 ```R
 # iris에서 Species별로 Sepal.Length의 통계량을 계산하자.
@@ -99,11 +99,11 @@ b
 boxplot(Sepal.Length~Species, data = iris, xlab = "Species", ylab = "Sepal.Length")
 ```
 
-![문제3a](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제3a.png)
+![문제3a](/assets/img/r/문제3a.png)
 
 ---
 
-### ![문제4](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제4.png)
+### ![문제4](/assets/img/r/문제4.png)
 
 ```R
 # Titanic에서 객실 1,2,3 등급 별, 여성, 어른 자료를 이용하자
@@ -119,9 +119,9 @@ pt <- prop.table(mytable3, 1)*100
 barplot(pt, beside=T, legend=c("1","2","3"))
 ```
 
-![문제4a](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제4a.png)
+![문제4a](/assets/img/r/문제4a.png)
 
-![문제4b](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제4b.png)
+![문제4b](/assets/img/r/문제4b.png)
 
 ---
 

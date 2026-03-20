@@ -21,7 +21,7 @@ R의 InsectSprays에서 B,F를 뿌릴 때, 죽는 벌레 수가 동일한지 검
 
 ### boxplot
 
-![boxplot_bf](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/boxplot_bf.png)
+![boxplot_bf](/assets/img/r/boxplot_bf.png)
 
 ---
 
@@ -44,6 +44,8 @@ R의 InsectSprays에서 B,F를 뿌릴 때, 죽는 벌레 수가 동일한지 검
 
 즉, 유의수준 0.05에서 살충제 B와 F의 효과는 같다.
 ```
+
+---
 
 ### 코드
 
@@ -75,11 +77,13 @@ var.test(x, y)
 t.test(x, y, var.equal = TRUE)
 ```
 
+---
+
 ### 결과
 
-![이표본t검정1](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/이표본t검정1.png)
+![이표본t검정1](/assets/img/r/이표본t검정1.png)
 
-![이표본t검정2](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/이표본t검정2.png)
+![이표본t검정2](/assets/img/r/이표본t검정2.png)
 
 ---
 

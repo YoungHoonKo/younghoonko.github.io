@@ -97,9 +97,9 @@ image: /assets/img/lang/r.png
   ```
   
 
-![bar](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/bar.png)
+![bar](/assets/img/r/bar.png)
 
-![circle](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/circle.png)
+![circle](/assets/img/r/circle.png)
 
 ---
 
@@ -135,7 +135,7 @@ image: /assets/img/lang/r.png
   |   IQR(x)    |                        IQR = Q3 - Q1                         |
   |  range(x)   |                      범위 = (min, max)                       |
 
-![실습1](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/실습1.png)
+![실습1](/assets/img/r/실습1.png)
 
 ---
 
@@ -164,7 +164,7 @@ image: /assets/img/lang/r.png
   # 335 > 𝑄3 + 1.5 ∗ 𝐼𝑄𝑅 = 180 + 1.5 ∗ 83.5 = 305.25
   ```
 
-![실습2](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/실습2.png)
+![실습2](/assets/img/r/실습2.png)
 
 ---
 
@@ -189,7 +189,7 @@ R의 mtcars 데이터셋에서 cyl 변수에 대해 다음을 수행하시오.
    pie(x.table)
 ```
 
-![p1](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/p1.png)
+![p1](/assets/img/r/p1.png)
 
 ---
 ```markdown
@@ -218,7 +218,7 @@ iris 데이터셋에서 setosa 종(1~50행)의 Sepal.Length 변수에 대해 다
    boxplot(x)
    hist(x, main="히스토그램")
 ```
-![p2](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/p2.png)
+![p2](/assets/img/r/p2.png)
 
 ---
 ```markdown
@@ -235,7 +235,7 @@ iris 데이터셋에서 setosa 종(1~50행)의 Sepal.Length 변수에 대해 다
   sd(x)
 ```
 
-![p3](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/p3.png)
+![p3](/assets/img/r/p3.png)
 
 ---
 
