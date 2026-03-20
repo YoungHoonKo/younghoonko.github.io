@@ -1,5 +1,5 @@
 ---
-title: Statistics Midterm Exam
+title: Statistics Exam
 Author: YoungHoon Ko
 date: 2022-10-24 11:33:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
@@ -9,7 +9,7 @@ image: /assets/img/lang/r.png
 
 [toc]
 
-# 통계학 중간고사 정리
+# 통계학 정리
 
 ## 1. 기본용어 정리
 
@@ -26,7 +26,7 @@ image: /assets/img/lang/r.png
 
 - 분산과 표준편차가 작으면 자료의 변동성 낮다.(반대로 높으면 변동성 또한 커진다.)
 
-
+---
 
 ## 2. 일변수 기술통계
 
@@ -45,8 +45,6 @@ image: /assets/img/lang/r.png
    - 차이와 비가 물리적인 의미를 갖는 척도이다.
    - 혈압, 혈당 등과 같은 `연속값`들이 여기에 속한다.
 
-
-
 - 위 세가지 척도로 측정된 자료는 자료는 크게 `집단을 표현하는 범주형 자료`와 `집단을 표현하지 않는 연속형 자료`로 구분된다.
 
   - 명목척도는 집단을 표현하는 범주형 자료에 속한다.
@@ -54,8 +52,6 @@ image: /assets/img/lang/r.png
     - 연속형 자료로 구분하면 추이나 경향을 나타냄(순서척도의 예시를 보면서 생각)
 
   - 비척도는 연속형 자료에 해당한다
-
-
 
 - 분포
 
@@ -65,11 +61,9 @@ image: /assets/img/lang/r.png
     - `범주형` : 빈도표, 상대빈도표, 막대그래프, 원그래프 => 모두 범주화(분류) 되어있다.
       - `연속형` : 구간에 대한 빈도표, 상대빈도표, 히스토그램, 상자도표
 
-
+---
 
 - R 연습
-
-  ![2.3](/assets/img/2.3.png)
 
   ```R
   # 자료
@@ -79,7 +73,7 @@ image: /assets/img/lang/r.png
   x <- c(rep('A', 34), rep('B', 46), rep('C', 14))
   x
   ```
-
+  
   ```R
   # 빈도표
   my.table <- table(x)
@@ -92,7 +86,7 @@ image: /assets/img/lang/r.png
   lb <- c('A', 'B', 'C')
   pie(my.table, lb)
   ```
-
+  
   ```R
   # 상대빈도표
   my.ptable <- prop.table(my.table)
@@ -101,18 +95,13 @@ image: /assets/img/lang/r.png
   # 상대빈도표로 막대그래프 그리기
   barplot(my.ptable, space=0.1) # 상대빈도가 막대의 높이
   ```
-
-  ```R
-  mean(x) # 평균
-  median(x) # 중앙값
-  var(x) # 분산 
-  sd(x) # 표준편차
-  quantile(x) # Q1, Q2, Q3
-  IQR(x) # IQR = Q3 - Q1
-  range(x) # 범위 = (min, max)
-  ```
-
   
+
+![bar](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/bar.png)
+
+![circle](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/circle.png)
+
+---
 
 - R 실습1
 
@@ -146,7 +135,9 @@ image: /assets/img/lang/r.png
   |   IQR(x)    |                        IQR = Q3 - Q1                         |
   |  range(x)   |                      범위 = (min, max)                       |
 
+![실습1](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/실습1.png)
 
+---
 
 - R 실습2
 
@@ -173,13 +164,21 @@ image: /assets/img/lang/r.png
   # 335 > 𝑄3 + 1.5 ∗ 𝐼𝑄𝑅 = 180 + 1.5 ∗ 83.5 = 305.25
   ```
 
+![실습2](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/실습2.png)
 
+---
 
 ### 연습문제 풀이
+```markdown
+R의 mtcars 데이터셋에서 cyl 변수에 대해 다음을 수행하시오.
+   
+1. cyl 변수의 빈도표를 구하시오.
+2. 상대빈도표를 구하시오.
+3. 빈도표를 이용하여 막대그래프를 그리시오.
+4. 원그래프를 그리시오.
+```
 
-1. ![이미지](/assets/img/2-E2.png)
-
-   ```R
+```R
    x <- mtcars$cyl
    x
    x.table <- table(x)
@@ -188,13 +187,21 @@ image: /assets/img/lang/r.png
    x.p.table
    barplot(x.table)
    pie(x.table)
-   ```
+```
 
-   
+![p1](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/p1.png)
 
-2. ![이미지](/assets/img/2-E3.png)
+---
+```markdown
+iris 데이터셋에서 setosa 종(1~50행)의 Sepal.Length 변수에 대해 다음을 수행하시오.
 
-   ```R
+1. 평균, 분산, 표준편차, 중앙값을 구하시오.
+2. 최대값, 최소값, 범위를 구하시오.
+3. 사분위수와 IQR을 구하시오.
+4. boxplot과 histogram을 그리시오.
+```
+
+```R
    iris
    x <- iris[1:50, 1]
    x
@@ -210,22 +217,26 @@ image: /assets/img/lang/r.png
    
    boxplot(x)
    hist(x, main="히스토그램")
-   ```
+```
+![p2](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/p2.png)
 
+---
+```markdown
+다음 자료 x = {4, 4, 5, 6, 7}에 대하여
 
+1. 평균(mean)을 구하시오.
+2. 표준편차(sd)를 구하시오. (단, 표본 표준편차를 사용하시오)
+```
 
-3. ![이미지](/assets/img/2-E4.png)
+```R
+  x <- c(4,4,5,6,7)
+  x
+  mean(x)
+  sd(x)
+```
 
-   ```R
-   x <- c(4,4,5,6,7)
-   x
-   mean(x)
-   sd(x)
-   ```
-
-   
+![p3](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/p3.png)
 
 ---
 
-- 시간 문제로 완성 못하고 따로 공부함
-- 모든 이미지는 홍익대학교 최경미 교수님의 교재에서 참고함 
+End.

@@ -9,9 +9,7 @@ image: /assets/img/lang/r.png
 
 [toc]
 
-# 2022-10-24 통계학 과제
-
-## 중심극한정리 B(3, 1/6)의 표본평균의 분포
+# 중심극한정리 B(3, 1/6)의 표본평균의 분포
 
 ### n = 3개
 
@@ -28,9 +26,9 @@ x.mean <- apply(x, 1, mean) # 각 행에서 3개 난수의 평균 계산
 hist(x.mean, main=" ", freq=F, xlab=" ", xlim=c(0,2.0), ylim=c(0,6))
 ```
 
-![이미지](/assets/img/limt3.png)
+![limt3](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/limt3.png)
 
-
+---
 
 ### n = 10개
 
@@ -47,9 +45,9 @@ x.mean <- apply(x, 1, mean) # 각 행에서 3개 난수의 평균 계산
 hist(x.mean, main=" ", freq=F, xlab=" ", xlim=c(0,2.0), ylim=c(0,6))
 ```
 
-![이미지](/assets/img/limit10.png)
+![limt10](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/limt10.png)
 
-
+---
 
 ### n = 30개
 
@@ -66,4 +64,8 @@ x.mean <- apply(x, 1, mean) # 각 행에서 3개 난수의 평균 계산
 hist(x.mean, main=" ", freq=F, xlab=" ", xlim=c(0,2.0), ylim=c(0,6))
 ```
 
-![이미지](/assets/img/limit30.png)
+![limt30](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/limt30.png)
+
+---
+
+End.

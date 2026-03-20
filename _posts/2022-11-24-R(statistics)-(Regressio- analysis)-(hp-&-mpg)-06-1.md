@@ -9,9 +9,7 @@ image: /assets/img/lang/r.png
 
 [toc]
 
-# 2022-11-24 통계학 과제
-
-## 마력과 연비에 대한 회귀분석
+# 마력과 연비에 대한 회귀분석
 
 ### 문제
 
@@ -19,9 +17,9 @@ image: /assets/img/lang/r.png
 R의 mtcars 중 자동 트랜스미션 차 19대를 이용하여, 단순회귀모형을 이용하여, 마력(x), 연비(y)를 어떻게 설명할 수 있는지 살펴보자.이때 `유의수준 0.05`를 사용한다. 표 1의 분산분석표에서 검정통계량 F=38.088에 대한 유의확률 $p=1.025 x 10^-5$이 유의수준 0.05보다 작으므로, 𝘏0 : 𝛃 = 0 또는 𝘏0 : 단순회귀모형이 유의하지 않다를 기각한다. 즉, 추정된 단순회귀모형이 적합하여 유의하다.모형의 결정계수가 `R^2 = 189.923/264.588 = 0.6914`이므로, 마력은 연비의 총변동 중 69.14를 설명한다.
 ```
 
+---
 
-
-### 표1. 분산분석표
+### 분산분석표
 
 | 요인           | 제곱합(SS)   | 자유도(df) | 평균제곱합(MS = ss/df) | 검정통계량(F) | 유의확률(P) |
 | -------------- | ------------ | ---------- | ---------------------- | ------------- | ----------- |
@@ -29,90 +27,134 @@ R의 mtcars 중 자동 트랜스미션 차 19대를 이용하여, 단순회귀�
 | 잔차(residual) | 81.651(SSE)  | 17         | 4.803                  |               |             |
 | 총합           | 264.588(SST) | 18         |                        |               |             |
 
-
-
-### 표2. 계수추정표
+### 계수추정표
 
 |                 | 추정값(Estimate) | 표준오차(Std. Error) | 검정통계량(t value) | 유의확률(Pr(>\|t\|)) |
 | --------------- | ---------------- | -------------------- | ------------------- | -------------------- |
 | 절편(Intercept) | 26.624848        | 1.615883             | 16.477              | 6.92e-12 ***         |
 | 마력            | -0.059137        | 0.009682             | -6.172              | 1.02e-05 ***         |
 
+![분산계수](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/분산계수.png)
 
+---
 
-### 그림1. 계수추정표로부터 구한 추정된 회귀직선식
+### 계수추정표로부터 구한 추정된 회귀직선식
 
-<img src="/assets/img/마력과 연비에 대한 회귀분석 표.png" alt="이미지" style="zoom:50%;" />
+![회귀직선](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/회귀직선.png)
 
-```markdown
-여기서, 절편에 대한 유의확률 p = 6.92 X 10^-12이 유의수준 0.05보다 작으므로, 절편은 유의하다.기울기에 대한 유의확률 p = 1.02 x 10^-5이 유의수준 0.05보다 작으므로, 기울기가 유의하다. 즉, 마력이 연비에 유의하게 영향을 미치며, 마력이 1 증가하면, 연비가 0.05912(마일/갤런) 감소한다. 잔차의 표준오차는 `𝞭(hat) = √MSE = 2.192`이다.
-```
+###  회귀계수의 유의성 검정
 
+절편과 기울기에 대한 유의성 검정을 수행한 결과는 다음과 같다.
 
+- 절편의 p-value: \( p = 6.92 \times 10^{-12} \)
+- 기울기의 p-value: \( p = 1.02 \times 10^{-5} \)
 
-```markdown
-그림2에서 잔차의 QQ-plot을 보면, 잔차가 대부분 정규분포를 벗어나지 않음을 볼 수 있다. 잔차에 대한 샤피로의 정규성검정에서 유의확률 p = 0.1044이므로, 단순회귀모형의 정규성 가정이 성립함을 알 수 있다.
-```
+두 p-value 모두 유의수준 \( \alpha = 0.05 \)보다 작으므로,  
+절편과 기울기 모두 통계적으로 유의하다.
 
-### 그림2. 잔차식
+따라서, 마력(hp)은 연비(mpg)에 유의한 영향을 미치는 변수라고 할 수 있다.
 
-<img src="/assets/img/mfrow.png" alt="이미지" style="zoom:50%;" />
+---
 
+###  회귀식 해석
 
+추정된 단순회귀모형에 따르면,
+
+> 마력이 1 증가할 때, 연비는 약 **0.05912 (mile/gallon)** 감소한다.
+
+즉, 마력과 연비 사이에는 **음의 선형 관계**가 존재한다.
+
+---
+
+###  잔차의 표준오차
+
+잔차의 표준오차는 다음과 같다.
+
+\[
+\hat{\sigma} = \sqrt{MSE} = 2.192
+\]
+
+이는 실제 관측값과 회귀직선 간 평균적인 오차의 크기를 나타낸다.
+
+---
+
+###  잔차의 정규성 검정
+
+잔차의 정규성 가정을 확인하기 위해 QQ-plot과 Shapiro-Wilk 검정을 수행하였다.
+
+- Shapiro-Wilk 검정 p-value: \( p = 0.1044 \)
+
+유의수준 0.05에서 p-value가 더 크므로 귀무가설을 기각할 수 없다.  
+따라서, 잔차는 정규분포를 따른다고 볼 수 있다.
+
+또한 QQ-plot에서도 잔차가 대체로 직선에 근접하여,  
+정규성 가정이 크게 위배되지 않음을 확인할 수 있다.
+
+---
+
+### 결론
+
+본 분석을 통해 다음과 같은 결론을 얻을 수 있다.
+
+1. 마력은 연비에 유의한 영향을 미친다.
+2. 마력이 증가할수록 연비는 감소하는 경향을 보인다.
+3. 회귀모형은 통계적으로 유의하며,
+4. 잔차의 정규성 가정 또한 만족된다.
+
+따라서, 본 단순회귀모형은 데이터를 설명하는 데 적합한 모델이라고 할 수 있다.
+
+### 잔차식
+
+![잔차식](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/잔차식.png)
+
+---
 
 ### 코드
 
 ```R
-> x <- mtcars[mtcars$am == 0, "hp"]
-> y <- mtcars[mtcars$am == 0, "mpg"]
-> fit <- lm(y ~ x)
-> anova(fit)
-Analysis of Variance Table
+# =========================================
+# 단순회귀분석 최종 코드 (자동 변속기 차량)
+# x: hp(마력), y: mpg(연비)
+# =========================================
 
-Response: y
-          Df  Sum Sq Mean Sq F value    Pr(>F)    
-x          1 182.937 182.937  38.088 1.025e-05 ***
-Residuals 17  81.651   4.803                      
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 1. 데이터 추출
+x <- mtcars[mtcars$am == 0, "hp"]
+y <- mtcars[mtcars$am == 0, "mpg"]
+
+# 2. 회귀모형 적합
+fit <- lm(y ~ x)
+
+# 3. 분산분석표
+anova(fit)
+
+# 4. 계수추정표 및 요약
+summary(fit)
+
+# 5. 산점도 + 회귀직선
+plot(x, y,
+     main = "Simple Regression Analysis",
+     xlab = "hp",
+     ylab = "mpg")
+abline(fit)
+text(130, 14, "mpg = 26.624848 - 0.059137*hp")
+
+# 6. 회귀 진단 그래프
+par(mfrow = c(2, 2))
+plot(fit)
+
+# 7. 잔차 정규성 검정
+shapiro.test(fit$residuals)
+
+# 8. 결정계수
+summary(fit)$r.squared
 ```
 
-```R
-> summary(fit)
+![결과1](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/결과1.png)
 
-Call:
-lm(formula = y ~ x)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--4.1018 -1.9026  0.6114  1.5592  2.9241 
-
-Coefficients:
-             Estimate Std. Error t value Pr(>|t|)    
-(Intercept) 26.624848   1.615883  16.477 6.92e-12 ***
-x           -0.059137   0.009582  -6.172 1.02e-05 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Residual standard error: 2.192 on 17 degrees of freedom
-Multiple R-squared:  0.6914,	Adjusted R-squared:  0.6733 
-F-statistic: 38.09 on 1 and 17 DF,  p-value: 1.025e-05
-```
-
-```R
-> plot(x, y, main = "Simple regression analysis", xlab = "hp", ylab = "mpg", text(130, 14, "mpg = 26.624848 - 0.059137*hp"))
-> abline(fit)
-> par(mfrow=c(2, 2))
-> plot(fit)
-```
-
-```R
-> shapiro.test(fit$residuals)
-
-	Shapiro-Wilk normality test
-
-data:  fit$residuals
-W = 0.92307, p-value = 0.129
-```
+![결과2](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/결과2.png)
 
 * R^2 = 결정계수 = SSR/SST
+
+---
+
+End.

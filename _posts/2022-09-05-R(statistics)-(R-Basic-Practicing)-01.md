@@ -9,11 +9,9 @@ image: /assets/img/lang/r.png
 
 [toc]
 
-# 2022-09-05 통계학 첫 번째 과제
+#  R 명령어 연습과 연습문제 풀이
 
-## 수업시간에 알려준 R 명령어 연습과 연습문제 2번 문제 풀이
-
-### 명령어 연습
+## 명령어 연습
 
 ```R
 # 계산기 처럼 사용하기
@@ -121,8 +119,9 @@ boxplot(mtcars4)
 # hist
 hist(mtcars$hp)
 ```
+---
 
-### 연습문제 2번 문제풀이
+## 문제 풀이
 
 ```R
 # 0) 값 확인
@@ -153,3 +152,8 @@ a <- prop.table(z)
 a * 100
 ```
 
+![연습1](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/연습1.png)
+
+---
+
+End.

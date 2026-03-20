@@ -9,11 +9,11 @@ image: /assets/img/lang/r.png
 
 [toc]
 
-# 2022-09-25 통계학 과제
+# R 함수를 활용한 문제 풀이
 
-## 2장 3번, 3장 8, 9, 10번 문제 풀이
+### ![문제1](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제1.png)
 
-### 2장 3번
+## 코드
 
 ```R
 # 2장 3번 문제 풀이
@@ -58,12 +58,15 @@ quantile(x)
 #Q1 - 1.5 * IQR을 벗어나는 이상치는 없다(min > Q1 - 1.5 * IQR)
 ```
 
+![문제1a](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제1a.png)
 
+![문제1b](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제1b.png)
 
-### 3장 8번
+---
+
+### ![문제2](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제2.png)
 
 ```R
-# 8
 # mtcars에서 mpg를 y축, wt를 x축 변수로 두자. 산점도를 그려라. mpg=a+b*wt를 만족하는 최적직선식에서 a와 b를 구하라.
 # 1.산점도와 최적직선식을 한 그래프에 그려라.
 wt <- mtcars$wt
@@ -78,12 +81,13 @@ fit
 # wt = -5.344, mpg = 37.285
 ```
 
+![문제2a](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제2a.png)
 
+---
 
-### 3장 9번
+### ![문제3](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제3.png)
 
 ```R
-# 9
 # iris에서 Species별로 Sepal.Length의 통계량을 계산하자.
 # 1.Species 집단 별로 평균과 표준편차를 계산하여, 표를 만들어라.
 iris
@@ -95,12 +99,13 @@ b
 boxplot(Sepal.Length~Species, data = iris, xlab = "Species", ylab = "Sepal.Length")
 ```
 
+![문제3a](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제3a.png)
 
+---
 
-### 3장 10번
+### ![문제4](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제4.png)
 
 ```R
-#10
 # Titanic에서 객실 1,2,3 등급 별, 여성, 어른 자료를 이용하자
 # 1.객실과 생존여부에 대한 교차표를 구하라(전체%, 행%, 열%)
 Titanic
@@ -114,3 +119,10 @@ pt <- prop.table(mytable3, 1)*100
 barplot(pt, beside=T, legend=c("1","2","3"))
 ```
 
+![문제4a](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제4a.png)
+
+![문제4b](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/문제4b.png)
+
+---
+
+End.

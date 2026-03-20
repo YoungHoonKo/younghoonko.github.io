@@ -9,9 +9,7 @@ image: /assets/img/lang/r.png
 
 [toc]
 
-# 2022-11-15 통계학 과제
-
-## 이표본 t-검정 보고서
+# 이표본 t-검정 보고서
 
 ### 문제
 
@@ -23,7 +21,9 @@ R의 InsectSprays에서 B,F를 뿌릴 때, 죽는 벌레 수가 동일한지 검
 
 ### boxplot
 
-<img src="/assets/img/boxplot2.png" alt="이미지" style="zoom:50%;" />
+![boxplot_bf](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/boxplot_bf.png)
+
+---
 
 ### 풀이
 
@@ -45,104 +45,42 @@ R의 InsectSprays에서 B,F를 뿌릴 때, 죽는 벌레 수가 동일한지 검
 즉, 유의수준 0.05에서 살충제 B와 F의 효과는 같다.
 ```
 
-### R코드
+### 코드
 
 ```R
-> x <- InsectSprays[InsectSprays$spray == 'B', "count"]
-> x
- [1] 11 17 21 11 16 14 17 17 19 21  7 13
-> y <- InsectSprays[InsectSprays$spray == 'F', "count"]
-> y
- [1] 11  9 15 22 15 16 13 10 26 26 24 13
+# 데이터 추출
+x <- InsectSprays[InsectSprays$spray == 'B', "count"]
+y <- InsectSprays[InsectSprays$spray == 'F', "count"]
+
+# 데이터 결합
+count <- c(x, y)
+spray <- c(rep('B', length(x)), rep('F', length(y)))
+
+# 데이터프레임 생성
+xy <- data.frame(count, spray)
+
+# 표본평균
+aggregate(count ~ spray, data = xy, mean)
+
+# 표준편차
+aggregate(count ~ spray, data = xy, sd)
+
+# 상자도표
+boxplot(count ~ spray, data = xy)
+
+# 등분산 검정
+var.test(x, y)
+
+# 이표본 t-검정 (등분산 가정)
+t.test(x, y, var.equal = TRUE)
 ```
 
-```R
-> aggregate(count~spray, data = xy, sd) # 표준편차
-  spray    count
-1     B 4.271115
-2     F 6.213378
-```
+### 결과
 
-```R
-> aggregate(count~spray, data = xy, mean) # 표본평균
-  spray    count
-1     B 15.33333
-2     F 16.66667
-```
+![이표본t검정1](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/이표본t검정1.png)
 
-```R
-> count <- c(x, y)
-> count
- [1] 11 17 21 11 16 14 17 17 19 21  7 13 11  9 15 22 15 16
-[19] 13 10 26 26 24 13
-> spray <- c(rep('B', length(x)), rep('F', length(y)))
-> spray
- [1] "B" "B" "B" "B" "B" "B" "B" "B" "B" "B" "B" "B" "F"
-[14] "F" "F" "F" "F" "F" "F" "F" "F" "F" "F" "F"
-```
+![이표본t검정2](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/이표본t검정2.png)
 
-```R
-> xy <- data.frame(count, spray)
-> xy
-   count spray
-1     11     B
-2     17     B
-3     21     B
-4     11     B
-5     16     B
-6     14     B
-7     17     B
-8     17     B
-9     19     B
-10    21     B
-11     7     B
-12    13     B
-13    11     F
-14     9     F
-15    15     F
-16    22     F
-17    15     F
-18    16     F
-19    13     F
-20    10     F
-21    26     F
-22    26     F
-23    24     F
-24    13     F
-```
+---
 
-```R
-> boxplot(count~spray, data = xy) # 위의 박스도표
-```
-
-```R
-> var.test(x, y) # 등분산확률
-
-	F test to compare two variances
-
-data:  x and y
-F = 0.47253, num df = 11, denom df = 11, p-value =
-0.2294
-alternative hypothesis: true ratio of variances is not equal to 1
-95 percent confidence interval:
- 0.1360301 1.6414182
-sample estimates:
-ratio of variances 
-         0.4725275 
-```
-
-```R
-> t.test(x, y, var.equal = TRUE)  # 등분산 T-검정
-
-	Two Sample t-test
-
-data:  x and y
-t = -0.61259, df = 22, p-value = 0.5464
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -5.847224  3.180557
-sample estimates:
-mean of x mean of y 
- 15.33333  16.66667 
-```
-
+End.

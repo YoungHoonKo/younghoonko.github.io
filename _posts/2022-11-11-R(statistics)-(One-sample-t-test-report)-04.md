@@ -9,20 +9,26 @@ image: /assets/img/lang/r.png
 
 [toc]
 
-# 2022-11-11 통계학 과제
-
-## 일표본 t-검정 보고서
+# 일표본 t-검정 보고서
 
 ### 문제
 
 ```markdown
-R의 state.x77에서 기대수명 (Life.Exp)dl 71세라고 말할 수 있을 지에 알아보기 위하여, 
-`유의수준 0.05`에서 일표본 T-검정을 실시 해보자. 그림1은 자료의 상자도표이다
+R의 state.x77 데이터에서 기대수명(Life.Exp)이 71세라고 말할 수 있는지 알아보고자 한다.
+
+유의수준 0.05에서 일표본 t-검정을 실시하시오.
+
+(1) 귀무가설(H0)과 대립가설(H1)을 설정하시오.
+(2) 검정통계량을 계산하시오.
+(3) p-value를 구하시오.
+(4) 검정 결과를 해석하시오.
 ```
 
-### 그림1
+### Boxplot
 
-<img src="/assets/img/boxplot.png" alt="이미지" style="zoom:50%;" />
+![boxplot_lifeexp](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/boxplot_lifeexp.png)
+
+---
 
 ### 풀이
 
@@ -37,31 +43,17 @@ R의 state.x77에서 기대수명 (Life.Exp)dl 71세라고 말할 수 있을 지
 즉, `유의수준 0.05에서 기대수명이 71세라고 말할 수 있다.` 
 ```
 
+### 코드
+
 ```R
-# 코드
 x <- state.x77[,4]
 t.test(x, mu = 71)
 sd(x)
 ```
 
-```R
-# 결과
+### 결과
 
-# t.test(x, mu = 71)
-One Sample t-test
-
-data:  x
-t = -0.63948, df = 49, p-value = 0.5255  # t = 검정통계량, p-value = 유의확률
-alternative hypothesis: true mean is not equal to 71
-95 percent confidence interval:
- 70.4971 71.2601 # 95% 신뢰구간 (70.4971 71.2601)
-sample estimates:
-mean of x 
-  70.8786 # 표본평균
-
-# sd(x)
-[1] 1.342394
-```
+![one_sample_t-test](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/one_sample_t-test.png)
 
 ```markdown
 자료가 정규분포를 따르는지 확인하기 위하여, 샤피로의 검정을 실시하였다.
@@ -69,25 +61,18 @@ mean of x
 그림의 QQ-plot에서 자료들이 거의 일직선에 놓임을 확인할 수 있다.
 ```
 
+### 코드
+
 ```R
-# 코드
 shapiro.test(x)
 qqnorm(x)
 qqline(x)
 ```
 
-```R
-# 결과
+### 결과
 
-# shapiro.test(x)
-shapiro.test(x)
+![shapiro](/Users/goyeonghun/Desktop/All/Hoon/My_blog/assets/img/r/shapiro.png)
 
-	Shapiro-Wilk normality test
+---
 
-data:  x
-W = 0.97724, p-value = 0.4423 
-```
-
-### 그림2    
-
-<img src="/assets/img/QQ-line.png" alt="이미지" style="zoom:50%;" />
+End.
