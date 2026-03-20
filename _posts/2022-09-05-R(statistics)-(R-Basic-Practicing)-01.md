@@ -152,7 +152,7 @@ a <- prop.table(z)
 a * 100
 ```
 
-![연습1](/assets/img/r/연습1.png)
+![prac1](/assets/img/r/prac1.png)
 
 ---
 

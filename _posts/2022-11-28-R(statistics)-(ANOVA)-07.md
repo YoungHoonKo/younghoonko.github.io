@@ -45,7 +45,7 @@ text(1:length(means), means,
      pos = 3, col = "red")
 ```
 
-![석회1](/assets/img/r/석회1.png)
+![suk1](/assets/img/r/suk1.png)
 
 ---
 
@@ -81,7 +81,7 @@ print(stats)
 |  G   | 68.500 |  20.142  |   8    |  24  |  92  |
 |  H   | 90.250 |  24.224  |   8    |  69  | 130  |
 
-![석회2](/assets/img/r/석회2.png)
+![suk2](/assets/img/r/suk2.png)
 
 ---
 
@@ -105,7 +105,7 @@ anova(fit)
 summary(fit)
 ```
 
-![석회3](/assets/img/r/석회3.png)
+![suk3](/assets/img/r/suk3.png)
 
 - 유의확률 p = 9.499e-13 이므로, 농도에 따른 자당 감소 효과는 동일하지 않다 (통계적으로 유의미한 차이가 존재).
 
@@ -129,7 +129,7 @@ tukey_result <- TukeyHSD(fit)
 plot(tukey_result)
 ```
 
-![석회4](/assets/img/r/석회4.png)
+![suk4](/assets/img/r/suk4.png)
 
 - Tukey HSD 결과에 따르면:
   - 농도 F, G, E는 동일 그룹으로 묶인다.

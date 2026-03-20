@@ -34,13 +34,13 @@ R의 mtcars 중 자동 트랜스미션 차 19대를 이용하여, 단순회귀�
 | 절편(Intercept) | 26.624848        | 1.615883             | 16.477              | 6.92e-12 ***         |
 | 마력            | -0.059137        | 0.009682             | -6.172              | 1.02e-05 ***         |
 
-![분산계수](/assets/img/r/분산계수.png)
+![bunsan](/assets/img/r/bunsan.png)
 
 ---
 
 ### 계수추정표로부터 구한 추정된 회귀직선식
 
-![회귀직선](/assets/img/r/회귀직선.png)
+![recursion](/assets/img/r/recursion.png)
 
 ###  회귀계수의 유의성 검정
 
@@ -105,7 +105,7 @@ R의 mtcars 중 자동 트랜스미션 차 19대를 이용하여, 단순회귀�
 
 ### 잔차식
 
-![잔차식](/assets/img/r/잔차식.png)
+![zancha](/assets/img/r/zancha.png)
 
 ---
 
@@ -149,9 +149,9 @@ shapiro.test(fit$residuals)
 summary(fit)$r.squared
 ```
 
-![결과1](/assets/img/r/결과1.png)
+![rst1](/assets/img/r/rst1.png)
 
-![결과2](/assets/img/r/결과2.png)
+![rst2](/assets/img/r/rst2.png)
 
 * R^2 = 결정계수 = SSR/SST
 

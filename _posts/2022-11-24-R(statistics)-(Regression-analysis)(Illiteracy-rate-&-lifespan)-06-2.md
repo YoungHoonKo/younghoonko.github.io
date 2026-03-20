@@ -20,13 +20,13 @@ image: /assets/img/lang/r.png
 
 ## 표3. 계수추정표
 
-![문맹1](/assets/img/r/문맹1.png)
+![nonread1](/assets/img/r/nonread1.png)
 
 ---
 
 #### 미국 50개 주에 대한 문맹률(%)과 기대수명((세)의 산점도와 회귀직선
 
-![문맹2](/assets/img/r/문맹2.png)
+![nonread2](/assets/img/r/nonread2.png)
 
 ---
 
@@ -52,7 +52,7 @@ plot(mydata$Illiteracy, mydata$`Life Exp`,
 abline(fit)
 ```
 
-![문맹3](/assets/img/r/문맹3.png)
+![nonread3](/assets/img/r/nonread3.png)
 
 
 ---

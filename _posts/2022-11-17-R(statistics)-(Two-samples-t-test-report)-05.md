@@ -11,7 +11,7 @@ image: /assets/img/lang/r.png
 
 # 이표본 t-검정 보고서
 
-### 문제
+## 문제
 
 ```markdown
 R의 InsectSprays에서 B,F를 뿌릴 때, 죽는 벌레 수가 동일한지 검정하기 위하여,
@@ -19,13 +19,13 @@ R의 InsectSprays에서 B,F를 뿌릴 때, 죽는 벌레 수가 동일한지 검
 그림1은 자료의 상자도표이다.
 ```
 
-### boxplot
+## boxplot
 
 ![boxplot_bf](/assets/img/r/boxplot_bf.png)
 
 ---
 
-### 풀이
+## 풀이
 
 ```markdown
 두 스프레이를 뿌릴 때 죽은 평균 벌레수가 동일한지 알아보기위하여, 다음과 같이 가설을 세우자.
@@ -47,7 +47,7 @@ R의 InsectSprays에서 B,F를 뿌릴 때, 죽는 벌레 수가 동일한지 검
 
 ---
 
-### 코드
+## 코드
 
 ```R
 # 데이터 추출
@@ -79,11 +79,11 @@ t.test(x, y, var.equal = TRUE)
 
 ---
 
-### 결과
+## 결과
 
-![이표본t검정1](/assets/img/r/이표본t검정1.png)
+![t_test1](/assets/img/r/t_test1.png)
 
-![이표본t검정2](/assets/img/r/이표본t검정2.png)
+![t_test2](/assets/img/r/t_test2.png)
 
 ---
 

@@ -135,7 +135,7 @@ image: /assets/img/lang/r.png
   |   IQR(x)    |                        IQR = Q3 - Q1                         |
   |  range(x)   |                      범위 = (min, max)                       |
 
-![실습1](/assets/img/r/실습1.png)
+![pracitce1](/assets/img/r/pracitce1.png)
 
 ---
 
@@ -164,7 +164,7 @@ image: /assets/img/lang/r.png
   # 335 > 𝑄3 + 1.5 ∗ 𝐼𝑄𝑅 = 180 + 1.5 ∗ 83.5 = 305.25
   ```
 
-![실습2](/assets/img/r/실습2.png)
+![pracitce2](/assets/img/r/pracitce2.png)
 
 ---
 
