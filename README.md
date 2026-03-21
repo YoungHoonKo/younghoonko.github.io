@@ -1,84 +1,173 @@
-<!-- markdownlint-disable-next-line -->
-<div align="center">
+# YoungHoon Ko
 
-  <!-- markdownlint-disable-next-line -->
-  # Chirpy Jekyll Theme
+Problem-solving oriented developer who builds reliable systems through structured thinking, consistent learning, and practical implementation.
 
-  A minimal, responsive, and feature-rich Jekyll theme for technical writing.
+I am a Software Convergence student focused on Data, AI, and Software Engineering.  
+I document not only results, but also the reasoning, mistakes, and improvements behind them.
 
-  [![CI](https://img.shields.io/github/actions/workflow/status/cotes2020/jekyll-theme-chirpy/ci.yml?logo=github)][ci]&nbsp;
-  [![Codacy Badge](https://img.shields.io/codacy/grade/4e556876a3c54d5e8f2d2857c4f43894?logo=codacy)][codacy]&nbsp;
-  [![GitHub license](https://img.shields.io/github/license/cotes2020/jekyll-theme-chirpy?color=goldenrod)][license]&nbsp;
-  [![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy?&logo=RubyGems&logoColor=ghostwhite&label=gem&color=orange)][gem]&nbsp;
-  [![Open in Dev Containers](https://img.shields.io/badge/Dev_Containers-Open-deepskyblue?logo=linuxcontainers)][open-container]
+---
 
-  [**Live Demo** →][demo]
+## Key Highlights
 
-  [![Devices Mockup](https://chirpy-img.netlify.app/commons/devices-mockup.png)][demo]
+- Strong foundation in Data Structures, Algorithms, and Core Programming
+- Experience transforming brute-force solutions into optimized algorithms
+- Consistent documentation of study, assignments, and problem-solving processes
+- Focused on explainable thinking and reproducible solutions
 
-</div>
+---
 
-## Features
+## Repository Structure
 
-- Dark Theme
-- Localized UI language
-- Pinned Posts on Home Page
-- Hierarchical Categories
-- Trending Tags
-- Table of Contents
-- Last Modified Date
-- Syntax Highlighting
-- Mathematical Expressions
-- Mermaid Diagrams & Flowcharts
-- Dark Mode Images
-- Embed Media
-- Comment Systems
-- Built-in Search
-- Atom Feeds
-- PWA
-- Web Analytics
-- SEO & Performance Optimization
+This repository is organized as a **portfolio-driven knowledge system**:
 
-## Documentation
+📦 repository
+ ┣ 📂 study
+ ┃ ┣ 📂 python
+ ┃ ┣ 📂 c
+ ┃ ┣ 📂 java
+ ┃ ┣ 📂 sql
+ ┃ ┗ 📂 machine-learning
+ ┣ 📂 assignments
+ ┃ ┣ 📂 data-structures
+ ┃ ┣ 📂 computer-architecture
+ ┃ ┗ 📂 software-practice
+ ┣ 📂 research
+ ┃ ┗ 📂 ai-lab
+ ┣ 📂 problem-solving
+ ┃ ┣ 📂 binary-search
+ ┃ ┣ 📂 greedy
+ ┃ ┗ 📂 dynamic-programming
+ ┗ 📜 README.md
 
-To learn how to use, develop, and upgrade the project, please refer to the [Wiki][wiki].
+Each directory contains:
 
-## Contributing
+- Code implementations
+- Concept explanations
+- Debugging records
+- Improvement history
 
-Contributions (_pull requests_, _issues_, and _discussions_) are what make the open-source community such an amazing place
-to learn, inspire, and create. Any contributions you make are greatly appreciated.
-For details, see the "[Contributing Guidelines][contribute-guide]".
+---
 
-## Credits
+## Featured Work
 
-### Contributors
+### 1. Algorithm Optimization – Binary Search Transformation
 
-Thanks to [all the contributors][contributors] involved in the development of the project!
+- Converted brute-force approach (O(N²)) into efficient solution (O(N log N))
+- Key idea: counting function + boundary-based binary search
 
-[![all-contributors](https://contrib.rocks/image?repo=cotes2020/jekyll-theme-chirpy&columns=16)][contributors]
-<sub> — Made with [contrib.rocks](https://contrib.rocks)</sub>
+**What I did**
 
-### Third-Party Assets
+- Identified bottleneck in nested loops
+- Derived mathematical condition: `i * j <= mid → j <= mid // i`
+- Implemented count-based decision function
 
-This project is built on the [Jekyll][jekyllrb] ecosystem and some [great libraries][lib], and is developed using [VS Code][vscode] as well as tools provided by [JetBrains][jetbrains] under a non-commercial open-source software license.
+**Links**
 
-The avatar and favicon for the project's website are from [ClipartMAX][clipartmax].
+- Code: (추가 예정)
+- Explanation: (추가 예정)
 
-## License
+---
 
-This project is published under [MIT License][license].
+### 2. Data Analysis Practice
 
-[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
-[ci]: https://github.com/cotes2020/jekyll-theme-chirpy/actions/workflows/ci.yml?query=event%3Apush+branch%3Amaster
-[codacy]: https://app.codacy.com/gh/cotes2020/jekyll-theme-chirpy/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
-[license]: https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/LICENSE
-[open-container]: https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/cotes2020/jekyll-theme-chirpy
-[jekyllrb]: https://jekyllrb.com/
-[clipartmax]: https://www.clipartmax.com/middle/m2i8b1m2K9Z5m2K9_ant-clipart-childrens-ant-cute/
-[demo]: https://cotes2020.github.io/chirpy-demo/
-[wiki]: https://github.com/cotes2020/jekyll-theme-chirpy/wiki
-[contribute-guide]: https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/docs/CONTRIBUTING.md
-[contributors]: https://github.com/cotes2020/jekyll-theme-chirpy/graphs/contributors
-[lib]: https://github.com/cotes2020/chirpy-static-assets
-[vscode]: https://code.visualstudio.com/
-[jetbrains]: https://www.jetbrains.com/?from=jekyll-theme-chirpy
+- Data preprocessing → visualization → statistical analysis
+- Practiced using real datasets
+
+**Tech**
+
+- Pandas, Matplotlib, R
+
+**What I learned**
+
+- Data cleaning workflow
+- Visualization for insight extraction
+- Statistical interpretation
+
+---
+
+### 3. Debugging & Performance Analysis
+
+- Focus on time complexity and memory optimization
+- Documented failure cases and fixes
+
+**Examples**
+
+- Time Limit Exceeded 해결
+- Memory optimization using better data structures
+- Edge case handling improvements
+
+---
+
+## Tech Stack
+
+### Languages
+
+- Python
+- C
+- Java
+- SQL
+
+### Tools
+
+- Git / GitHub
+- Jupyter Notebook
+- VS Code
+
+### Concepts
+
+- Data Structures & Algorithms
+- Machine Learning Basics
+- System-Level Thinking
+
+---
+
+## How I Solve Problems
+
+My approach is systematic:
+
+1. Understand the problem and constraints
+2. Identify inefficiencies in initial solution
+3. Derive a better approach (mathematical or structural)
+4. Implement step-by-step
+5. Analyze complexity and edge cases
+6. Document everything
+
+---
+
+## Blog (Detailed Learning Logs)
+
+- https://younghoonko.github.io
+
+---
+
+## Current Focus
+
+- Strengthening algorithmic problem-solving (Binary Search, DP, etc.)
+- Building deeper understanding of Machine Learning fundamentals
+- Writing cleaner, more maintainable code
+- Expanding project-based experience
+
+---
+
+## Why This Repository Matters
+
+This repository is not just a collection of files.
+
+It demonstrates:
+
+- How I think
+- How I learn
+- How I solve problems
+- How I improve over time
+
+---
+
+## Contact
+
+- GitHub: https://github.com/younghoonko
+
+---
+
+## One Line Summary
+
+A developer who proves growth through consistent execution, structured thinking, and documented problem solving.
