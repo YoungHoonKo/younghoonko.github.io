@@ -17,7 +17,7 @@ image: /assets/img/lang/internet.png
 
 # 1. 기본 HTTP GET/응답 상호작용
 
-![1_](/assets/img/internet_engineering/1_.png)
+![a](/assets/img/internet_engineering/a.png)
 
 ## 문제 1
 
@@ -114,7 +114,7 @@ Host: gaia.cs.umass.edu
 
 # 2. HTTP 조건부 GET/응답 상호작용
 
-![1_](/assets/img/internet_engineering/2_.png)
+![b](/assets/img/internet_engineering/b.png)
 
 ## 문제 9
 
@@ -171,7 +171,9 @@ If-Modified-Since: Tue, 28 Oct 2025 05:59:01 GMT
 
 # 3. 긴 문서 가져오기
 
-![1_](/assets/img/internet_engineering/3_.png)
+![c](/assets/img/internet_engineering/c.png)
+
+![c1](/assets/img/internet_engineering/c1.png)
 
 ## 문제 12
 
@@ -225,7 +227,7 @@ HTTP GET 요청에 대한 응답의 상태 코드와 구문이 포함된 것은 
 
 # 4. 내장 객체를 포함한 HTML 문서
 
-![1_](/assets/img/internet_engineering/4_.png)
+![d](/assets/img/internet_engineering/d.png)
 
 ## 문제 16
 
@@ -265,7 +267,7 @@ pearson.png 요청과 응답(301) 이후에 8E_cover_small.jpg 요청이 시작�
 
 # 5. HTTP 인증
 
-![1_](/assets/img/internet_engineering/5_.png)
+![e](/assets/img/internet_engineering/e.png)
 
 ## 문제 18
 
