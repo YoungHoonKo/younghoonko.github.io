@@ -1,7 +1,7 @@
 ---
-title: 02. Internet Engineering - 
+title: 02. Internet Engineering - Wireshark_1
 Author: YoungHoon Ko
-date: 2026-05-06 18:55:32 +0900
+date: 2026-05-05 18:55:32 +0900
 categories: [University(2026-First-Semester), Internet Engineering]
 tags: [internet, network]
 image: /assets/img/lang/internet.png
