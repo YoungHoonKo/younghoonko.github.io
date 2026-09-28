@@ -1,5 +1,5 @@
 ---
-title: 02. Artificial Intelligence(AI)_NLP
+title: 02. Artificial Intelligence(AI)_Representation
 Author: YoungHoon Ko
 date: 2026-09-28 21:15:32 +0900
 categories: [University(2026-Second-Semester), Artificial Intelligence(AI)]
