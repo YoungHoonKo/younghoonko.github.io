@@ -33,19 +33,19 @@ NLP는 컴퓨터가 사람의 말을 이해하도록 바꾸는 과정과, 컴퓨
 
 ## 3. NLP와 인공지능
 
-NLP는 입력 $x$가 주어졌을 때 출력 $y$를 반환하는 함수로 표현할 수 있음
+NLP는 입력 $x가 주어졌을 때 출력 y$를 반환하는 함수로 표현할 수 있음
 
 $$
  y = f(x)
- $$
+$$
 
 여기서:
 
 - **파라미터(weight parameter, $\theta$)란?**
-  - 입력 $x$가 들어왔을 때 어떤 출력 $y$를 내보낼지 결정하는 함수 $f$의 동작 방식을 결정
+  - 입력 $x가 들어왔을 때 어떤 출력 y$를 내보낼지 결정하는 함수 $f$의 동작 방식을 결정
 - **학습이란?**
-  - $x$와 $y$의 쌍으로 이루어진 데이터가 주어졌을 때, $x$에서 $y$로 가는 관계를 배우는 과정
-  - $x$와 $y$를 통해 적절한 파라미터 $\theta$를 찾아내는 것
+  - $x와 y$의 쌍으로 이루어진 데이터가 주어졌을 때, $x에서 y$로 가는 관계를 배우는 과정
+  - $x와 y$를 통해 적절한 파라미터 $\theta$를 찾아내는 것
 - **모델이란?**
   - 상황에 따라 알고리즘 자체를 이르거나, 알고리즘에 사용되는 파라미터를 이름
 
@@ -143,11 +143,11 @@ $$
 
 NLP 문제를 해결하는 전체 과정은 다음 6단계로 제시된다.
 
-![CleanShot 2026-09-28 at 17.36.48@2x.png](attachment:e96a9790-1efd-4821-8c10-88fa29c646ef:CleanShot_2026-09-28_at_17.36.482x.png)
+<img src="/assets/img/ai/e.png" alt="e" style="zoom:50%;" />
 
 1. **문제 정의**
    - 문제를 여러 단계로 나눔
-   - **입력 $x$와 출력 $y$를 정의**
+   - **입력 $x와 출력 y$를 정의**
 2. **데이터 수집**
    - 문제 정의에 따라 데이터를 수집
    - 필요하면 데이터에 라벨을 붙임
@@ -189,7 +189,7 @@ NLP 문제를 해결하는 전체 과정은 다음 6단계로 제시된다.
 
 $$
  \mathrm{Text}*x \rightarrow \mathrm{Model}\ f*\theta \rightarrow \mathrm{Label}\ y
- $$
+$$
 
 응용
 
@@ -272,7 +272,7 @@ $$
  \mathrm{Translation\ Model}
  \rightarrow
  \mathrm{Target\ Language}
- $$
+$$
 
 예시:
 
@@ -363,7 +363,7 @@ $$
 
 NLP의 발전 단계:
 
-![CleanShot 2026-09-28 at 17.57.37@2x.png](attachment:7681634a-c4b0-4c7b-a96f-6eedb046938a:CleanShot_2026-09-28_at_17.57.372x.png)
+<img src="/assets/img/ai/f.png" alt="f" style="zoom:50%;" />
 
 | 단계                           | 시기            | 핵심 내용                                      |
 | ------------------------------ | --------------- | ---------------------------------------------- |
@@ -474,7 +474,7 @@ $$
  \text{Train a Model}
  \rightarrow
  \text{Specific Task}
- $$
+$$
 
 새로운 방식은 **Pretrain → Adapt**이다.
 
@@ -492,7 +492,7 @@ $$
  \text{Fine-tuning}
  \rightarrow
  \text{Downstream Task}
- $$
+$$
 
 **사전학습 방식**에서는 먼저 많은 텍스트로 언어 능력을 학습한 뒤,
 
@@ -550,7 +550,7 @@ $$
  \text{Text} + \text{Image} + \text{Audio} + \text{Video}
  \rightarrow
  \text{Multimodal Generative AI}
- $$
+$$
 
 **전통적인 NLP**가 이미 **주어진 문장을 분류하고 분석하는 데 집중**했다면,
 
@@ -570,7 +570,7 @@ $$
 
 $$
  \text{Fluent} \neq \text{Factual}
- $$
+$$
 
 ### 깊은 문맥과 추론(Deep Context & Reasoning)
 
@@ -579,7 +579,7 @@ $$
 
 $$
  \text{Good Reasoning} \neq \text{Guaranteed Correctness}
- $$
+$$
 
 ### 중의성과 인간 의도(Ambiguity & Human Intent)
 
