@@ -36,7 +36,7 @@ image: /assets/img/lang/data.png
 
 ### Pandas와 Excel·R의 차이 및 활용 맥락
 
-![a](/assets/img/data/a.png)
+![a](/assets/img/data/data_2/a.png)
 
 - **Excel과 비교**
   - **Excel**은 GUI 중심이며 클릭과 드래그로 데이터를 조작
@@ -44,7 +44,7 @@ image: /assets/img/lang/data.png
     - Pandas는 분석 과정을 코드로 기록하므로 동일한 분석을 다시 실행하기 쉽고, 테스트·검토와 버전 관리에 유리함
     - Python 스크립트로 대량 파일이나 반복 작업을 자동화할 수 있음
 
-![b](/assets/img/data/b.png)
+![b](/assets/img/data/data_2/b.png)
 
 - **R과 비교**
 
@@ -54,7 +54,7 @@ image: /assets/img/lang/data.png
 
 - **Pandas의 활용**
 
-  ![a](/assets/img/data/c.png)
+  ![a](/assets/img/data/data_2/c.png)
 
 ## NumPy
 
@@ -269,7 +269,7 @@ print("b0:", b0, "b1:", b1, "pred@6:", y_pred_6)
 
 ### 그룹화와 집계
 
-![a](/assets/img/data/d.png)
+![a](/assets/img/data/data_2/d.png)
 
 - `groupby`는 지**정한 키로 데이터를 그룹으로 나눈 뒤 각 그룹에 집계 연산 적용**
 - 카페 매출 예제는 `Category`별 평균 가격과 총수량 계산
@@ -308,9 +308,9 @@ print("b0:", b0, "b1:", b1, "pred@6:", y_pred_6)
 
 **⭐️중요 - pivot 및 pivot_table은 모두 데이터프레임을 재구조화 하는 데 사용⭐️**
 
-![a](/assets/img/data/e.png)
+![a](/assets/img/data/data_2/e.png)
 
-![a](/assets/img/data/f.png)
+![a](/assets/img/data/data_2/f.png)
 
 - 학생 점수 예제에서 `pivot(index='Name', columns='Subject', values='Score')`를 적용하면 행에 학생 이름, 열에 과목, 셀에 점수가 들어감
 
@@ -321,8 +321,8 @@ print("b0:", b0, "b1:", b1, "pred@6:", y_pred_6)
 
 - Pivot 에러를 처리하는 방법
 
-  ![a](/assets/img/data/g.png)
+  ![a](/assets/img/data/data_2/g.png)
 
-  ![a](/assets/img/data/h.png)
+  ![a](/assets/img/data/data_2/h.png)
 
-  ![a](/assets/img/data/i.png)
+  ![a](/assets/img/data/data_2/i.png)
