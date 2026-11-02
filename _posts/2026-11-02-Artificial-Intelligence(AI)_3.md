@@ -3,8 +3,7 @@ title: 03. Artificial Intelligence(AI)_Text Preprocessing
 date: 2026-11-02 21:00:00 +0900
 categories: [University(2026-Second-Semester), Artificial Intelligence(AI)]
 tags: [ai, nlp]
-image:
-  path: /assets/img/lang/ai.png
+image: /assets/img/lang/ai.png
 ---
 
 [toc]
@@ -147,7 +146,7 @@ VS Code를 WSL Ubuntu에 연결
 
 - `Ctrl + Shift + P` → **WSL: Connect to WSL**
   - 배포판이 여러 개라면 **WSL: Connect to WSL using Distro... → Ubuntu**
-- 터미널이 안 보이면 ``Ctrl + ` ``
+- 터미널이 안 보이면 **Ctrl + 백틱 키** (숫자 1 왼쪽 키)
 
 ```bash
 pwd                               # 현재 위치 확인 → /home/username
