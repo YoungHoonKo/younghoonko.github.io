@@ -1,6 +1,6 @@
 ---
 title: 04. Artificial Intelligence(AI)_Statistic-based Language Representation
-date: 2026-11-02 22:00:00 +0900
+date: 2026-11-02 21:27:00 +0900
 categories: [University(2026-Second-Semester), Artificial Intelligence(AI)]
 tags: [ai, nlp]
 math: true
