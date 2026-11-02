@@ -3,7 +3,8 @@ title: 03. Artificial Intelligence(AI)_Text Preprocessing
 date: 2026-11-02 21:00:00 +0900
 categories: [University(2026-Second-Semester), Artificial Intelligence(AI)]
 tags: [ai, nlp]
-image: /assets/img/lang/ai.png
+image:
+  path: /assets/img/lang/ai.png
 ---
 
 [toc]
@@ -434,14 +435,17 @@ Parallel Corpus 예시
 전화번호 제거 예시
 
 ```python
->>> import re
->>> regex = r"([\w]+\s*:?\s*)?\(?\+?([0-9]{1,3})?\-?[0-9]{2,3}(\)|\-)?[0-9]{3,4}\-?[0-9]{4}"
->>> x = "Ki: +82-10-1234-5678 "
->>> re.sub(regex, "REMOVED", x)
-'REMOVED '
->>> x = "CONTENT jiu 02)1234-5678 :"
->>> re.sub(regex, "REMOVED", x)
-'CONTENT REMOVED :'
+import re
+
+regex = r"([\w]+\s*:?\s*)?\(?\+?([0-9]{1,3})?\-?[0-9]{2,3}(\)|\-)?[0-9]{3,4}\-?[0-9]{4}"
+
+x = "Ki: +82-10-1234-5678 "
+print(repr(re.sub(regex, "REMOVED", x)))
+# 출력: 'REMOVED '
+
+x = "CONTENT jiu 02)1234-5678 :"
+print(repr(re.sub(regex, "REMOVED", x)))
+# 출력: 'CONTENT REMOVED :'
 ```
 
 ### 문자 집합: `[ ]`, `-`, `^`
