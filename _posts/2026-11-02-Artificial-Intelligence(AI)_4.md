@@ -65,7 +65,7 @@ $$
 
 - $$X_d$$: 문서 $$d$$의 BoW 벡터
 - $$c(w_i, d)$$: 문서 $$d$$에서 단어 $$w_i$$의 출현 횟수
-- $$|V|$$: Vocabulary에 포함된 고유 단어 수
+- $$\lvert V\rvert $$: Vocabulary에 포함된 고유 단어 수
 
 ### Vocabulary 만들기
 
