@@ -37,16 +37,16 @@ image: /assets/img/lang/ai.png
 
 **One-hot Vector**
 
-- Vocabulary 크기 $V$에 대응하는 **$V$차원 벡터**
+- Vocabulary 크기 $$V$$에 대응하는 **$$V$$차원 벡터**
 - 하나의 원소만 1이고 나머지는 모두 0
 - 가장 단순하고 편리한 표현 방법
 
 | 단어 | One-hot Vector |
 |-----|---------------|
-| Rome | $[1, 0, 0, 0, \cdots, 0]$ |
-| Paris | $[0, 1, 0, 0, \cdots, 0]$ |
-| Italy | $[0, 0, 1, 0, \cdots, 0]$ |
-| France | $[0, 0, 0, 1, \cdots, 0]$ |
+| Rome | $$[1, 0, 0, 0, \cdots, 0]$$ |
+| Paris | $$[0, 1, 0, 0, \cdots, 0]$$ |
+| Italy | $$[0, 0, 1, 0, \cdots, 0]$$ |
+| France | $$[0, 0, 0, 1, \cdots, 0]$$ |
 
 **단점**
 
@@ -75,7 +75,7 @@ image: /assets/img/lang/ai.png
 
 | 구분 | One-hot Vector | Embedding Vector |
 |-----|---------------|-----------------|
-| 차원 | $V$ (수만~수십만) | $d$ (보통 수십~수백) |
+| 차원 | $$V$$ (수만~수십만) | $$d$$ (보통 수십~수백) |
 | 값 | 0 또는 1 | 연속적인 실수 |
 | 밀도 | 희소(Sparse) | 밀집(Dense) |
 | 단어 간 유사도 | 항상 0 | **의미에 따라 다름** |
@@ -86,7 +86,7 @@ image: /assets/img/lang/ai.png
 **Embedding Matrix (임베딩 행렬)**
 
 - Vocabulary의 각 단어에 대한 Dense Vector를 **행 단위로 저장한 행렬**
-- Vocabulary 크기가 $V$, 임베딩 차원이 $d$일 때
+- Vocabulary 크기가 $$V$$, 임베딩 차원이 $$d$$일 때
 
 $$
 W \in \mathbb{R}^{V \times d}
@@ -101,8 +101,8 @@ $$
 \mathbf{v}_i = \mathbf{e}_i^{\top} W = W[i]
 $$
 
-- $\mathbf{e}_i$: 단어 $i$의 One-hot Vector
-- $W[i]$: Embedding Matrix의 $i$번째 행
+- $$\mathbf{e}_i$$: 단어 $$i$$의 One-hot Vector
+- $$W[i]$$: Embedding Matrix의 $$i$$번째 행
 
 ![embedding_lookup](/assets/img/ai/embedding_lookup.png)
 
@@ -193,20 +193,20 @@ $$
 \mathcal{L} = -\log P(w_t \mid C_t)
 $$
 
-- $C_t$: 중심 단어 $w_t$의 주변 단어 집합
-- $\mathbf{v}$: 입력 임베딩 벡터 ($W_{in}$의 행), $\mathbf{u}$: 출력 임베딩 벡터 ($W_{out}$의 열)
+- $$C_t$$: 중심 단어 $$w_t$$의 주변 단어 집합
+- $$\mathbf{v}$$: 입력 임베딩 벡터 ($$W_{in}$$의 행), $$\mathbf{u}$$: 출력 임베딩 벡터 ($$W_{out}$$의 열)
 
 ### CBOW 학습 흐름
 
 | 단계 | 내용 | 예시 (`고양이가 ___ 마신다`) |
 |-----|------|---------------------------|
-| 1. 입력층 | 주변 단어의 One-hot Vector ($V$차원) | `고양이가`, `마신다` |
-| 2. 임베딩 층 | 공유 임베딩 행렬 $W_{in} \in \mathbb{R}^{V \times d}$에서 각 단어 벡터 Lookup | $\mathbf{v}_{\text{고양이가}}, \mathbf{v}_{\text{마신다}} \in \mathbb{R}^d$ |
-| 3. 은닉층 | 주변 단어 벡터의 **평균** | $\mathbf{h} = (\mathbf{v}_{\text{고양이가}} + \mathbf{v}_{\text{마신다}}) / 2$ |
-| 4. 출력층 | $W_{out} \in \mathbb{R}^{d \times V}$로 점수 계산 후 Softmax | 모든 단어의 확률 |
+| 1. 입력층 | 주변 단어의 One-hot Vector ($$V$$차원) | `고양이가`, `마신다` |
+| 2. 임베딩 층 | 공유 임베딩 행렬 $$W_{in} \in \mathbb{R}^{V \times d}$$에서 각 단어 벡터 Lookup | $$\mathbf{v}_{\text{고양이가}}, \mathbf{v}_{\text{마신다}} \in \mathbb{R}^d$$ |
+| 3. 은닉층 | 주변 단어 벡터의 **평균** | $$\mathbf{h} = (\mathbf{v}_{\text{고양이가}} + \mathbf{v}_{\text{마신다}}) / 2$$ |
+| 4. 출력층 | $$W_{out} \in \mathbb{R}^{d \times V}$$로 점수 계산 후 Softmax | 모든 단어의 확률 |
 | 5. 예측 | 확률이 가장 높은 단어 | **우유를** |
 
-- ⭐️ 두 주변 단어는 **동일한 임베딩 행렬 $W_{in}$을 공유** (Shared Weights) ⭐️
+- ⭐️ 두 주변 단어는 **동일한 임베딩 행렬 $$W_{in}$$을 공유** (Shared Weights) ⭐️
 
 ## 6. Skip-gram
 
@@ -222,8 +222,8 @@ $$
 \frac{1}{T} \sum_{t=1}^{T} \sum_{-c \le j \le c,\ j \ne 0} \log p(w_{t+j} \mid w_t)
 $$
 
-- $T$: 학습 말뭉치의 전체 토큰 수 (중심 단어 수)
-- $c$: Window Size
+- $$T$$: 학습 말뭉치의 전체 토큰 수 (중심 단어 수)
+- $$c$$: Window Size
 
 ### Skip-gram 학습 데이터 구성 예시
 
@@ -274,23 +274,23 @@ window=2, 학습 쌍 수=18
 
 | 단계 | 연산 | 크기 변화 |
 |-----|------|--------|
-| 입력 | 중심 단어의 One-hot Vector $\mathbf{x}$ | $V$ |
-| 임베딩 추출 | $\mathbf{h} = \mathbf{x}^{\top} W_{in}$ (Input Embedding Matrix의 한 행) | $V \rightarrow d$ |
-| 점수 계산 | $\mathbf{z} = \mathbf{h} W_{out}$ (Output Embedding Matrix) | $d \rightarrow V$ |
-| 확률 계산 | Softmax로 주변 단어의 조건부 확률 분포 계산 | $V$ |
+| 입력 | 중심 단어의 One-hot Vector $$\mathbf{x}$$ | $$V$$ |
+| 임베딩 추출 | $$\mathbf{h} = \mathbf{x}^{\top} W_{in}$$ (Input Embedding Matrix의 한 행) | $$V \rightarrow d$$ |
+| 점수 계산 | $$\mathbf{z} = \mathbf{h} W_{out}$$ (Output Embedding Matrix) | $$d \rightarrow V$$ |
+| 확률 계산 | Softmax로 주변 단어의 조건부 확률 분포 계산 | $$V$$ |
 
-- 학습하는 행렬은 **입력 임베딩 행렬 $W_{in}$과 출력 임베딩 행렬 $W_{out}$** 두 개
-- ⭐️ 학습이 끝나면 보통 **$W_{in}$의 각 행을 단어 임베딩 벡터로 사용** ⭐️
+- 학습하는 행렬은 **입력 임베딩 행렬 $$W_{in}$$과 출력 임베딩 행렬 $$W_{out}$$** 두 개
+- ⭐️ 학습이 끝나면 보통 **$$W_{in}$$의 각 행을 단어 임베딩 벡터로 사용** ⭐️
 
-주변 단어 $w_c$의 등장 확률은 다음과 같은 **Softmax**로 계산
+주변 단어 $$w_c$$의 등장 확률은 다음과 같은 **Softmax**로 계산
 
 $$
 p(w_c \mid w_t) = \frac{e^{s(w_t, w_c)}}{\sum_{j=1}^{V} e^{s(w_t, w_j)}}, \qquad s(w_t, w_c) = \mathbf{u}_{w_c}^{\top} \mathbf{v}_{w_t}
 $$
 
-- $s(w_t, w_c)$: **Score 함수** (두 벡터의 내적)
-- $\mathbf{v}_{w_t}$: 중심 단어의 **입력** 임베딩 벡터 ($W_{in}$의 행)
-- $\mathbf{u}_{w_c}$: 주변 단어의 **출력** 임베딩 벡터 ($W_{out}$의 열)
+- $$s(w_t, w_c)$$: **Score 함수** (두 벡터의 내적)
+- $$\mathbf{v}_{w_t}$$: 중심 단어의 **입력** 임베딩 벡터 ($$W_{in}$$의 행)
+- $$\mathbf{u}_{w_c}$$: 주변 단어의 **출력** 임베딩 벡터 ($$W_{out}$$의 열)
 
 ### 쉬운 설명
 
@@ -307,9 +307,9 @@ Softmax의 분모를 계산하려면 **Vocabulary의 모든 단어**에 대해 �
 
 | 연산 | 계산 복잡도 |
 |-----|----------|
-| 단어 하나의 Score 계산 | $O(d)$ |
-| Vocabulary 전체 Score 계산 | $O(V \times d)$ |
-| Softmax 정규화 | $O(V)$ |
+| 단어 하나의 Score 계산 | $$O(d)$$ |
+| Vocabulary 전체 Score 계산 | $$O(V \times d)$$ |
+| Softmax 정규화 | $$O(V)$$ |
 
 - 학습 쌍 **하나마다 전체 단어의 점수**를 계산해야 함
 - 단어 수가 **수십만~수백만 개**라면 학습 비용이 크게 증가
@@ -322,10 +322,10 @@ Softmax의 분모를 계산하려면 **Vocabulary의 모든 단어**에 대해 �
 
 | 구분 | 정의 | 레이블 |
 |-----|------|------|
-| **Positive Sample** | 실제 말뭉치에서 관찰된 (중심 단어, 주변 단어) 쌍 | $y = 1$ |
-| **Negative Sample** | Noise Distribution에서 무작위로 추출한 단어와의 쌍 | $y = 0$ |
+| **Positive Sample** | 실제 말뭉치에서 관찰된 (중심 단어, 주변 단어) 쌍 | $$y = 1$$ |
+| **Negative Sample** | Noise Distribution에서 무작위로 추출한 단어와의 쌍 | $$y = 0$$ |
 
-- 중심 단어마다 **Positive Pair 1개 + Negative Pair $k$개**로 학습
+- 중심 단어마다 **Positive Pair 1개 + Negative Pair $$k$$개**로 학습
 - Positive Pair의 점수는 **높이고**, Negative Pair의 점수는 **낮추도록** 학습
 - **Softmax 대신 Sigmoid**로 각 단어 쌍의 이진 분류 손실을 계산
 
@@ -333,7 +333,7 @@ Softmax의 분모를 계산하려면 **Vocabulary의 모든 단어**에 대해 �
 
 ### Negative Sampling 목적 함수
 
-중심 단어 $w_t$와 실제 주변 단어 $w_c$의 학습 쌍에 대해
+중심 단어 $$w_t$$와 실제 주변 단어 $$w_c$$의 학습 쌍에 대해
 
 $$
 \mathcal{L} = -\log \sigma(\mathbf{u}_{w_c}^{\top} \mathbf{v}_{w_t}) - \sum_{i=1}^{k} \log \sigma(-\mathbf{u}_{n_i}^{\top} \mathbf{v}_{w_t})
@@ -341,23 +341,23 @@ $$
 
 | 기호 | 의미 |
 |-----|------|
-| $\mathbf{v}_{w_t}$ | 중심 단어의 Input Embedding Vector |
-| $\mathbf{u}_{w_c}$ | 실제 주변 단어의 Output Embedding Vector |
-| $n_i$ | $i$번째 Negative Sample |
-| $k$ | Negative Sample 개수 |
-| $\sigma(x)$ | Sigmoid 함수 $\frac{1}{1 + e^{-x}}$ |
+| $$\mathbf{v}_{w_t}$$ | 중심 단어의 Input Embedding Vector |
+| $$\mathbf{u}_{w_c}$$ | 실제 주변 단어의 Output Embedding Vector |
+| $$n_i$$ | $$i$$번째 Negative Sample |
+| $$k$$ | Negative Sample 개수 |
+| $$\sigma(x)$$ | Sigmoid 함수 $$\frac{1}{1 + e^{-x}}$$ |
 
 - **Positive Term**: 실제 주변 단어의 Sigmoid 출력이 **1에 가까워지도록** 학습
 - **Negative Term**: 샘플링된 오답 단어들의 Sigmoid 출력이 **0에 가까워지도록** 학습
 
 | 방식 | 학습 쌍당 연산량 |
 |-----|-------------|
-| Full Softmax | $O(V \times d)$ |
-| **Negative Sampling** | $O((k + 1) \times d)$, 일반적으로 $k \ll V$ |
+| Full Softmax | $$O(V \times d)$$ |
+| **Negative Sampling** | $$O((k + 1) \times d)$$, 일반적으로 $$k \ll V$$ |
 
 **Q. Negative Sampling은 왜 빠른가?**
 
-**A.** 매번 $V$개(수십만 개) 단어를 모두 계산하는 대신, **정답 1개 + 오답 $k$개(보통 수 개~수십 개)**만 계산하기 때문
+**A.** 매번 $$V$$개(수십만 개) 단어를 모두 계산하는 대신, **정답 1개 + 오답 $$k$$개(보통 수 개~수십 개)**만 계산하기 때문
 
 ### 쉬운 설명
 
@@ -387,14 +387,14 @@ $$
 J = \sum_{i,j=1}^{V} f(X_{ij}) \left( \mathbf{w}_i^{\top} \tilde{\mathbf{w}}_j + b_i + \tilde{b}_j - \log X_{ij} \right)^2
 $$
 
-- $X_{ij}$: 단어 $i$의 문맥에 단어 $j$가 등장한 **동시출현빈도**
-- $\mathbf{w}_i^{\top} \tilde{\mathbf{w}}_j$: 두 단어 벡터의 내적 → **예측값** $\hat{y}$
-- $\log X_{ij}$: 로그 동시출현빈도 → **정답** $y$
+- $$X_{ij}$$: 단어 $$i$$의 문맥에 단어 $$j$$가 등장한 **동시출현빈도**
+- $$\mathbf{w}_i^{\top} \tilde{\mathbf{w}}_j$$: 두 단어 벡터의 내적 → **예측값** $$\hat{y}$$
+- $$\log X_{ij}$$: 로그 동시출현빈도 → **정답** $$y$$
   - 동시출현빈도는 단어에 따라 차이가 매우 크기 때문에 **log로 크기를 압축**
-- $b_i, \tilde{b}_j$: 각 단어의 편향(bias)
+- $$b_i, \tilde{b}_j$$: 각 단어의 편향(bias)
 - 예측값과 정답의 차이를 **제곱**하여 최소화 (Weighted Least Squares)
 
-**가중치 함수 $f(x)$** (저빈도·고빈도 단어의 영향 조절)
+**가중치 함수 $$f(x)$$** (저빈도·고빈도 단어의 영향 조절)
 
 $$
 f(x) =
@@ -406,9 +406,9 @@ $$
 
 - 동시출현빈도가 낮은 쌍은 **가중치를 낮춰** 노이즈의 영향을 줄임
 - 너무 자주 등장하는 쌍도 가중치가 **1을 넘지 않도록** 제한
-- 원 논문에서는 $\alpha = 3/4$, $x_{max} = 100$을 사용
+- 원 논문에서는 $$\alpha = 3/4$$, $$x_{max} = 100$$을 사용
 
-> 강의 슬라이드는 같은 내용을 행렬 형태 $\sum_x f(x)\,\lVert W' W x - \log C_x \rVert_2^2$로 표현함 ($C_x$: 단어 $x$의 동시출현빈도 벡터)
+> 강의 슬라이드는 같은 내용을 행렬 형태 $$\sum_x f(x)\,\lVert W' W x - \log C_x \rVert_2^2$$로 표현함 ($$C_x$$: 단어 $$x$$의 동시출현빈도 벡터)
 
 ### 쉬운 설명
 
@@ -444,8 +444,8 @@ $$
 s(w, c) = \sum_{g \in \mathcal{G}_w} \mathbf{z}_g^{\top} \mathbf{v}_c
 $$
 
-- $\mathcal{G}_w$: 단어 $w$의 Subword n-gram 집합
-- $\mathbf{z}_g$: n-gram $g$의 벡터
+- $$\mathcal{G}_w$$: 단어 $$w$$의 Subword n-gram 집합
+- $$\mathbf{z}_g$$: n-gram $$g$$의 벡터
 - 이후 Softmax(또는 Negative Sampling) 과정은 **Skip-gram과 동일**
 
 > **참고**: FastText는 기본적으로 **3~6-gram**을 사용하며, 단어 전체(`<where>`)도 하나의 n-gram으로 포함함
@@ -535,8 +535,8 @@ head -n 3 model.vec
 **Embedding Layer**
 
 - 단어의 **정수 인덱스를 Dense Vector로 변환**
-- **학습 가능한** Embedding Matrix $W \in \mathbb{R}^{V \times d}$ 사용
-- One-hot Vector를 만들지 않고 **바로 Lookup 수행**: $\text{Embedding}(i) = W[i]$
+- **학습 가능한** Embedding Matrix $$W \in \mathbb{R}^{V \times d}$$ 사용
+- One-hot Vector를 만들지 않고 **바로 Lookup 수행**: $$\text{Embedding}(i) = W[i]$$
 
 | 구분 | Word2Vec | PyTorch `nn.Embedding` |
 |-----|---------|----------------------|
@@ -614,8 +614,8 @@ True
 
 - `I deposited money in the bank.` → bank = **은행**
 - `We sat on the river bank.` → bank = **강둑**
-- Static: $\mathbf{v}_{\text{bank}} = \mathbf{v}_{\text{bank}}$ (두 문장에서 같은 벡터)
-- Contextual: $\mathbf{h}^{(1)}_{\text{bank}} \ne \mathbf{h}^{(2)}_{\text{bank}}$ (문맥에 따라 다른 벡터)
+- Static: $$\mathbf{v}_{\text{bank}} = \mathbf{v}_{\text{bank}}$$ (두 문장에서 같은 벡터)
+- Contextual: $$\mathbf{h}^{(1)}_{\text{bank}} \ne \mathbf{h}^{(2)}_{\text{bank}}$$ (문맥에 따라 다른 벡터)
 
 ### 쉬운 설명
 
@@ -630,7 +630,7 @@ True
 3. Embedding Lookup은 **One-hot × Embedding Matrix**와 같으며, 실제로는 **ID로 행을 조회**함
 4. **분포 가설**: 비슷한 문맥에 나오는 단어는 비슷한 의미를 가짐
 5. **Word2Vec**: CBOW(주변 → 중심), Skip-gram(중심 → 주변) 예측으로 임베딩 학습
-6. **Negative Sampling**은 Full Softmax를 이진 분류로 바꿔 연산량을 $O(Vd)$에서 $O((k+1)d)$로 줄임
+6. **Negative Sampling**은 Full Softmax를 이진 분류로 바꿔 연산량을 $$O(Vd)$$에서 $$O((k+1)d)$$로 줄임
 7. **GloVe**는 로그 동시출현빈도를 근사하는 가중 최소제곱, **FastText**는 Character n-gram으로 **OOV에 대응**
 8. Static Embedding의 한계는 **Contextual Embedding**(BERT, GPT)으로 이어지며, 다음 단계는 **RNN을 이용한 순차적 문맥 학습**
 

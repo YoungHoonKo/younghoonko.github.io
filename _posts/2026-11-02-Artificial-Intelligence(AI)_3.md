@@ -3,6 +3,7 @@ title: 03. Artificial Intelligence(AI)_Text Preprocessing
 date: 2026-11-02 21:00:00 +0900
 categories: [University(2026-Second-Semester), Artificial Intelligence(AI)]
 tags: [ai, nlp]
+math: true
 image: /assets/img/lang/ai.png
 ---
 
@@ -308,7 +309,7 @@ conda deactivate                        # 가상환경 종료
 
 | 단계 | 내용 |
 |-----|------|
-| 문제 정의 | 단계를 나누고 simplify, $x$와 $y$를 정의 |
+| 문제 정의 | 단계를 나누고 simplify, $$x$$와 $$y$$를 정의 |
 | **데이터 수집** | 문제 정의에 따른 수집, 필요에 따라 레이블링 |
 | 데이터 전처리 및 분석 | 형태를 가공, 필요에 따라 EDA 수행 |
 | 알고리즘 적용 | 가설을 세우고 구현·적용 |
