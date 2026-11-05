@@ -25,3 +25,8 @@ package-lock.json
 # Misc
 # _sass/vendors
 # assets/js/dist
+
+# Claude Code 작업 안내와 도구 (로컬 전용)
+CLAUDE.md
+_blog_tools/
+.claude/
