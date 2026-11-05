@@ -22,7 +22,7 @@ title: YoungHoonKo # the main title
 tagline: Computer Science & Data Science # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  홍익대학교 소프트웨어·데이터공학 전공 고영훈의 수업 정리 블로그. 데이터 사이언스, 인공지능, 통신이론, R, Python, C, SQL 등을 직접 실행한 코드와 함께 정리합니다.
+  홍익대학교 소프트웨어공학 전공 고영훈의 수업 정리 블로그. 데이터 사이언스, 인공지능, 통신이론, R, Python, C, SQL 등을 직접 실행한 코드와 함께 정리합니다.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.

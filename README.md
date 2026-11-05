@@ -4,7 +4,7 @@
 [![Theme](https://img.shields.io/badge/Theme-Chirpy%207.3.0-4c1)](https://github.com/cotes2020/jekyll-theme-chirpy)
 [![Deploy](https://github.com/YoungHoonKo/younghoonko.github.io/actions/workflows/jekyll.yml/badge.svg)](https://github.com/YoungHoonKo/younghoonko.github.io/actions/workflows/jekyll.yml)
 
-홍익대학교 소프트웨어·데이터공학 전공 **고영훈**의 학습 기록 블로그 저장소입니다.
+홍익대학교 소프트웨어공학 전공 **고영훈**의 학습 기록 블로그 저장소입니다.
 수업에서 배운 내용을 코드로 직접 실행해 확인하고, 결과와 해석까지 정리합니다.
 
 👉 **https://younghoonko.github.io**
