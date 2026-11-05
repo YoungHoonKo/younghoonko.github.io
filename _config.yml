@@ -120,7 +120,7 @@ toc: true
 
 comments:
   # Global switch for the post-comment system. Keeping it empty means disabled.
-  provider: # [disqus | utterances | giscus]
+  provider: giscus # [disqus | utterances | giscus]
   # The provider options are as follows:
   disqus:
     shortname: # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
@@ -131,9 +131,9 @@ comments:
   # Giscus options › https://giscus.app
   giscus:
     repo: YoungHoonKo/younghoonko.github.io
-    repo_id: # giscus.app에서 발급 (R_로 시작)
+    repo_id: R_kgDOOuprpA
     category: Announcements
-    category_id: # giscus.app에서 발급 (DIC_로 시작)
+    category_id: DIC_kwDOOuprpM4DKa-5
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
     input_position: # optional, default to 'bottom'

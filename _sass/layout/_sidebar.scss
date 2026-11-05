@@ -190,12 +190,15 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
   }
 
   .sidebar-bottom {
-    padding-left: 2rem;
+    /* 버튼을 가운데 정렬하고 모든 버튼 사이 간격을 같게 */
+    justify-content: center;
+    gap: v.$sb-btn-gap;
+    padding-left: 1rem;
     padding-right: 1rem;
     margin-bottom: 1.5rem;
 
     @include bp.xxxl {
-      padding-left: 2.75rem;
+      gap: v.$sb-btn-gap-lg;
       margin-bottom: 1.75rem;
     }
 
@@ -226,14 +229,6 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
       @extend %button;
       @extend %sidebar-link-hover;
       @extend %clickable-transition;
-
-      &:not(:last-child) {
-        margin-right: v.$sb-btn-gap;
-
-        @include bp.xxxl {
-          margin-right: v.$sb-btn-gap-lg;
-        }
-      }
     }
 
     i {
@@ -246,20 +241,9 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
       @extend %sidebar-link-hover;
     }
 
+    /* 모드 버튼과 링크 사이의 점 구분자는 간격을 불균일하게 만들어서 숨김 */
     .icon-border {
-      @extend %no-cursor;
-      @include mx.ml-mr(calc((v.$sb-btn-gap - $btn-border-width) / 2));
-
-      background-color: var(--sidebar-btn-color);
-      content: '';
-      width: $btn-border-width;
-      height: $btn-border-width;
-      border-radius: 50%;
-      margin-bottom: $btn-mb;
-
-      @include bp.xxxl {
-        @include mx.ml-mr(calc((v.$sb-btn-gap-lg - $btn-border-width) / 2));
-      }
+      display: none;
     }
   } /* .sidebar-bottom */
 } /* #sidebar */
