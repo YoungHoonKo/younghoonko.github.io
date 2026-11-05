@@ -5,6 +5,7 @@ Author: YoungHoon Ko
 date: 2026-11-05 15:39:00 +0900
 categories: [University(2026-First-Semester), Machine Learning]
 tags: [machine-learning, deep-learning, python]
+mermaid: true
 image: /assets/img/lang/ml.png
 ---
 
@@ -33,6 +34,8 @@ image: /assets/img/lang/ml.png
 | AdaGrad | 지금까지의 기울기 제곱을 누적해 **매개변수마다 학습률을 조정** | 많이 움직인 방향은 학습률이 작아짐. 오래 학습하면 누적값이 커져 갱신량이 0에 가까워짐 |
 | RMSProp | AdaGrad의 누적을 **지수이동평균**으로 바꿔 과거 기울기를 점점 잊음 | 갱신량이 0이 되는 AdaGrad의 문제를 해결 |
 | Adam | Momentum + RMSProp(AdaGrad 계열) | 1차, 2차 모멘트를 함께 쓰고, 초반 값이 0에 치우치는 것을 **편향 보정**함. 가장 널리 쓰임 |
+
+RMSProp은 식으로 쓰면 $$h \leftarrow \gamma h + (1 - \gamma) g \odot g, \; W \leftarrow W - \eta \frac{g}{\sqrt{h}}$$ 로, γ(보통 0.9 ~ 0.99)가 클수록 과거를 오래 기억함 (Exponential Moving Average).
 
 식으로 쓰면 Momentum은 $$v \leftarrow \alpha v - \eta \frac{\partial L}{\partial W}, \; W \leftarrow W + v$$ 이고, AdaGrad는 $$h \leftarrow h + g \odot g, \; W \leftarrow W - \eta \frac{g}{\sqrt{h}}$$
 
@@ -112,7 +115,16 @@ gamma=2, beta=1 적용 후 평균: [1. 1. 1.] 표준편차: [2. 2. 2.]
 
 ## 4. 과적합 방지
 
-- **과적합**: 훈련 데이터에만 지나치게 맞춰져 새로운 데이터에서 성능이 떨어지는 것. 매개변수가 많고 데이터가 적을 때 잘 생김
+- **과적합**: 훈련 데이터에만 지나치게 맞춰져 새로운 데이터에서 성능이 떨어지는 것. 강의에서 든 두 가지 원인은 ① **학습 데이터가 적은 경우**, ② **매개변수가 많고 표현력이 높은(복잡한) 모델인 경우**
+- **과소적합(Underfitting)**: 반대로 모델이 너무 단순하거나 학습이 덜 되어 훈련 데이터조차 잘 맞히지 못하는 것
+
+| 상태 | 훈련 성능 | 검증 성능 | 대표 원인 | 대처 |
+| --- | --- | --- | --- | --- |
+| 과소적합 | 낮음 | 낮음 | 모델이 너무 단순, epoch 부족 | 모델 키우기, 더 학습 |
+| 적절 | 높음 | 높음 | | |
+| 과적합 | 매우 높음 | 낮음 | 데이터 부족, 모델이 너무 복잡, epoch 과다 | 데이터 늘리기, 가중치 감소, Dropout, 조기 종료 |
+
+[04편](/posts/Machine_Learning_04/)의 IMDB RNN(학습 98%, 테스트 62.5%)과 [03편](/posts/Machine_Learning_03/)의 CIFAR-10 CNN(학습 87%, 테스트 71%)이 과적합의 실제 예.
 - **가중치 감소(L2)**: 손실에 0.5 × λ × (가중치 제곱합)을 더해 큰 가중치에 벌점 → 기울기에 λW가 더해짐
 - **Dropout**: 학습 때 뉴런을 무작위로 끊음(비율 p). 추론 때는 모두 쓰되 출력에 (1 − p)를 곱함 (Keras는 반대로 학습 때 1/(1 − p)로 키우는 방식)
 - **조기 종료(Early Stopping)**: 검증 손실이 `patience` 번 연속 좋아지지 않으면 학습 중단
@@ -130,6 +142,11 @@ L2 패널티 0.5*λ*sum(W^2) = 0.65 / 기울기에 더해지는 λW = [ 0.3 -0.2
 - **하이퍼파라미터**: 사람이 정하는 값(학습률, 배치 크기, epoch, 은닉 노드 수 등). 가중치처럼 학습되지 않음
 - **Grid Search**: 후보의 모든 조합을 시험 (`GridSearchCV`)
 - **Random Search**: 후보 중 무작위 조합을 일부만 시험 (`RandomizedSearchCV`). 조합이 많을 때 효율적
+- **Bayesian Optimization**: 앞선 실험 결과를 바탕으로 다음에 시험할 조합을 똑똑하게 고르는 방법 (베이즈 정리처럼 이전 경험과 새 증거로 추론)
+  - **Surrogate model**: 지금까지의 결과로 "하이퍼파라미터에 따른 성능"을 확률적으로 추정한 모델 (주로 Gaussian Process)
+  - **Acquisition function**: 그 추정을 바탕으로 다음에 시험할 가장 유망한 지점을 추천하는 함수
+- 수동으로 하나씩 바꿔 보는 방법은 시간이 너무 오래 걸려서 위 세 가지 알고리즘을 씀 (세 가지 이름은 외우기)
+- **교차 검증(Cross Validation)**: 학습 데이터를 K개로 나눠 돌아가며 하나를 검증용으로 쓰는 방법(K-Fold). `cv=2`이면 조합 4개(epoch 2 × batch 2) × 2 = **8번** 학습함
 - scikeras의 `KerasRegressor`로 Keras 모델을 scikit-learn에 연결하고, `make_scorer(mean_squared_error, greater_is_better=False)`로 MSE가 작을수록 좋은 점수로 처리
 
 [04편](/posts/Machine_Learning_04/)의 LSTM에 `Dropout(0.1)`을 추가하고 epochs ∈ {10, 20}, batch_size ∈ {16, 32}를 cv=2로 탐색했음.

@@ -5,6 +5,7 @@ Author: YoungHoon Ko
 date: 2026-11-05 15:37:00 +0900
 categories: [University(2026-First-Semester), Machine Learning]
 tags: [machine-learning, deep-learning, python]
+mermaid: true
 image: /assets/img/lang/ml.png
 ---
 
@@ -180,6 +181,10 @@ _CIFAR-10 학습 데이터 일부_
 | Dense 10 | (10) | 2,048×10 + 10 = 20,490 |
 | 합계 | | **113,738** |
 
+합성곱 층의 매개변수 수는 식으로 쓰면 $$(FH \times FW \times C) \times FN + FN$$ (필터 가중치 + 필터마다 편향 하나). 첫 층이면 3 × 3 × 3 × 32 + 32 = 896. 입력 크기(32 × 32)는 매개변수 수와 관계없다는 점이 Dense와 다름.
+
+강의에서는 같은 코드로 **Fashion MNIST**(28 × 28 흑백 의류 이미지 10종)도 직접 학습해 보라고 했음. 데이터셋만 바꾸면 입력이 흑백(채널 1)이고 크기도 달라서 `input_shape`와 `reshape`를 고쳐야 오류가 나지 않음.
+
 ```text
 Epoch 1/10 - accuracy: 0.5297 - loss: 1.3259
 Epoch 5/10 - accuracy: 0.7844 - loss: 0.6189
@@ -197,6 +202,13 @@ _테스트 이미지 10장 예측 (초록은 정답, 빨강은 오답)_
 ---
 
 ## 7. 대표 CNN 구조
+
+### ImageNet과 ILSVRC
+
+- **ImageNet**: 100만 장이 넘는 이미지에 클래스 이름을 붙인 대규모 데이터셋
+- **ILSVRC**(ImageNet Large Scale Visual Recognition Challenge): ImageNet으로 이미지 분류 성능을 겨루는 대회 (2010년 시작)
+- 2010, 2011년 우승은 얕은 구조였고, **2012년 AlexNet부터 딥러닝이 매년 우승**. 아래 표의 모델 대부분이 이 대회에서 나왔음
+- ResNet(2015) 이후 사람보다 오차가 낮아지면서 관심이 정확도에서 **효율성**(MobileNet, ShuffleNet처럼 모바일에서도 돌아가는 가벼운 모델)으로 옮겨 감
 
 | 모델 | 핵심 |
 | --- | --- |

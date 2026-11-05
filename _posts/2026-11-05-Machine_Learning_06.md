@@ -5,6 +5,7 @@ Author: YoungHoon Ko
 date: 2026-11-05 15:40:00 +0900
 categories: [University(2026-First-Semester), Machine Learning]
 tags: [machine-learning, deep-learning, python]
+mermaid: true
 image: /assets/img/lang/ml.png
 ---
 

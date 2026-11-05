@@ -5,6 +5,7 @@ Author: YoungHoon Ko
 date: 2026-11-05 15:38:00 +0900
 categories: [University(2026-First-Semester), Machine Learning]
 tags: [machine-learning, deep-learning, python]
+mermaid: true
 image: /assets/img/lang/ml.png
 ---
 
@@ -14,6 +15,7 @@ image: /assets/img/lang/ml.png
 - 장기 의존성 문제와 기울기 소실, 폭발의 원인, 해결 방법 (출제 가능)
 - Xavier, He 초기화와 기울기 클리핑
 - LSTM의 게이트(망각, 입력, 출력)와 기억 셀이 기울기 소실을 막는 이유, GRU와의 차이
+- 강의 실습(SimpleRNN으로 IMDB 감성 분류)에서 해결책들이 쓰인 방식과 과적합
 - LSTM으로 미세먼지(PM10)와 기온을 예측한 실습 결과 해석
 
 > numpy 코드는 직접 다시 실행한 결과. LSTM 학습 결과는 실습 노트북(TensorFlow)에서 실행한 출력
@@ -110,6 +112,54 @@ He + ReLU  10층 뒤 활성값 표준편차: 8.6657e-01
 
 표준편차 0.01로 작게 초기화하면 신호가 1e-8까지 사라지지만, Xavier(tanh)와 He(ReLU)는 깊은 층까지 신호가 유지됨.
 
+### 강의 실습: SimpleRNN으로 IMDB 리뷰 감성 분류 (강의 자료의 실행 결과)
+
+IMDB 영화 리뷰가 긍정(1)인지 부정(0)인지 맞히는 **many-to-one** 문제. 실습 노트북 파일은 없어서 강의 자료에 실린 코드와 출력으로 정리했음.
+
+| 단계 | 내용 |
+| --- | --- |
+| 데이터 | `imdb.load_data(num_words=1000)`: 빈도 상위 1,000개 단어만 사용 (전체 88,584개), 1,000위 밖 단어는 2로 바뀜. 학습, 테스트 각 25,000개 중 5,000개, 1,000개만 사용 |
+| 단어 확인 | `get_word_index()`로 {단어: 순위} 사전을 받아 {순위: 단어}로 뒤집음. 0 ~ 3은 특수 토큰이라 순위에 **+3**을 해야 문장이 제대로 복원됨 |
+| 길이 맞추기 | `pad_sequences(maxlen=100)`: 100보다 짧으면 0으로 채우고 길면 앞부분을 잘라 **뒤쪽 100단어**만 남김 |
+| 입력 표현 | `to_categorical`로 단어 번호를 길이 1,000의 one-hot 벡터로 → (5000, 100, 1000) |
+| 모델 | `SimpleRNN(128, return_sequences=True) → SimpleRNN(128) → Dense(1, sigmoid)` |
+
+```python
+cell_size, timesteps, feature = 128, 100, 1000
+model = Sequential(name='IMDB_RNN')
+model.add(SimpleRNN(cell_size, kernel_initializer='he_uniform',
+                    input_shape=(timesteps, feature), activation='relu', return_sequences=True))
+model.add(SimpleRNN(cell_size, kernel_initializer='he_uniform', activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
+model.compile(loss='binary_crossentropy',
+              optimizer=Adam(learning_rate=0.001, clipnorm=1),   # 기울기 클리핑
+              metrics=['accuracy'])
+model.fit(train_seq, t_train, epochs=20, batch_size=64)
+```
+
+이 모델에 앞에서 본 해결책이 모두 들어가 있음.
+
+- 기울기 소실 대책: 활성화 함수를 tanh 대신 **ReLU**, 그에 맞춰 **He Uniform** 초기화 (SimpleRNN 기본값은 tanh와 Xavier Uniform인 `glorot_uniform`)
+- 기울기 폭발 대책: `clipnorm=1`로 **기울기 클리핑**
+- `return_sequences=True`: 첫 RNN은 100개 시각의 출력을 모두 다음 RNN으로 넘기고, 두 번째 RNN은 마지막 출력 하나만 냄
+- 매개변수: 128 × (128 + 1,000) + 128 = 144,512, 128 × (128 + 128) + 128 = 32,896, Dense 129 → 합계 177,537
+
+```text
+Epoch 1/20  - loss: 0.6873 - accuracy: 0.5310
+Epoch 3/20  - loss: 2.0921 - accuracy: 0.7072
+Epoch 5/20  - loss: 3.7323 - accuracy: 0.8006
+Epoch 7/20  - loss: 21.7149 - accuracy: 0.8758
+Epoch 8/20  - loss: 0.2401 - accuracy: 0.9278
+Epoch 11/20 - loss: 0.0679 - accuracy: 0.9814
+(자료에는 11 epoch까지 실려 있음)
+test loss :  2.080683
+test accuracy :  62.5 %
+```
+
+- 학습 정확도는 98%까지 오르지만 테스트는 **62.5%**로 심한 **과적합**. 5,000개의 짧은 데이터로 17만 개 매개변수를 학습했기 때문
+- loss가 2.09, 3.73, **21.71**로 튀는 epoch이 있음. ReLU를 쓴 RNN은 같은 가중치를 100번 곱하면서 값이 커지기 쉬움 → 클리핑을 해도 불안정함
+- 단어마다 길이 1,000의 one-hot 벡터는 거의 0이고 단어 사이의 의미 관계도 표현하지 못함. 보통은 `Embedding` 층으로 단어를 짧은 실수 벡터로 바꾸고, LSTM이나 GRU를 씀
+
 ---
 
 ## 3. LSTM
@@ -147,6 +197,15 @@ h_t = o*tanh(c_t) = [ 0.1524 -0.1017]
 - LSTM의 많은 매개변수와 긴 계산 시간을 줄이려고 만든 구조. 기억 셀 없이 은닉 상태 h 하나만 씀
 - **리셋 게이트 r**: 이전 은닉 상태를 얼마나 무시할지 (r = 0이면 과거를 완전히 무시)
 - **업데이트 게이트 z**: 과거 정보와 새 정보를 어떤 비율로 섞을지 (LSTM의 망각 + 입력 게이트 역할)
+
+GRU를 식으로 정리하면 (⊙는 원소별 곱)
+
+- 리셋 게이트: $$r = \sigma(x_t W_x^{(r)} + h_{t-1} W_h^{(r)} + b^{(r)})$$
+- 업데이트 게이트: $$z = \sigma(x_t W_x^{(z)} + h_{t-1} W_h^{(z)} + b^{(z)})$$
+- 새 은닉 상태 후보: $$\tilde{h} = \tanh(x_t W_x + (r \odot h_{t-1}) W_h + b)$$
+- 최종 은닉 상태: $$h_t = (1 - z) \odot h_{t-1} + z \odot \tilde{h}$$
+
+z가 1에 가까우면 새 정보로 덮어쓰고, 0에 가까우면 과거를 그대로 유지함.
 
 ```text
 PM10 LSTM(128, 입력 10): 71168 / LSTM(128, 입력 128): 131584

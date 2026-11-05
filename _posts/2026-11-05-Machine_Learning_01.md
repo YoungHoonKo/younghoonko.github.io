@@ -5,12 +5,14 @@ Author: YoungHoon Ko
 date: 2026-11-05 15:35:00 +0900
 categories: [University(2026-First-Semester), Machine Learning]
 tags: [machine-learning, deep-learning, python]
+mermaid: true
 image: /assets/img/lang/ml.png
 ---
 
 ## 학습 목표
 
-- NumPy에서 인덱싱, 슬라이싱, reshape 조건, axis의 의미, 뷰와 복사의 차이
+- 실습 환경(Anaconda, Jupyter)과 NumPy의 ndarray
+- NumPy에서 인덱싱, 슬라이싱, reshape 조건, axis의 의미, 뷰와 복사의 차이, 브로드캐스팅
 - Pandas `concat`과 `merge`의 차이와 옵션(axis, ignore_index, join, how, on)
 - `loc`과 `iloc`, 열 추출과 행 추출, 데이터 확인 함수
 - 누락값(NaN)의 특성, 발생 원인, 처리 방법
@@ -22,12 +24,28 @@ image: /assets/img/lang/ml.png
 
 ---
 
+## 0. 실습 환경
+
+강의는 **Anaconda**로 시작함. Anaconda는 Python, R로 머신러닝을 할 때 필요한 패키지를 한 번에 설치하고 관리해 주는 배포판이고, 그 안의 **Jupyter Notebook**에서 코드를 셀 단위로 실행하며 결과를 바로 확인함.
+
+| 단계 | 방법 |
+| --- | --- |
+| 설치 확인 | Anaconda Prompt에서 `pip list`로 기본 패키지 확인 |
+| 노트북 실행 | Anaconda Prompt에서 `jupyter notebook`, 또는 시작 메뉴의 Jupyter Notebook |
+| 새 노트북 | New → Python 3 (ipykernel) |
+| TensorFlow 설치 | Anaconda Navigator의 Environments에서 채널(conda-forge 등)을 추가하고 `tensorflow` 검색 후 Apply (또는 `pip install tensorflow`) |
+
+이 블로그의 numpy, pandas 코드는 Python 3.13 환경에서 다시 실행한 결과임.
+
+---
+
 ## 1. NumPy
 
 ### 정의
 
 - **Indexing**: 데이터에 접근하기 위해 인덱스를 사용하는 것
 - **Slicing**: 인덱스를 활용해 일부분 또는 전체를 추출하는 것
+- **NumPy**: 수치 계산용 Python 패키지. 핵심은 다차원 배열 클래스 **ndarray**(n-dimensional array)이고, `np.array()`로 만들며 벡터, 행렬 같은 선형대수 계산에 씀
 
 ### 핵심 규칙
 
@@ -73,6 +91,45 @@ copy 수정 후 원본 a[1]: [4 5 6 7]
 
 - `axis=0`으로 합하면 행이 사라져 열 개수(4)만큼 결과가 남고, `axis=1`이면 행 개수(3)만큼 남음
 - 뷰를 수정하면 원본 `a[0, 0]`도 99로 바뀌지만, `copy()`로 만든 배열은 원본에 영향이 없음
+
+### 종합 실습 문제
+
+> 3차원 배열을 입력받아, 각 깊이(depth)의 행렬 원소 모두에 (depth + 1)을 더해 출력하는 함수를 작성하시오
+{: .prompt-info }
+
+for문으로 깊이마다 더할 수도 있지만, 깊이 번호를 (D, 1, 1) 모양으로 만들면 **브로드캐스팅**으로 한 번에 계산됨.
+
+```python
+def add_depth(arr):
+    arr = np.asarray(arr)
+    depth = np.arange(arr.shape[0]).reshape(-1, 1, 1)   # [[[0]], [[1]]]
+    return arr + (depth + 1)
+
+x = np.arange(1, 19).reshape(2, 3, 3)
+print(add_depth(x))
+```
+
+```text
+[[[ 2  3  4]
+  [ 5  6  7]
+  [ 8  9 10]]
+
+ [[12 13 14]
+  [15 16 17]
+  [18 19 20]]]
+```
+
+0번 깊이에는 1, 1번 깊이에는 2가 더해져 강의 자료의 예시 출력과 같음. 브로드캐스팅은 모양이 다른 배열끼리 연산할 때 크기 1인 축을 늘려 맞추는 규칙으로, (2, 3)과 (3,)은 되지만 (2, 3)과 (2,)는 맞출 수 없어 오류가 남.
+
+```text
+A + b =
+ [[11 22 33]
+ [14 25 36]]
+A * 10 =
+ [[10 20 30]
+ [40 50 60]]
+ValueError: operands could not be broadcast together with shapes (2,3) (2,) 
+```
 
 ---
 
