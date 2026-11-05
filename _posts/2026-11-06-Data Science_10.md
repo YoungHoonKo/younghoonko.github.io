@@ -1,8 +1,8 @@
 ---
-title: 10. Network Analysis Project (SNAP ego-Facebook)
-description: "데이터사이언스 과제 3: SNAP ego-Facebook 친구 네트워크(노드 4,039개, 간선 88,234개)로 Degree, PageRank, Eigenvector 중심성을 비교하고 Louvain 커뮤니티를 탐지한 뒤 핵심 노드의 ego-network를 분석한 과정. CLI 스크립트 전체 구조와 코드, 실행 결과, 데이터 검증, 인터랙티브 그래프, 중심성이 서로 다른 노드를 가리키는 이유를 추가 실험으로 확인한 결과, 느낀 점과 개선 사항"
+title: 10. Network Data Processing
+description: "네트워크(그래프) 데이터의 구성 요소와 저장 형식(간선 목록, 인접 행렬, 희소 행렬, Matrix Market), NetworkX로 불러오기와 방향, 무방향 변환, 밀도와 차수 분포, 연결 요소, 군집계수와 transitivity, 최단 거리, 중심성 4종, k-core, Louvain 커뮤니티, 큰 그래프 시각화와 계산 비용. 수업 실습의 Enron 이메일 네트워크로 단계별 실행 결과 정리"
 Author: YoungHoon Ko
-date: 2026-11-06 06:21:00 +0900
+date: 2026-11-06 06:20:30 +0900
 categories: [University(2026-Second-Semester), Data Science]
 tags: [python, data]
 math: true
@@ -12,480 +12,453 @@ image: /assets/img/lang/data.png
 
 ## 학습 목표
 
-- 간선 목록 파일을 검증하고 무방향 그래프로 만들기
-- Degree, PageRank, Eigenvector 중심성이 각각 무엇을 "중요하다"고 보는지 비교하기
-- Louvain으로 커뮤니티를 찾고 모듈러리티로 평가하기
-- 핵심 노드의 1-hop ego-network로 국소 구조 해석하기
-- 노트북 분석을 재현 가능한 CLI 스크립트로 정리하기
+- 네트워크 데이터의 구성 요소(노드, 간선, 방향, 가중치) 이해
+- 간선 목록, 인접 행렬, 희소 행렬 등 저장 형식과 그 차이
+- NetworkX로 그래프를 불러오고 방향, 무방향을 알맞게 선택하기
+- 네트워크 기본 통계: 밀도, 차수 분포, 연결 요소, 군집계수, 최단 거리
+- 중심성, k-core, 커뮤니티로 "중요한 노드"와 "묶음" 찾기
+- 큰 그래프를 다룰 때의 계산 비용과 시각화 요령
 
-> 결과는 제출본(macOS)과 이 글을 쓰며 다시 실행한 결과(Linux)가 **소수점까지 같았음**. 7절부터는 제출 후 결과를 다시 보며 추가로 실험한 내용
+> 수업 실습(`network.py`, Enron 이메일 네트워크) 코드를 출발점으로, 같은 데이터에 처리 단계를 이어 붙여 실제로 실행한 결과로 정리했음. 이 방법들을 Facebook 친구 네트워크에 적용한 과제는 [11편](/posts/Data-Science_11/)
 {: .prompt-info }
 
 ---
 
-## 한눈에 보기
+## 네트워크 데이터란?
 
-| 항목 | 내용 |
-| --- | --- |
-| 데이터 | Stanford SNAP `facebook_combined.txt.gz`, 10명의 ego-network를 합친 익명화된 친구 관계 |
-| 그래프 | 무방향, 무가중치, 노드 4,039개, 간선 88,234개, 연결 그래프 |
-| 도구 | networkx 3.7, python-louvain 0.16, matplotlib, pandas, pyvis |
-| 중심성 1위 | Degree **107**, PageRank **3437**, Eigenvector **1912** (셋이 모두 다름) |
-| 커뮤니티 | Louvain 16개, 모듈러리티 **0.8349** |
-| 핵심 노드 | 1912, 2347, 2543, 2266 (세 순위 합이 가장 작은 4개) |
-| 추가 실험 | PageRank 상위권은 데이터 수집 방식의 흔적, Eigenvector는 밀집 코어에 쏠림, 다리 역할은 Betweenness가 더 정확 |
+표 형태 데이터는 행 하나가 독립된 관측치이지만, 네트워크 데이터는 **관측치 사이의 관계 자체**가 데이터임.
+
+| 요소 | 의미 | Enron 이메일 예 |
+| --- | --- | --- |
+| 노드(node, vertex) | 개체 | 이메일 주소 |
+| 간선(edge, link) | 관계 | 한 번 이상 메일을 보냄 |
+| 방향(directed) | 관계에 순서가 있음 | 보낸 사람 → 받는 사람 |
+| 가중치(weight) | 관계의 강도 | 보낸 메일 수 (이 데이터에는 없음) |
+
+| 분야 | 노드 | 간선 |
+| --- | --- | --- |
+| SNS | 사용자 | 친구, 팔로우 |
+| 웹 | 페이지 | 하이퍼링크 |
+| 교통 | 역, 공항 | 노선 |
+| 논문 | 논문 | 인용 |
+| 이메일 | 주소 | 메일 송수신 |
 
 ```mermaid
 flowchart LR
-    A["facebook_combined<br/>.txt.gz"] --> B["검증<br/>SHA-256, 노드와 간선 수"]
-    B --> C["nx.Graph<br/>4,039 / 88,234"]
-    C --> D["중심성 3종<br/>Degree, PageRank, Eigenvector"]
-    C --> E["Louvain<br/>16개, Q=0.8349"]
-    D --> F["순위 합으로<br/>핵심 노드 4개"]
-    E --> G["ego-network<br/>역할 분류"]
-    F --> G
-    E --> H["pyvis<br/>상위 300 노드"]
+    A["원본 파일<br/>간선 목록, 행렬"] --> B["불러오기<br/>Graph / DiGraph"]
+    B --> C["정제<br/>자기 루프, 중복, 고립 노드"]
+    C --> D["기본 통계<br/>밀도, 차수, 연결 요소"]
+    D --> E["구조 분석<br/>군집계수, 최단 거리"]
+    E --> F["중요 노드<br/>중심성, k-core"]
+    E --> G["묶음<br/>커뮤니티"]
+    F --> H["시각화<br/>부분 그래프"]
+    G --> H
 ```
 
 ---
 
-## 1. 실행 환경과 재현성
+## 저장 형식
 
-| 항목 | 제출본 | 재실행 |
-| --- | --- | --- |
-| OS | macOS (arm64) | Linux (x86_64) |
-| Python | 3.15 | 3.13 |
-| networkx / python-louvain | 3.7 / 0.16 | 3.7 / 0.16 |
-| pandas / matplotlib | 3.1.1 / 3.11.2 | 3.0.5 / 3.11.2 |
-| 데이터 SHA-256 | `125e84db…ad035d7` | `125e84db…ad035d7` (동일) |
-| 시드 | 42 | 42 |
+### 간선 목록, 인접 행렬, 인접 리스트
 
-과제 제출물은 노트북(분석 설명)과 `week10_homework.py`(CLI)를 함께 만들었음. 스크립트는 실행할 때마다 `run_info.txt`에 버전, 데이터 해시, 시드, 결과 요약을 남김.
+| 형식 | 모양 | 메모리 | 특징 |
+| --- | --- | --- | --- |
+| 간선 목록(edge list) | `source target [weight]` 한 줄에 간선 하나 | $$O(E)$$ | 가장 흔한 배포 형식, pandas로 바로 읽힘 |
+| 인접 행렬(adjacency matrix) | $$n \times n$$ 행렬, 간선이 있으면 1 | $$O(n^2)$$ | 행렬 연산에 편하지만 큰 그래프는 불가능 |
+| 인접 리스트(adjacency list) | 노드마다 이웃 목록 | $$O(n + E)$$ | NetworkX 내부 구조 |
+| 희소 행렬(CSR) | 0이 아닌 값과 위치만 저장 | $$O(n + E)$$ | 행렬 연산과 메모리를 모두 잡음 |
 
-```text
-Python: 3.13.18
-networkx: 3.7
-python-louvain: 0.16
-data_file: data/facebook_combined.txt.gz
-data_sha256: 125e84db872eeba443d270c70315c256b0af43a502fcfe51f50621166ad035d7
-nodes: 4039
-edges: 88234
-communities: 16
-modularity: 0.834894
-graph_type: undirected, unweighted by default
-random_seed: 42
+인접 행렬 $$A$$에서 $$A_{ij} = 1$$이면 $$i \to j$$ 간선이 있음. 무방향 그래프는 $$A = A^T$$(대칭).
+
+Enron 그래프(노드 36,692개)로 비교하면 차이가 극적임.
+
+```python
+A = nx.to_scipy_sparse_array(G, format="csr")
+dense_gb = G.number_of_nodes() ** 2 * 8 / 1e9                    # float64 밀집 행렬
+sparse_mb = (A.data.nbytes + A.indices.nbytes + A.indptr.nbytes) / 1e6
 ```
 
-> 다시 실행하는 환경에서는 SNAP 사이트 접속이 막혀 있어서, 같은 파일을 공개 GitHub 저장소에서 받은 뒤 **SHA-256이 제출본과 같은지 확인하고** 사용했음. 해시를 기록해 둔 덕분에 출처가 달라도 같은 데이터임을 증명할 수 있었음
+```text
+밀집 행렬이면 10.8 GB, CSR 희소 행렬은 6.2 MB
+```
+
+밀도가 0.03%밖에 안 되므로 행렬의 99.97%가 0. 실제 네트워크는 거의 다 이렇게 **희소(sparse)**하기 때문에 희소 형식으로 다룸.
+
+### Matrix Market(.mtx)
+
+수업 실습 파일 `email-Enron.mtx`는 희소 행렬 표준 형식인 Matrix Market으로 되어 있음.
+
+```text
+%%MatrixMarket matrix coordinate pattern symmetric
+% name: SNAP/email-Enron
+% kind: directed graph
+...
+36692 36692 183831        ← 행 수, 열 수, 저장된 항목 수
+2 1                       ← (행, 열) 1-based 좌표
+3 2
+```
+
+| 헤더 항목 | 의미 |
+| --- | --- |
+| `coordinate` | 0이 아닌 칸의 좌표만 나열 |
+| `pattern` | 값 없이 위치만 있음(가중치 없음) |
+| `symmetric` | 아래 삼각만 저장, 읽을 때 대칭으로 펼침 |
+
+```python
+from scipy.io import mminfo
+print(mminfo("email-Enron.mtx"))
+```
+
+```text
+(36692, 36692, 183831, 'coordinate', 'pattern', 'symmetric')
+```
+
+파일에는 183,831개만 저장되어 있지만 `symmetric`이라 읽으면 두 배가 됨. 이 점이 다음 절의 방향 그래프 결과로 이어짐.
+
+---
+
+## 실습 코드: 그래프 불러오기
+
+```python
+import networkx as nx
+from scipy.io import mmread
+
+def print_graph_info(graph, info: str = "Graph"):
+    """그래프의 기본 정보를 출력하는 유틸리티 함수"""
+    print(f"\n---- {info} ----")
+    print(f"Graph Type: {graph.__class__.__name__}")
+    print(f"Number of nodes: {graph.number_of_nodes():,}")
+    print(f"Number of edges: {graph.number_of_edges():,}")
+
+# Matrix Market 형식(.mtx) 파일을 희소 행렬로 읽어 CSR로 변환
+matrix = mmread("email-Enron.mtx", spmatrix=False).tocsr()
+
+# 방향 그래프로 변환 (무방향이 필요하면 nx.Graph())
+G: nx.DiGraph = nx.from_scipy_sparse_array(matrix, create_using=nx.DiGraph())
+
+print_graph_info(G, "Original Graph")
+```
+
+```text
+---- Original Graph ----
+Graph Type: DiGraph
+Number of nodes: 36,692
+Number of edges: 367,662
+```
+
+| 코드 | 의미 |
+| --- | --- |
+| `mmread(..., spmatrix=False)` | 예전 `spmatrix` 대신 새 `sparray`(COO)로 반환 |
+| `.tocsr()` | 행 단위 접근이 빠른 CSR로 변환. 그래프 변환과 행렬 연산에 유리 |
+| `from_scipy_sparse_array` | 0이 아닌 칸마다 간선 하나 생성, 노드 번호는 0부터 |
+| `create_using=nx.DiGraph()` | 그래프 종류 지정. 생략하면 `nx.Graph()`(무방향) |
+
+### 방향 그래프인가, 무방향 그래프인가
+
+간선 수 367,662는 파일에 저장된 183,831의 정확히 두 배. 정말 모든 간선이 양방향인지 확인해 봄.
+
+```python
+print("대칭 행렬인가:", (matrix != matrix.T).nnz == 0)
+print("대각 성분(자기 루프) 수:", int(matrix.diagonal().sum()))
+print("reciprocity:", round(nx.reciprocity(D), 4))   # 상호 연결된 간선 비율
+
+G = nx.from_scipy_sparse_array(matrix)               # 무방향
+print(f"nodes {G.number_of_nodes():,}, edges {G.number_of_edges():,}")
+```
+
+```text
+대칭 행렬인가: True
+대각 성분(자기 루프) 수: 0
+reciprocity: 1.0
+nodes 36,692, edges 183,831
+```
+
+- 헤더에는 `kind: directed graph`라고 되어 있지만 행렬이 완전 대칭이라 **모든 간선이 양방향**(reciprocity 1.0)
+- 즉 이 파일로는 "누가 누구에게 보냈는지" 방향 정보를 구분할 수 없음. DiGraph로 만들면 간선이 두 번씩 세어질 뿐이고 out-degree와 in-degree가 항상 같음
+- 그래서 이후 분석은 **무방향 그래프(간선 183,831개)**로 진행
+
+> 그래프 종류는 데이터의 의미와 실제 값을 함께 보고 정해야 함. 팔로우, 인용, 송금처럼 방향이 의미 있는 관계는 DiGraph, 친구처럼 대칭인 관계는 Graph
 {: .prompt-tip }
 
 ---
 
-## 2. 데이터 검증
+## 정제
 
-```python
-edges = pd.read_csv(DATA_PATH, sep=r"\s+", comment="#",
-                    names=["source", "target"],
-                    dtype={"source": "int64", "target": "int64"})
-print("원본 행 수:", f"{len(edges):,}")
-print("결측치 수:", int(edges.isna().sum().sum()))
-print("중복 간선 행 수:", int(edges.duplicated().sum()))
-print("자기 루프 행 수:", int((edges["source"] == edges["target"]).sum()))
-```
-
-```text
-원본 행 수: 88,234
-결측치 수: 0
-중복 간선 행 수: 0
-자기 루프 행 수: 0
-```
-
-```python
-G = nx.from_pandas_edgelist(edges, source="source", target="target", create_using=nx.Graph)
-G.remove_edges_from(nx.selfloop_edges(G))
-avg_degree = 2 * G.number_of_edges() / G.number_of_nodes()
-```
-
-```text
-nodes                 4039
-edges                88234
-density            0.01082
-average_degree    43.691013
-average_clustering 0.605547
-connected            True
-```
-
-- 평균 차수는 무방향 그래프에서 간선 하나가 두 노드의 차수를 하나씩 올리므로 $$\bar{k} = 2\lvert E \rvert / \lvert V \rvert = 43.69$$
-- 밀도는 1%로 희소하지만 **평균 군집계수는 0.61**로 매우 높음. 친구의 친구가 서로 친구인 경우가 많다는 뜻으로, 커뮤니티가 뚜렷하게 나올 것을 예상할 수 있음
-- 스크립트에서는 같은 검증을 `assert` 대신 예외로 넣어, 파일이 바뀌면 바로 멈추게 했음
-
-```python
-if edge_file.name == "facebook_combined.txt.gz":
-    if graph.number_of_nodes() != 4039 or graph.number_of_edges() != 88234:
-        raise ValueError("SNAP ego-Facebook 공식 노드/간선 수와 일치하지 않습니다.")
-```
-
----
-
-## 3. 스크립트 구조
-
-노트북에서 확인한 분석을 함수 단위로 나누고, `argparse`로 옵션을 받게 했음.
-
-| 함수 | 역할 |
-| --- | --- |
-| `ensure_edge_file`, `sha256` | 파일이 없으면 SNAP에서 받고, 해시 계산 |
-| `read_edges` | `.gz`와 일반 텍스트, 공백/탭/CSV 구분자, 주석과 자기 루프 처리 |
-| `build_undirected_graph` | 무방향 그래프 생성, `--weighted`이면 중복 간선 가중치 합산 |
-| `compute_centralities`, `centrality_frame` | 중심성 3종과 지표별 순위, 순위 합 |
-| `detect_communities` | Louvain, 모듈러리티, 커뮤니티별 요약 |
-| `select_hubs`, `save_ego_outputs` | 핵심 노드 선정, ego-network 그림과 역할 분류 |
-| `maybe_make_pyvis` | pyvis가 설치되어 있을 때만 인터랙티브 HTML 생성 |
-| `write_run_info` | 재현 정보 기록 |
-
-```bash
-python week10_homework.py --pyvis                          # 기본: data/facebook_combined.txt.gz
-python week10_homework.py --edge-file other.csv --delimiter csv --weighted true --ego 6
-```
-
-```python
-def read_edges(edge_file, delimiter="space", weighted=False):
-    """Yield (source, target, weight) tuples from a text or gzip file."""
-    separators = {"space": None, "tab": "\t", "csv": ","}
-    separator = separators[delimiter]
-    open_fn = gzip.open if edge_file.suffix == ".gz" else open
-
-    with open_fn(edge_file, "rt", encoding="utf-8", errors="ignore") as stream:
-        for line in stream:
-            stripped = line.strip()
-            if not stripped or stripped.startswith(("#", "%")):
-                continue
-            parts = stripped.split(separator)
-            if len(parts) < 2:
-                continue
-            source, target = parts[0], parts[1]
-            if source == target:          # 자기 루프 제거
-                continue
-            weight = 1.0
-            if weighted and len(parts) >= 3:
-                try:
-                    weight = float(parts[2])
-                except ValueError:
-                    weight = 1.0
-            yield source, target, weight
-```
-
-제너레이터로 만들어서 큰 파일도 한 줄씩 읽어 바로 그래프에 넣을 수 있음. 실행 시간은 `--pyvis` 포함 약 33초였음.
-
-```text
-Graph built: |V|=4,039, |E|=88,234, undirected=True, weighted=False
-Degree top node: 107
-PageRank top node: 3437
-Eigenvector top node: 1912
-Communities: 16, modularity=0.8349
-Selected hubs (composite): ['1912', '2347', '2543', '2266']
-```
-
----
-
-## 4. 중심성 비교
-
-```python
-def compute_centralities(graph):
-    return {
-        "degree": nx.degree_centrality(graph),
-        "pagerank": nx.pagerank(graph, alpha=0.85, weight="weight", tol=1e-10),
-        "eigenvector": nx.eigenvector_centrality(graph, max_iter=2000, tol=1e-8, weight="weight"),
-    }
-```
-
-| 지표 | 계산 | "중요하다"의 의미 |
+| 확인 항목 | 함수 | Enron |
 | --- | --- | --- |
-| Degree | $$C_D(v) = \deg(v) / (n-1)$$ | 친구가 많음 |
-| PageRank | $$PR(v) = (1-\alpha)/n + \alpha \sum_{u \to v} PR(u)/\deg(u)$$ | 무작위로 걷는 사람이 자주 들르는 곳. 친구가 적은 사람의 지지를 크게 받음 |
-| Eigenvector | $$x_v = \lambda^{-1} \sum_{u \in N(v)} x_u$$ | 중요한 사람들과 연결됨 |
+| 자기 루프 | `nx.number_of_selfloops(G)` | 0 |
+| 고립 노드 | `nx.number_of_isolates(G)` | 0 |
+| 중복 간선 | Graph는 자동으로 하나로 합침 (`MultiGraph`는 유지) | – |
+| 노드 ID | 행렬에서 오면 0부터 연속 정수, 간선 목록에서 오면 문자열일 수 있음 | 0 ~ 36,691 |
 
-Eigenvector는 거듭제곱법으로 수렴시키는 방식이라 수렴하지 못하면 `PowerIterationFailedConvergence`가 남. 이 그래프는 기본값(`max_iter=100`)으로도 수렴하지만, 다른 간선 파일을 넣을 때를 대비해 반복 횟수를 2000으로 넉넉하게 두었음.
+간선 목록 파일을 pandas로 읽을 때는 [11편](/posts/Data-Science_11/)처럼 결측치, 중복 행, `source == target`을 먼저 세어 보는 것이 안전함. 반대로 그래프를 표로 내보낼 때는 `nx.to_pandas_edgelist(G)`.
 
-### 상위 10개 노드
-
-| 순위 | Degree | PageRank | Eigenvector |
-| --- | --- | --- | --- |
-| 1 | 107 (0.2588) | 3437 (0.00757) | 1912 (0.0954) |
-| 2 | 1684 (0.1961) | 107 (0.00689) | 2266 (0.0870) |
-| 3 | 1912 (0.1870) | 1684 (0.00631) | 2206 (0.0861) |
-| 4 | 3437 (0.1355) | 0 (0.00622) | 2233 (0.0852) |
-| 5 | 0 (0.0859) | 1912 (0.00382) | 2464 (0.0843) |
-| 6 | 2543 (0.0728) | 348 (0.00232) | 2142 (0.0842) |
-| 7 | 2347 (0.0721) | 686 (0.00222) | 2218 (0.0842) |
-| 8 | 1888 (0.0629) | 3980 (0.00216) | 2078 (0.0841) |
-| 9 | 1800 (0.0607) | 414 (0.00178) | 2123 (0.0837) |
-| 10 | 1663 (0.0582) | 483 (0.00129) | 1993 (0.0835) |
-
-- Degree와 PageRank의 상위권은 거의 겹침(107, 1684, 3437, 0, 1912)
-- Eigenvector 상위권은 **1912를 빼면 전혀 다른 노드들**이고 점수도 0.083 ~ 0.095로 촘촘함
-- 노드 3437은 PageRank 1위인데 Eigenvector 점수는 $$7.7 \times 10^{-8}$$(2,557위)
-
-전체 노드에 대한 순위 상관(Spearman)도 같은 이야기를 함.
-
-| 쌍 | Spearman |
-| --- | --- |
-| Degree – PageRank | 0.846 |
-| Degree – Eigenvector | 0.527 |
-| PageRank – Eigenvector | 0.212 |
-
-세 지표가 서로 다른 노드를 가리키는 이유는 8절의 추가 실험에서 확인함.
+```text
+ source  target  weight
+      0       1     1.0
+      1       2     1.0
+      1       3     1.0
+edge list 행 수: 183,831
+```
 
 ---
 
-## 5. Louvain 커뮤니티
+## 기본 통계
+
+### 밀도와 차수
+
+$$\text{density} = \frac{E}{n(n-1)/2}, \quad \bar{k} = \frac{2E}{n}$$
 
 ```python
-partition = community_louvain.best_partition(
-    graph, weight="weight", resolution=1.0,
-    random_state=seed, randomize=False,
-)
-modularity = community_louvain.modularity(partition, graph, weight="weight")
+print("density:", f"{nx.density(G):.6f}")
+deg = np.array([d for _, d in G.degree()])
+print(f"평균 차수 {deg.mean():.2f}, 중앙값 {np.median(deg):.0f}, 최대 {deg.max()}, 차수 1인 노드 {np.mean(deg==1):.1%}")
 ```
 
-모듈러리티는 "커뮤니티 안쪽 간선 비율이, 차수를 유지한 무작위 그래프에서 기대되는 비율보다 얼마나 큰가"를 잼.
+```text
+density: 0.000273
+평균 차수 10.02, 중앙값 3, 최대 1383, 차수 1인 노드 30.6%
+```
+
+평균 10, 중앙값 3, 최대 1,383. 평균이 중앙값보다 훨씬 큰 것은 **소수의 노드가 엄청나게 많은 간선을 가진** 오른쪽 꼬리가 긴 분포라는 신호.
+
+### 차수 분포
+
+![a](/assets/img/data/10/a.png)
+_왼쪽은 선형 축, 오른쪽은 로그-로그 축_
+
+- 선형 축에서는 거의 모든 노드가 왼쪽 첫 칸에 몰려 아무것도 보이지 않음
+- 로그-로그 축에서는 점들이 대체로 **직선**에 가까움. $$P(k) \propto k^{-\gamma}$$ 꼴(멱법칙, power law)의 특징으로, 이런 네트워크를 **척도 없는(scale-free) 네트워크**라고 부름
+- 오른쪽 끝의 수평 띠는 노드가 하나씩만 있는 큰 차수들. 꼬리를 정확히 보려면 누적 분포나 로그 구간을 씀
+
+> 차수 분포처럼 범위가 몇 자릿수에 걸친 데이터는 로그 축으로 봐야 모양이 보임. 평균 차수 하나로 네트워크를 요약하면 허브의 존재를 놓침
+{: .prompt-tip }
+
+### 연결 요소
+
+```python
+comps = sorted(nx.connected_components(G), key=len, reverse=True)
+H = G.subgraph(comps[0]).copy()     # 최대 연결 요소(LCC)
+```
+
+```text
+연결 요소 수: 1065
+크기 상위 5: [33696, 20, 16, 14, 13]
+최대 연결 요소: nodes 33,696 (91.8%), edges 180,811 (98.4%)
+```
+
+- 연결 요소는 서로 경로로 이어진 노드 묶음. 1,065개가 있지만 **하나의 거대 요소(giant component)**가 노드의 92%, 간선의 98%를 차지하고 나머지는 20개 이하의 작은 섬
+- 최단 거리, Betweenness처럼 "경로"를 쓰는 지표는 끊어진 요소 사이에서 정의되지 않으므로 보통 **LCC만 떼어서** 계산
+- `subgraph()`는 원본을 참조하는 뷰라서 수정하려면 `.copy()`
+- 방향 그래프에서는 약한 연결 요소(`weakly_connected_components`, 방향 무시)와 강한 연결 요소(`strongly_connected_components`, 방향대로 서로 도달 가능)를 구분
+
+---
+
+## 구조 분석
+
+### 군집계수와 transitivity
+
+노드 $$v$$의 지역 군집계수는 이웃끼리 실제로 연결된 비율.
+
+$$C(v) = \frac{T(v)}{k_v(k_v-1)/2}$$
+
+$$T(v)$$는 $$v$$를 포함한 삼각형 수. 전체를 요약하는 방법은 두 가지.
+
+| 지표 | 계산 | Enron |
+| --- | --- | --- |
+| 평균 군집계수 | 노드별 $$C(v)$$의 평균 | **0.497** |
+| transitivity | 전체 삼각형 × 3 / 전체 연결된 세 쌍(경로 길이 2) | **0.0853** |
+
+```text
+평균 군집계수: 0.497
+transitivity: 0.0853
+triangles: 727,044 (9.5s)
+```
+
+두 값이 6배나 차이 나는 이유는 **가중 방식**이 다르기 때문.
+
+- 평균 군집계수는 노드마다 같은 가중치. 차수 2 ~ 3인 노드가 많고, 이런 노드는 이웃 두셋만 서로 알면 1.0이 되므로 평균이 높아짐
+- transitivity는 세 쌍 단위로 세므로 **차수가 큰 허브의 영향이 큼**. 허브의 이웃 수백 명은 서로 모르는 경우가 대부분이라 값이 낮아짐
+
+세 값(0.4970, 727,044, 0.08531)은 `.mtx` 헤더에 적힌 SNAP 공식 통계와 정확히 같았음.
+
+### 최단 거리와 지름
+
+```python
+lens = []
+for s in rng.choice(list(H), 200, replace=False):          # 출발 노드 200개 표본
+    lens.extend(nx.single_source_shortest_path_length(H, s).values())
+print("diameter 근사:", nx.approximation.diameter(H, seed=SEED))
+```
+
+```text
+표본 200개 출발 노드 평균 최단 거리 4.07, 90% 분위 5.0, 최대 11
+diameter 근사(양방향 BFS 하한): 13
+```
+
+- 33,696개 주소 중 아무 두 주소도 평균 **4단계** 만에 닿음. 노드 수에 비해 거리가 매우 짧은 성질을 **좁은 세상(small world)**이라고 함
+- 모든 쌍의 최단 거리는 $$O(n \cdot E)$$라 표본으로 추정. 지름도 `approximation.diameter`로 근사(실제 지름은 이 값 이상). SNAP 헤더의 12와 다른 것은 계산 방식(표본 기반 근사)의 차이로 보임
+- 높은 군집계수 + 짧은 평균 거리 = 좁은 세상 네트워크의 전형
+
+---
+
+## 중요한 노드 찾기
+
+### 중심성 4종
+
+| 지표 | 식 | 의미 | 비용 |
+| --- | --- | --- | --- |
+| Degree | $$k_v / (n-1)$$ | 연결이 많음 | $$O(n)$$ |
+| PageRank | $$PR(v) = (1-\alpha)/n + \alpha \sum_{u \in N(v)} PR(u)/k_u$$ | 무작위 이동이 자주 도착 | 반복 × $$O(E)$$ |
+| Eigenvector | $$x_v \propto \sum_{u \in N(v)} x_u$$ | 중요한 이웃과 연결 | 반복 × $$O(E)$$ |
+| Betweenness | $$\sum_{s \ne v \ne t} \sigma_{st}(v)/\sigma_{st}$$ | 최단 경로의 중개자 | $$O(nE)$$ → 표본 근사 |
+
+```python
+dc = nx.degree_centrality(G)
+pr = nx.pagerank(G)                                         # alpha=0.85
+bc = nx.betweenness_centrality(H, k=500, seed=SEED)        # 500개 표본으로 근사
+ev = nx.eigenvector_centrality(G, max_iter=1000)
+cent = pd.DataFrame({"degree": dc, "pagerank": pr,
+                     "betweenness": pd.Series(bc), "eigenvector": ev}).fillna(0)
+```
+
+| 순위 | Degree | PageRank | Betweenness | Eigenvector |
+| --- | --- | --- | --- | --- |
+| 1 | 5038 (0.0377) | 5038 (0.0114) | 5038 (0.0818) | 136 (0.1496) |
+| 2 | 273 (0.0373) | 273 (0.0032) | 140 (0.0730) | 195 (0.1271) |
+| 3 | 458 (0.0344) | 140 (0.0030) | 273 (0.0541) | 76 (0.1265) |
+| 4 | 140 (0.0339) | 458 (0.0030) | 566 (0.0460) | 370 (0.1213) |
+| 5 | 1028 (0.0339) | 588 (0.0029) | 1139 (0.0448) | 1028 (0.1124) |
+
+```text
+             degree  pagerank  betweenness  eigenvector
+degree        1.000     0.720        0.738        0.534
+pagerank      0.720     1.000        0.628        0.054
+betweenness   0.738     0.628        1.000        0.543
+eigenvector   0.534     0.054        0.543        1.000
+```
+
+- 노드 5038은 Degree, PageRank, Betweenness에서 모두 1위. 그런데 PageRank 점수(0.0114)가 2위의 **3.5배**인 반면 Degree는 거의 같음 → 5038의 이웃 1,383개 중 **85.8%가 5038하고만 연락한 주소**(차수 1)라서, 이들이 PageRank를 전부 5038에 몰아주는 구조(273, 458, 140은 이 비율이 8 ~ 11%). 외부 주소는 Enron 주소와의 통신만 관측되므로 이런 노드가 많이 생김
+- Eigenvector는 다른 노드(136, 195, 76 ...)를 가리키고 PageRank와 순위 상관이 0.05에 불과. 서로 촘촘하게 연결된 핵심 그룹에 점수가 몰리는 성질 때문(11편의 Facebook 데이터에서도 같은 현상)
+- **하나의 중심성만 보고 "가장 중요한 노드"라고 결론 내리면 안 되고**, 질문(연결 수인가, 중개인가, 핵심 그룹 소속인가)에 맞는 지표를 골라야 함
+
+### k-core
+
+k-core는 "차수가 k 미만인 노드를 더 이상 없을 때까지 반복해서 지우고 남는 부분". 중심성이 노드 하나의 점수라면 k-core는 **서로가 서로를 받쳐 주는 촘촘한 핵심부**를 찾음.
+
+```python
+core = nx.core_number(G)            # 각 노드가 속하는 최대 k
+```
+
+```text
+최대 k: 43 k-core 크기: 275
+k=5: 11,648 nodes
+k=10: 4,513 nodes
+k=20: 2,276 nodes
+k=40: 456 nodes
+```
+
+36,692개 중 275개 주소가 "서로 최소 43명과 연결된" 핵심부를 이룸. k를 올리며 크기를 보면 네트워크가 바깥 껍질에서 안쪽 핵심으로 어떻게 층을 이루는지 알 수 있고, 큰 그래프를 시각화할 때 **보여 줄 부분을 고르는 기준**으로도 씀.
+
+---
+
+## 묶음 찾기: 커뮤니티
+
+커뮤니티는 내부 연결은 많고 외부 연결은 적은 노드 묶음. 품질은 모듈러리티로 잼.
 
 $$Q = \frac{1}{2m}\sum_{ij}\left(A_{ij} - \frac{k_i k_j}{2m}\right)\delta(c_i, c_j)$$
 
-0.3 이상이면 커뮤니티 구조가 있다고 보는데 **0.8349**는 매우 높은 값. 군집계수 0.61과 같은 방향의 결과.
-
-![a](/assets/img/data/hw3/a.png)
-_Louvain 커뮤니티 16개. 색은 커뮤니티, 크기는 Degree_
-
-시각화는 노드 4천 개를 spring layout으로 한 번에 그리면 느리고 덩어리 하나로 뭉치므로, `community_layout`에서 **커뮤니티 중심을 원 위에 먼저 놓고** 각 노드를 그 주변에 정규분포로 흩뿌렸음(퍼짐 정도는 커뮤니티 크기의 제곱근에 비례, 시드 고정).
-
-| ID | 노드 | 내부 밀도 | 대표 허브(차수) |
-| --- | --- | --- | --- |
-| 9 | 548 | 0.0357 | 3437 (547) |
-| 4 | 535 | 0.0608 | 1684 (792) |
-| 8 | 447 | 0.1682 | 107 (1045) |
-| 1 | 431 | 0.0654 | 483 (231) |
-| 3 | 423 | 0.1280 | 1912 (755) |
-| 0 | 350 | 0.0466 | 0 (347) |
-| 5 | 324 | 0.1205 | 917 (130) |
-| 11 | 237 | **0.5915** | 2543 (294) |
-| 15 | 226 | 0.2203 | 2839 (137) |
-| 14 | 206 | 0.0939 | 686 (170) |
-| 6, 10, 13, 12, 2, 7 | 116, 73, 60, 25, 19, 19 | 0.12 ~ 0.87 | 1687, 1972, 3980, 583, 3318, 1988 |
-
-큰 커뮤니티(9, 4, 0)는 내부 밀도가 낮고 허브 하나의 차수가 커뮤니티 크기와 거의 같음(3437은 547, 커뮤니티 크기 548). 반대로 커뮤니티 11은 237명 중 59%가 서로 연결된 **밀집 코어**. 이 차이가 8절의 핵심.
-
----
-
-## 6. 핵심 노드 ego-network
-
-### 선정
-
-세 지표의 순위를 더해 가장 작은 4개를 골랐음. 하나의 지표에만 강한 노드보다 **모든 지표에서 고르게 높은 노드**를 고르려는 의도.
+$$k_i k_j / 2m$$은 차수를 유지한 채 무작위로 연결했을 때 기대되는 간선 수. 즉 "같은 커뮤니티 안의 간선이 우연보다 얼마나 많은가". Louvain은 노드를 이웃 커뮤니티로 옮겨 보며 $$Q$$를 키우고, 커뮤니티를 노드 하나로 합쳐 같은 과정을 반복하는 탐욕적 알고리즘.
 
 ```python
-for metric in centralities:
-    frame[f"rank_{metric}"] = frame[metric].rank(ascending=False, method="min").astype(int)
-frame["rank_sum"] = frame[["rank_degree", "rank_pagerank", "rank_eigenvector"]].sum(axis=1)
-
-hubs = frame.sort_values(["rank_sum", "rank_degree", "rank_pagerank"]).head(4).index
-```
-
-| 노드 | Degree 순위 | PageRank 순위 | Eigenvector 순위 | 순위 합 |
-| --- | --- | --- | --- | --- |
-| **1912** | 3 | 5 | 1 | **9** |
-| **2347** | 7 | 57 | 37 | **101** |
-| **2543** | 6 | 39 | 91 | **136** |
-| **2266** | 11 | 241 | 2 | **254** |
-| 107 | 1 | 2 | 757 | 760 |
-| 1684 | 2 | 3 | 1,152 | 1,157 |
-| 3437 | 4 | 1 | 2,557 | 2,562 |
-
-Degree 1위 107과 PageRank 1위 3437은 Eigenvector 순위가 낮아 빠졌음.
-
-### 역할 분류
-
-```python
-ego = nx.ego_graph(graph, center, radius=1, undirected=True)
-neighbors = set(graph.neighbors(center))
-same_share = sum(partition[n] == partition[center] for n in neighbors) / len(neighbors)
-
-if same_share >= 0.80:   role = "local hub concentrated in one community"
-elif same_share >= 0.60: role = "hub centered on a primary community"
-else:                    role = "possible boundary hub connecting communities"
-```
-
-| 노드 | 차수 | ego 노드 / 간선 | ego 밀도 | 같은 커뮤니티 이웃 | 이웃 커뮤니티 수 | 분류 |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1912 | 755 | 756 / 30,780 | 0.108 | 55.9% | 6 | 경계형 허브 가능성 |
-| 2347 | 291 | 292 / 17,154 | 0.404 | 61.5% | 2 | 주 커뮤니티 중심 허브 |
-| 2543 | 294 | 295 / 15,796 | 0.364 | 53.7% | 2 | 경계형 허브 가능성 |
-| 2266 | 234 | 235 / 16,408 | 0.597 | 94.9% | 2 | 지역 허브 |
-
-<div class="row g-2">
-  <div class="col-6"><img src="/assets/img/data/hw3/b.png" alt="ego 1912"></div>
-  <div class="col-6"><img src="/assets/img/data/hw3/c.png" alt="ego 2347"></div>
-  <div class="col-6"><img src="/assets/img/data/hw3/d.png" alt="ego 2543"></div>
-  <div class="col-6"><img src="/assets/img/data/hw3/e.png" alt="ego 2266"></div>
-</div>
-_ego-network: 1912, 2347 (위), 2543, 2266 (아래). 빨간 별이 중심 노드_
-
-1912는 이웃이 6개 커뮤니티에 퍼져 있고 ego 밀도가 0.108로 낮아 여러 그룹을 잇는 모양. 2266은 이웃 95%가 같은 커뮤니티이고 이웃끼리도 60%가 연결된 촘촘한 덩어리 안의 노드.
-
-### 인터랙티브 그래프
-
-차수 상위 300개 노드만 pyvis로 그렸음(전체 4천 개는 브라우저가 감당하기 어려움). 노드에 마우스를 올리면 차수, 커뮤니티, PageRank가 보이고 드래그, 확대가 됨.
-
-<iframe src="/assets/img/data/hw3/facebook_core_interactive.html" title="ego-Facebook 상위 300 노드" loading="lazy" style="width:100%;height:600px;border:1px solid #ddd;border-radius:8px"></iframe>
-_[새 창에서 열기](/assets/img/data/hw3/facebook_core_interactive.html)_
-
-```python
-selected = [n for n, _ in sorted(graph.degree, key=lambda x: x[1], reverse=True)[:300]]
-network = Network(height="800px", width="100%", cdn_resources="in_line")   # 오프라인에서도 열림
-for node in graph.subgraph(selected):
-    network.add_node(node, label=str(node),
-                     color=to_hex(palette(partition[node] % 20)),
-                     size=8 + 40 * degree_centrality[node],
-                     title=f"node={node}<br>degree={graph.degree(node)}<br>community={partition[node]}")
-network.force_atlas_2based(gravity=-60, central_gravity=0.015, spring_length=110, spring_strength=0.05)
-```
-
-`cdn_resources="in_line"`으로 vis.js를 HTML 안에 넣어서 파일 하나만으로 열리게 했음(대신 1.7MB).
-
----
-
-## 7. 트러블슈팅
-
-| 문제 | 원인 | 해결 |
-| --- | --- | --- |
-| `import community` 실패 | PyPI 패키지 이름은 `python-louvain`, import 이름은 `community` (`community`라는 다른 패키지와 혼동) | `python -m pip install python-louvain`, 실패하면 설치 명령을 알려 주고 종료 |
-| 서버에서 그림 저장 시 오류 | 디스플레이 없는 환경에서 GUI 백엔드 사용 | 스크립트 맨 위 `matplotlib.use("Agg")` |
-| Eigenvector 수렴 실패 대비 | 그래프에 따라 기본 반복 100회로 부족할 수 있음 | `max_iter=2000`, `tol=1e-8` |
-| pyvis 미설치 환경 | 선택 기능 | `ImportError`면 경고만 출력하고 HTML 생략 |
-| 데이터 출처가 바뀜 | SNAP 접속 불가 | SHA-256과 노드, 간선 수로 같은 파일임을 확인 |
-
----
-
-## 8. 결과 다시 보기 (추가 실험)
-
-제출 후 "왜 세 중심성의 1위가 모두 다를까?", "1912와 2543이 정말 경계형일까?"가 궁금해 추가로 확인했음.
-
-### 8-1. PageRank 상위권은 데이터를 모은 방식의 흔적
-
-ego-Facebook은 **10명의 사용자(ego)를 정해 그들의 친구 목록을 모은 뒤 합친** 데이터. 그래서 ego 노드는 자기 커뮤니티의 거의 모든 사람과 연결되어 있을 것이라 예상하고, PageRank 상위 10개가 자기 커뮤니티에서 몇 %와 직접 연결되는지 셌음.
-
-```python
-for n in a["pagerank"].nlargest(10).index:
-    comm = [v for v in G if part[v] == part[n] and v != n]
-    cover = sum(G.has_edge(n, v) for v in comm) / len(comm)
-```
-
-| 노드 | 차수 | 커뮤니티 (크기) | 같은 커뮤니티 노드와 연결된 비율 |
-| --- | --- | --- | --- |
-| 3437 | 547 | 9 (548) | **99.6%** |
-| 107 | 1,045 | 8 (447) | **100%** |
-| 1684 | 792 | 4 (535) | **99.8%** |
-| 0 | 347 | 0 (350) | **98.0%** |
-| 1912 | 755 | 3 (423) | **100%** |
-| 3980 | 59 | 13 (60) | **100%** |
-| 686 | 170 | 14 (206) | 82.9% |
-| 348, 414, 483 | 229, 159, 231 | 1 (431) | 52.8%, 30.7%, 36.0% |
-
-상위 노드 대부분이 자기 커뮤니티 전원과 연결된 **별 모양의 중심**이었음. 즉 이 노드들은 "사회적으로 영향력 있는 사람"이라기보다 **데이터를 모을 때 기준이 된 ego일 가능성이 높음**(SNAP 원본의 ego 10명은 0, 107, 348, 414, 686, 698, 1684, 1912, 3437, 3980이고, 상위 10개 중 9개가 여기에 해당). 커뮤니티 1은 ego 348과 414의 친구 목록이 하나로 합쳐진 것으로 보이며, 483은 ego가 아니지만 348, 414와 모두 친구이고 이웃이 커뮤니티 1(155명)과 5(74명)에 걸쳐 있어 차수가 커진 노드.
-
-또 이 별 모양 커뮤니티에서는 주변 노드가 ego 하나에만 연결된 경우가 많아, PageRank 식에서 **차수가 작은 이웃이 많이 밀어 주는** ego의 점수가 커짐. 3437(차수 547)이 107(차수 1,045)보다 PageRank가 높은 이유.
-
-### 8-2. Eigenvector는 밀집 코어에 쏠림
-
-```text
-Eigenvector 상위 10개의 커뮤니티: [3, 11] / 4개 허브: {'1912': 3, '2347': 11, '2543': 11, '2266': 11}
-```
-
-Eigenvector 상위 10개가 모두 커뮤니티 3과 11 안에 있었음. 커뮤니티 11은 내부 밀도 0.59인 밀집 코어인데, Eigenvector는 "중요한 이웃의 합"을 반복해서 곱하므로 **서로 촘촘하게 연결된 덩어리 하나에 점수가 몰리는(localization)** 성질이 있음. 다른 커뮤니티의 ego인 3437의 점수가 $$10^{-8}$$ 수준인 이유.
-
-결과적으로 **순위 합 방식은 Eigenvector 순위가 낮은 다른 커뮤니티의 ego를 모두 탈락시키고**, 핵심 노드 4개 중 3개를 같은 커뮤니티 11에서 골랐음. "세 지표에서 고르게 높은 노드"가 아니라 "밀집 코어에 있는 노드"를 고른 셈.
-
-### 8-3. 다리 역할은 Betweenness로
-
-"여러 커뮤니티를 잇는 노드"를 직접 재는 지표는 최단 경로가 얼마나 그 노드를 지나는지 보는 **Betweenness**. 정확히 계산하면 $$O(\lvert V \rvert \lvert E \rvert)$$로 오래 걸려 1,000개 노드를 표본으로 근사했음.
-
-```python
-bc = nx.betweenness_centrality(G, k=1000, seed=42)
-```
-
-| 노드 | Betweenness | 이웃이 속한 커뮤니티 수 |
-| --- | --- | --- |
-| 107 | 0.4851 | 8 |
-| 1684 | 0.3448 | 6 |
-| 3437 | 0.2267 | 3 |
-| 1912 | 0.2231 | 6 |
-| 0 | 0.1520 | 4 |
-| 1085 | 0.1470 | 4 |
-| 698 | 0.1124 | 2 |
-| 567 | 0.0921 | 2 |
-| 58 | 0.0840 | 4 |
-| 428 | 0.0621 | 5 |
-
-- 1912는 Betweenness 4위로 **경계형 허브라는 해석이 맞음**
-- 2347, 2543, 2266은 상위 10에 없음. 특히 2543이 "경계형"으로 분류된 것은 다른 그룹을 잇기 때문이 아니라, **Louvain이 밀집 코어를 커뮤니티 3과 11로 나눈 경계에 걸쳐 있기 때문**(이웃 커뮤니티 수 2)
-- 107은 이웃이 8개 커뮤니티에 걸쳐 있고 Betweenness가 압도적인 진짜 다리. 제출본의 순위 합 방식에서는 Eigenvector 때문에 빠졌던 노드
-
-### 8-4. Louvain은 시드에는 안정, resolution에는 민감
-
-```python
-for s in range(10):
-    p = community_louvain.best_partition(G, random_state=s)
-    ari = adjusted_rand_score([base[v] for v in nodes], [p[v] for v in nodes])
+comm = nx.community.louvain_communities(H, seed=SEED)       # NetworkX 내장 (3.0+)
+q = nx.community.modularity(H, comm)
 ```
 
 ```text
- seed  communities  modularity  ARI vs seed42
-    0           16      0.8349          1.000
-    1           16      0.8342          0.974
-    4           15      0.8348          0.984
-    8           15      0.8348          0.990
-  ...  (10개 시드 모두 15 ~ 16개, 0.8342 ~ 0.8350, ARI 0.974 이상)
-
-resolution 0.5: communities 95, modularity 0.8110
-resolution 1.0: communities 16, modularity 0.8349
-resolution 2.0: communities 21, modularity 0.8312
+communities 159, modularity 0.6121, 상위 크기 [3661, 3627, 3101, 2789, 2660, 2457, 2034, 2005] (4.5s)
+크기 10 이하 커뮤니티 수: 91
 ```
 
-- 시드를 바꿔도 분할이 거의 같아(ARI ≥ 0.974) **결과를 믿을 수 있음**
-- resolution을 바꾸면 커뮤니티 수가 크게 바뀜. 모듈러리티가 가장 높은 1.0이 이 데이터에서는 합리적인 선택이지만, "커뮤니티가 16개"라는 숫자는 데이터의 성질이 아니라 **설정값의 결과**라는 점을 함께 밝혀야 함
+- 모듈러리티 0.61로 커뮤니티 구조가 뚜렷함(0.3 이상이면 구조가 있다고 봄)
+- 큰 커뮤니티 8개가 2천 ~ 3천 개씩이고, 159개 중 91개는 10개 이하의 작은 묶음
+- 별도 패키지 `python-louvain`(`import community`)도 같은 알고리즘. 11편 과제에서는 이 패키지를 썼음
+- 시드와 resolution에 따라 결과가 달라질 수 있으므로 함께 기록
 
 ---
 
-## 9. 느낀 점
+## 시각화
 
-- **세 중심성이 서로 다른 1위를 낸 것이 이번 과제에서 가장 큰 배움**이었음. 처음에는 계산이 틀렸나 의심했는데, 각 지표가 "중요함"을 다르게 정의한다는 걸 결과로 확인하고 나서야 수식이 이해됨
-- 데이터를 모은 방식이 분석 결과에 그대로 남는다는 것. 10명의 ego를 중심으로 모은 데이터라서 그 10명이 중심성 상위권을 차지했음. 데이터 설명서를 먼저 읽었다면 해석을 더 빨리 할 수 있었을 것
-- 익명 데이터라 "이 사람은 실제로 어떤 역할"이라고 말할 수 없으니, 보고서에서도 **구조로만 해석하고 한계를 명시**하려고 신경 썼음
-- 노트북 분석을 CLI 스크립트로 옮기면서 해시, 노드 수 검증, 버전 기록을 넣었는데, 다른 환경에서 다시 실행할 때 그 장치들이 그대로 재현 근거가 되어 줌
-- 순위 합처럼 직관적으로 공정해 보이는 방법이 실제로는 한 지표(Eigenvector)의 편향을 그대로 물려받을 수 있다는 점을 추가 실험으로 알게 됨
+노드 3만 개를 그대로 그리면 검은 덩어리가 되고 레이아웃 계산도 오래 걸림. **보여 줄 부분을 먼저 고르는** 것이 핵심.
 
-## 10. 개선 사항
+| 방법 | 예 |
+| --- | --- |
+| 중요 노드만 | 차수 상위 N개, k-core |
+| 한 노드 주변만 | `nx.ego_graph(G, v, radius=1)` |
+| 요약 그래프 | 커뮤니티를 노드 하나로 합침 |
+| 인터랙티브 | pyvis(브라우저에서 확대, 드래그) |
 
-| 개선 사항 | 이유 | 방법 |
+```python
+top = cent["degree"].nlargest(150).index
+S = G.subgraph(top)
+part = {n: i for i, c in enumerate(nx.community.louvain_communities(S, seed=SEED)) for n in c}
+pos = nx.spring_layout(S, seed=SEED, k=0.35)                  # 시드 고정 → 매번 같은 배치
+nx.draw_networkx_edges(S, pos, alpha=0.12, width=0.5)
+nx.draw_networkx_nodes(S, pos, node_size=[10 + 1500 * dc[n] for n in S],
+                       node_color=[part[n] for n in S], cmap="tab10")
+```
+
+![b](/assets/img/data/10/b.png)
+_차수 상위 150개 노드. 크기는 차수, 색은 Louvain 커뮤니티_
+
+- 간선은 투명도를 낮춰야 구조가 보임(150개 노드에 간선 2,994개)
+- 노드 크기는 지표, 색은 커뮤니티처럼 **한 그림에 정보 두 개까지**가 읽기 좋음
+- 5038은 차수 1위지만 그림 가장자리에 있음. 상위 150개 안에서의 연결은 5개뿐(다른 허브는 중앙값 40개)이고 나머지는 차수 1짜리 주소이기 때문으로, 앞의 PageRank 해석과 일치
+
+---
+
+## 큰 그래프를 다룰 때
+
+| 작업 | 비용 | Enron 실측 | 요령 |
+| --- | --- | --- | --- |
+| 불러오기, 차수 | $$O(n + E)$$ | 수 초 | 희소 행렬 그대로 사용 |
+| 삼각형, 군집계수 | 차수 제곱에 비례 | 9.5초 | 허브가 많으면 느려짐 |
+| 모든 쌍 최단 거리 | $$O(nE)$$ | 약 1.5시간 (BFS 200번에 31초로 추정) | 출발 노드 표본 |
+| Betweenness | $$O(nE)$$ | 표본 500개로 수십 초 | `k=` 표본 근사 |
+| PageRank, Eigenvector | 반복 × $$O(E)$$ | 수 초 | `tol`, `max_iter` 조정 |
+| Louvain | 거의 $$O(E)$$ | 4.5초 | 시드 고정 |
+| 그림 | 레이아웃이 병목 | – | 부분 그래프 |
+
+표본으로 근사할 때는 시드를 고정하고 표본 크기를 함께 적어야 재현할 수 있음.
+
+---
+
+## Enron과 Facebook 비교
+
+| 항목 | Enron 이메일 (10편) | Facebook 친구 ([11편](/posts/Data-Science_11/)) |
 | --- | --- | --- |
-| 핵심 노드 선정 방식 | 순위 합이 Eigenvector의 코어 쏠림을 그대로 반영 | 지표별 상위 노드를 따로 보고하거나, 백분위 평균, Betweenness를 함께 사용 |
-| 경계형 판정 | 같은 커뮤니티 이웃 비율만으로는 "코어가 둘로 나뉜 것"과 "다리"를 구분 못 함 | Betweenness, participation coefficient, 이웃 커뮤니티 엔트로피 함께 보기 |
-| 역할 기준값 | 80% / 60%는 임의로 정한 값 | 전체 노드 분포를 보고 정하거나 근거를 밝힘 |
-| ego 노드 표시 | 중심성 상위권이 수집 기준 ego임을 구분해야 해석이 정확 | SNAP의 ego 목록을 불러와 표와 그림에 표시 |
-| 커뮤니티 수 | resolution에 따라 16 ~ 95개 | resolution 여러 값의 결과를 함께 보고, Leiden 알고리즘과 비교 |
-| 시각화 규모 | pyvis 300 노드, 1.7MB | 커뮤니티를 노드 하나로 줄인 요약 그래프 추가 |
+| 노드 / 간선 | 36,692 / 183,831 | 4,039 / 88,234 |
+| 평균 차수 | 10.0 | 43.7 |
+| 밀도 | 0.00027 | 0.0108 |
+| 연결 | 1,065개 요소, LCC 91.8% | 하나로 연결 |
+| 평균 군집계수 | 0.497 | 0.606 |
+| Louvain 모듈러리티 | 0.612 | 0.835 |
+| 데이터 수집 방식이 남긴 흔적 | 외부 주소는 Enron과의 통신만 관측 | 10명의 ego 친구 목록을 합침 |
+
+두 데이터 모두 **수집 방식이 중심성 결과에 그대로 드러난다**는 공통점이 있음. 네트워크는 관측된 관계만 담고 있으므로, 결과를 해석하기 전에 "어떻게 모은 데이터인가"를 먼저 확인해야 함.
 
 ---
 
 ## 최종 핵심 정리
 
-1. SNAP ego-Facebook(노드 4,039개, 간선 88,234개)을 해시와 노드, 간선 수로 검증한 뒤 무방향 그래프로 분석했음
-2. 밀도는 1%지만 군집계수 0.61, Louvain 모듈러리티 0.8349로 커뮤니티 구조가 매우 뚜렷함
-3. Degree, PageRank, Eigenvector의 1위가 107, 3437, 1912로 모두 달랐고 PageRank–Eigenvector 순위 상관은 0.21에 불과함
-4. 분석은 함수로 나눈 CLI 스크립트로 정리해 실행 정보(버전, 해시, 시드)를 매번 기록했고, 다른 OS에서도 결과가 같았음
-5. 순위 합으로 고른 핵심 노드 1912, 2347, 2543, 2266의 ego-network를 같은 커뮤니티 이웃 비율로 지역형, 주 커뮤니티형, 경계형으로 분류했음
-6. 추가 실험 결과 PageRank 상위권은 자기 커뮤니티 전원과 연결된 수집 기준 ego였고, Eigenvector는 밀집 코어(커뮤니티 3, 11)에 쏠렸음
-7. Betweenness로 보면 1912는 실제 다리였지만 2543의 경계형 판정은 Louvain이 코어를 둘로 나눈 결과였고, 진짜 다리 107은 순위 합 방식에서 빠졌음
-8. Louvain은 시드에는 안정적(ARI ≥ 0.974)이지만 resolution에 민감하므로, 지표와 설정값의 한계를 함께 보고해야 함
+1. 네트워크 데이터는 노드와 간선으로 관계 자체를 다루며, 방향과 가중치 여부를 데이터의 의미에 맞게 정해야 함
+2. 실제 네트워크는 매우 희소해서(Enron 밀도 0.03%) 밀집 행렬 10.8 GB 대신 CSR 희소 행렬 6.2 MB로 다룸
+3. 실습 파일은 Matrix Market `symmetric` 형식이라 DiGraph로 읽으면 간선 367,662개가 되지만, reciprocity 1.0이므로 무방향 간선 183,831개로 분석하는 것이 맞음
+4. 차수는 평균 10, 중앙값 3, 최대 1,383인 꼬리가 긴 분포로, 로그-로그 축에서 직선에 가까운 척도 없는 네트워크
+5. 1,065개 연결 요소 중 거대 요소가 노드 92%를 차지하고, 경로 기반 지표는 이 LCC에서 계산함
+6. 평균 군집계수 0.497과 transitivity 0.085는 가중 방식이 달라 차이가 나며, 평균 최단 거리 약 4의 좁은 세상 구조
+7. 중심성은 지표마다 다른 노드를 가리키고(PageRank–Eigenvector 상관 0.05), k-core와 커뮤니티(Q = 0.61)로 핵심부와 묶음을 찾음
+8. 큰 그래프는 표본 근사, 시드 고정, 부분 그래프 시각화로 다루고, 해석 전에 데이터 수집 방식을 확인해야 함
 
 ---
 
