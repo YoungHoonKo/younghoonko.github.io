@@ -1,6 +1,6 @@
 ---
 title: 04. Design Pattern_Template Method and Singleton
-description: "디자인 패턴의 정의와 구조(컨텍스트, 문제, 해결), 엘리베이터 모터 예제로 본 템플릿 메서드 패턴(공통 흐름은 상위 클래스, 달라지는 단계만 하위 클래스), 싱글톤 패턴의 세 구성 요소. 과제 코드와 확장 예제를 컴파일, 실행해 확인"
+description: "디자인 패턴의 정의와 구조, 엘리베이터 모터 예제로 본 템플릿 메서드 패턴(템플릿 메서드, 기본 연산, hook, 할리우드 원칙)과 같은 문제를 Strategy로 푼 비교, 싱글톤의 세 구성 요소와 멀티스레드 실험으로 본 안전한 구현 방법(synchronized, Holder, enum)과 단점"
 Author: YoungHoon Ko
 date: 2026-11-05 15:32:00 +0900
 categories: [University(2026-First-Semester), Design Pattern]
@@ -17,6 +17,8 @@ image: /assets/img/lang/design.png
 - 템플릿 메서드를 `final`로 막아야 하는 이유를 컴파일 오류로 확인
 - 싱글톤 패턴의 세 구성 요소와 각 요소가 없을 때의 문제
 - 과제 코드를 실행하고, 문이 열린 상태와 이동 중인 상태까지 시험
+- (보충) hook 메서드와 할리우드 원칙, 같은 문제를 Strategy로 풀었을 때의 차이
+- (보충) 멀티스레드에서 싱글톤이 깨지는 것을 재현하고 안전한 구현 방법 비교
 
 ---
 
@@ -222,6 +224,152 @@ Bad.java:2: error: move() in X cannot override move() in M
 class X extends M { protected void step() {} public void move() { } }
 ```
 
+
+### 템플릿 메서드의 실행 흐름
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant M as Motor (상위, 템플릿 메서드)
+    participant H as HyundaiMotor (하위, 기본 연산)
+    C->>M: move(UP)
+    M->>M: 이동 중인가? 문이 열렸나?
+    M->>H: moveMotor(UP)
+    H-->>M: 회사별 구동
+    M->>M: 상태를 MOVING으로
+```
+
+- 흐름을 **상위 클래스가 쥐고**, 하위 클래스는 부르면 응답할 뿐임. 이것을 **할리우드 원칙**("먼저 연락하지 마세요, 우리가 연락하겠습니다")이라고 함
+- 하위 클래스가 상위 클래스의 흐름을 호출하는 일반적인 상속과 방향이 반대라서 **제어의 역전**의 한 예
+
+### (보충) hook 메서드
+
+기본 연산은 하위 클래스가 **반드시** 구현해야 하지만, 일부 단계는 "필요하면 바꾸고 아니면 기본 동작을 쓰는" 선택형으로 둘 수 있음. 이런 메서드를 **hook**이라고 함.
+
+```java
+enum Direction { UP, DOWN }
+abstract class Motor {
+    private boolean moving = false;
+    // 템플릿 메서드: 흐름 고정, 재정의 금지
+    public final void move(Direction d) {
+        if (moving) { System.out.println("  이미 이동 중 → 무시"); return; }
+        if (needsSafetyCheck()) safetyCheck();      // hook: 하위 클래스가 선택적으로 바꿈
+        moveMotor(d);                               // 기본 연산: 하위 클래스가 반드시 구현
+        moving = true;
+    }
+    protected abstract void moveMotor(Direction d);
+    protected boolean needsSafetyCheck() { return false; }   // hook 기본값
+    private void safetyCheck() { System.out.println("  안전 점검 실행"); }
+}
+class HyundaiMotor extends Motor {
+    protected void moveMotor(Direction d) { System.out.println("  Hyundai Motor moves " + d); }
+}
+class SamsungMotor extends Motor {
+    protected void moveMotor(Direction d) { System.out.println("  Samsung Motor moves " + d); }
+    @Override protected boolean needsSafetyCheck() { return true; }   // hook 재정의
+}
+public class HookDemo {
+    public static void main(String[] a) {
+        System.out.println("Hyundai:"); Motor h = new HyundaiMotor(); h.move(Direction.UP); h.move(Direction.UP);
+        System.out.println("Samsung:"); new SamsungMotor().move(Direction.DOWN);
+    }
+}
+```
+
+실행 결과
+
+```text
+Hyundai:
+  Hyundai Motor moves UP
+  이미 이동 중 → 무시
+Samsung:
+  안전 점검 실행
+  Samsung Motor moves DOWN
+```
+
+| 구분 | 선언 | 하위 클래스 |
+| --- | --- | --- |
+| 템플릿 메서드 | `public final` | 재정의 불가 |
+| 기본 연산 | `protected abstract` | 반드시 구현 |
+| hook | `protected`, 기본 구현 있음 | 필요할 때만 재정의 |
+
+### (보충) 같은 문제를 Strategy 패턴으로 풀면
+
+템플릿 메서드는 **상속**으로 달라지는 부분을 분리함. 같은 엘리베이터 문제를 **합성(위임)**으로 풀면 Strategy 패턴이 됨. 달라지는 "모터 구동"만 인터페이스로 빼고, `Motor`가 그 객체를 필드로 가짐.
+
+```mermaid
+classDiagram
+    class Motor {
+        -driver: MotorDriver
+        +move(direction)
+        +setDriver(MotorDriver)
+    }
+    class MotorDriver {
+        <<interface>>
+        +drive(direction)
+    }
+    Motor o-- MotorDriver
+    MotorDriver <|.. HyundaiDriver
+    MotorDriver <|.. LGDriver
+```
+
+```java
+enum Direction { UP, DOWN }
+interface MotorDriver {                                  // 전략: 달라지는 단계만 인터페이스로
+    void drive(Direction d);
+}
+class HyundaiDriver implements MotorDriver {
+    public void drive(Direction d) { System.out.println("  Hyundai Motor moves " + d); }
+}
+class LGDriver implements MotorDriver {
+    public void drive(Direction d) { System.out.println("  LG Motor moves " + d); }
+}
+class Motor {                                            // 상속 대신 합성
+    private MotorDriver driver;
+    private boolean moving = false;
+    Motor(MotorDriver driver) { this.driver = driver; }
+    void setDriver(MotorDriver driver) { this.driver = driver; }   // 실행 중 교체 가능
+    void move(Direction d) {
+        if (moving) return;
+        driver.drive(d);                                 // 위임
+        moving = true;
+    }
+    void stop() { moving = false; }
+}
+public class StrategyMotorDemo {
+    public static void main(String[] a) {
+        Motor m = new Motor(new HyundaiDriver());
+        System.out.println("처음:"); m.move(Direction.UP); m.stop();
+        m.setDriver(new LGDriver());                     // 같은 객체의 동작을 실행 중에 바꿈
+        System.out.println("드라이버 교체 후:"); m.move(Direction.DOWN); m.stop();
+        m.setDriver(d -> System.out.println("  Samsung Motor moves " + d));   // 람다로 새 전략
+        System.out.println("람다 전략:"); m.move(Direction.UP);
+    }
+}
+```
+
+실행 결과
+
+```text
+처음:
+  Hyundai Motor moves UP
+드라이버 교체 후:
+  LG Motor moves DOWN
+람다 전략:
+  Samsung Motor moves UP
+```
+
+| 비교 | 템플릿 메서드 | Strategy |
+| --- | --- | --- |
+| 분리 방법 | 상속 (하위 클래스가 단계 구현) | 합성 (인터페이스 객체에 위임) |
+| 바뀌는 단위 | 알고리즘의 **일부 단계** | 알고리즘 **전체** 또는 한 부분을 객체로 |
+| 교체 시점 | 컴파일 시점 (객체를 만들 때 클래스로 결정) | **실행 중**에도 `setDriver`로 교체 가능 |
+| 클래스 수 | 회사마다 `Motor` 하위 클래스 | 회사마다 작은 `MotorDriver` 구현 (람다로도 가능) |
+| 결합도 | 하위 클래스가 상위 클래스 구현에 강하게 묶임 | `Motor`는 인터페이스만 앎 |
+| 어울리는 경우 | 흐름이 고정되어 있고 단계 몇 개만 다를 때 | 동작을 조합하거나 실행 중에 바꿔야 할 때 |
+
+"상속보다 합성"이라는 객체지향 조언과 같은 이야기임. 팀 프로젝트([06편](/posts/Design_Pattern_06/))의 소비 분석이 Strategy를 쓴 것도 분석 방식 전체가 서로 다르기 때문. Strategy는 [07편](/posts/Design_Pattern_07/)에서 자세히 정리함.
+
 ---
 
 ## 3. 싱글톤 패턴
@@ -279,6 +427,51 @@ p1 == p2 : true
 - "Printer 객체 생성"이 한 번만 출력되고, 두 사용자가 같은 객체를 써서 출력 건수가 이어짐
 - `getInstance()`에 `synchronized`를 붙인 것은 여러 스레드가 동시에 처음 호출할 때 객체가 두 개 생기는 것을 막기 위함
 
+
+### (보충) 정말 두 개가 생길까: 멀티스레드 실험
+
+생성자에 20ms가 걸린다고 가정하고(사이가 벌어지도록 일부러 늦춤), 스레드 8개가 동시에 처음 `getInstance()`를 호출하게 했음.
+
+```java
+class Naive {                                   // 동기화 없음
+    static Naive instance;
+    static Naive getInstance() {
+        if (instance == null) instance = new Naive();   // 8개 스레드가 모두 null을 보고 들어올 수 있음
+        return instance;
+    }
+}
+class Holder {                                  // Holder 방식 (지연 생성 + 동기화 불필요)
+    private Holder() { }
+    private static class LazyHolder { static final Holder INSTANCE = new Holder(); }
+    static Holder getInstance() { return LazyHolder.INSTANCE; }   // JVM이 클래스 초기화를 한 번만 보장
+}
+enum EnumSingleton { INSTANCE; }                // enum 방식
+```
+
+```text
+동기화 없음     : 생성된 객체 수 = 8
+synchronized    : 생성된 객체 수 = 1
+Holder 방식     : 생성된 객체 수 = 1
+enum 방식       : 서로 다른 객체 수 = 1
+```
+
+같은 실험을 세 번 반복해도 동기화가 없는 버전은 매번 객체가 **8개** 생겼음. `if (instance == null)` 확인과 대입 사이에 다른 스레드가 끼어들기 때문.
+
+| 구현 | 생성 시점 | 스레드 안전 | 특징 |
+| --- | --- | --- | --- |
+| 기본형 (동기화 없음) | 처음 호출 시 | X | 단일 스레드에서만 안전 |
+| `synchronized getInstance()` | 처음 호출 시 | O | 매 호출마다 잠금 비용 |
+| 즉시 생성 (`static final INSTANCE = new ...`) | 클래스 로딩 시 | O | 쓰지 않아도 만들어짐 |
+| Holder 방식 | 처음 호출 시 | O | 잠금 없이 지연 생성, 많이 쓰이는 방식 |
+| enum | 클래스 로딩 시 | O | 직렬화, 리플렉션 공격에도 하나만 유지 |
+
+### (보충) 싱글톤의 단점
+
+- **전역 상태**: 어디서든 접근할 수 있어서 누가 상태를 바꿨는지 추적하기 어려움
+- **테스트가 어려움**: `Printer.getInstance()`를 코드 안에서 직접 부르면 가짜 객체로 바꿔 끼울 수 없음
+- **DIP 위반 가능성**: 클라이언트가 인터페이스가 아니라 구체 클래스 `Printer`에 직접 의존함
+- 그래서 실무에서는 객체를 하나만 만들되 **생성자로 전달(의존성 주입)**하는 방식을 함께 씀. [05편](/posts/Design_Pattern_05/)의 ATM 예제도 `getInstance()`에 동기화가 없으므로 여러 스레드에서 쓰면 같은 문제가 생김
+
 ---
 
 ### 강의 자료 및 과제에서 정정한 부분 정리
@@ -294,13 +487,13 @@ p1 == p2 : true
 ## 최종 핵심 정리
 
 1. 디자인 패턴은 반복되는 설계 문제에 대한 검증된 재사용 가능한 해결책이고, 컨텍스트, 문제, 해결로 기술함
-2. 템플릿 메서드 패턴은 알고리즘의 공통 흐름을 상위 클래스의 메서드 하나에 고정하고, 달라지는 단계만 하위 클래스가 구현하게 함
-3. 공통 흐름을 담은 메서드가 템플릿 메서드, 하위 클래스가 구현하는 추상 메서드가 기본 연산
-4. 엘리베이터 예제에서 `move`(정지 확인 → 문 닫기 → 구동 → 상태 변경)는 공통이고 `moveMotor`만 회사마다 다름
-5. 템플릿 메서드는 `final`로 선언해 하위 클래스가 흐름을 바꾸지 못하게 하는 것이 안전함
-6. 새 회사의 모터는 기본 연산 하나만 구현하면 되므로 중복이 사라지고 OCP를 만족함
-7. 싱글톤은 private 생성자, static 인스턴스, `getInstance()`로 객체를 하나만 만들고 전역 접근점을 제공함
-8. 멀티스레드 환경에서는 `getInstance()`를 동기화해야 객체가 두 개 생기지 않음
+2. 템플릿 메서드 패턴은 공통 흐름을 상위 클래스의 `final` 메서드에 고정하고, 달라지는 단계(기본 연산)만 하위 클래스가 구현하게 함
+3. 엘리베이터 예제에서 `move`(정지 확인 → 문 닫기 → 구동 → 상태 변경)는 공통이고 `moveMotor`만 회사마다 다름
+4. 흐름은 상위 클래스가 쥐고 하위 클래스를 호출하는 할리우드 원칙이며, 선택적으로 바꿀 단계는 hook 메서드로 둠
+5. 같은 문제를 Strategy로 풀면 상속 대신 합성을 쓰고, 실행 중에도 동작을 교체할 수 있음
+6. 싱글톤은 private 생성자, static 인스턴스, `getInstance()`로 객체를 하나만 만들고 전역 접근점을 제공함
+7. 동기화 없는 싱글톤은 스레드 8개가 동시에 호출하자 객체가 8개 생겼고, synchronized, Holder, enum 방식은 1개를 유지함
+8. 싱글톤은 전역 상태와 테스트 어려움이라는 단점이 있어 의존성 주입과 함께 쓰는 것이 좋음
 
 ---
 
