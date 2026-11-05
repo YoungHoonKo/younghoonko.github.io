@@ -1,13 +1,12 @@
 ---
 title: 02. Internet Engineering - Wireshark_1
+description: "인터넷공학 Wireshark 실습 1: 기본 HTTP GET 요청과 응답을 캡처해 HTTP 버전, 언어, 상태 코드 등을 분석."
 Author: YoungHoon Ko
 date: 2026-05-05 18:55:32 +0900
 categories: [University(2026-First-Semester), Internet Engineering]
 tags: [internet, network]
 image: /assets/img/lang/internet.png
 ---
-
-[toc]
 
 # 인터넷 공학(2) - Wireshark 실습
 

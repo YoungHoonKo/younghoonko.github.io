@@ -1,13 +1,12 @@
 ---
 title: 02. SQL(What is SQL?)
+description: "SQL은 Structured Query Language의 약자로, 데이터베이스를 관리하고 조작하는 데 사용되는 표준 언어이다. SQL을 통해 사용자는 데이터베이스 내의 데이터 및 구조를 조회, 추가, 수정, 삭제할 수 있다."
 Author: YoungHoon Ko
 date: 2024-08-27 09:50:00 +0900
 categories: [SQL, Practice_SQL]
 tags: [sql, basic]
 image: /assets/img/lang/sql.png
 ---
-
-[toc]
 
 # SQL의 정의와 역할
 

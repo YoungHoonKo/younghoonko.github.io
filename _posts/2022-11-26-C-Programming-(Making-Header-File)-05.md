@@ -1,13 +1,12 @@
 ---
 title: 05. C-Programming(Making Header File)
+description: "C 프로그래밍 실습 5: 제곱 함수를 헤더 파일로 만들어 다른 파일에서 불러와 사용하기."
 Author: YoungHoon Ko
 date: 2022-11-26 15:34:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # C Programming 실습5 
 

@@ -1,5 +1,6 @@
 ---
 title: 07. Communication Theory_Probability (Random Variables 1)
+description: "실험, 표본공간, 사건, 사건공간의 의미 이해, 확률의 정의와 세 가지 공리 이해, 합사건, 곱사건, 배반사건, 여사건의 확률 계산, 조건부 확률, 곱셈 정리, 베이즈 정리 이해, 독립 사건과 독립시행의 확률(이항 확률) 계산"
 Author: YoungHoon Ko
 date: 2026-11-03 22:20:00 +0900
 categories: [University(2026-Second-Semester), Communication Theory]
@@ -7,8 +8,6 @@ tags: [communication, probability]
 math: true
 image: /assets/img/lang/comm.png
 ---
-
-[toc]
 
 ## 학습 목표
 

@@ -1,13 +1,12 @@
 ---
 title: 09. C-Programming(Structure)
+description: "C 프로그래밍 실습 9: 구조체 기본, 함수와 구조체, 포인터와 구조체, 구조체 배열."
 Author: YoungHoon Ko
 date: 2022-11-28 20:24:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # C Programming 실습9
 

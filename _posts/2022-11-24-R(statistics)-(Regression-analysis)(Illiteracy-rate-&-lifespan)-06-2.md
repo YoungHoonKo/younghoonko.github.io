@@ -1,13 +1,12 @@
 ---
 title: 06-2. Statistics(Regression analysis)(Illiteracy rate & lifespan)
+description: "문맹률이 기대수명에 미치는 영향에 관한 회귀분석 보고서: 분산분석, 계수추정표, 결정계수 해석."
 Author: YoungHoon Ko
 date: 2022-11-24 13:07:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
 tags: [r, statistics]
 image: /assets/img/lang/r.png
 ---
-
-[toc]
 
 # 문맹률이 수명에 미치는 영향에 관한 회귀분석 보고서
 

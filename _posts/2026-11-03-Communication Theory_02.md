@@ -1,5 +1,6 @@
 ---
 title: 02. Communication Theory_Fourier Transform
+description: "푸리에 변환의 정의와 존재 조건(디리클레 조건) 이해, 진폭·위상 스펙트럼, 켤레 대칭 이해, 푸리에 변환의 성질(선형성, 팽창, 쌍대성, 시간·주파수 이동, 미분·적분, 변조, 컨볼루션, 레일리 에너지 정리) 이해"
 Author: YoungHoon Ko
 date: 2026-11-03 21:00:00 +0900
 categories: [University(2026-Second-Semester), Communication Theory]
@@ -7,8 +8,6 @@ tags: [communication, signal]
 math: true
 image: /assets/img/lang/comm.png
 ---
-
-[toc]
 
 ## 학습 목표
 

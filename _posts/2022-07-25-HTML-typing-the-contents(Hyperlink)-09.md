@@ -1,13 +1,12 @@
 ---
 title: 09. HTML-Typing the contents(Hyperlink)
+description: "이번 학습에서는 HTML 문서 내에서 하이퍼링크를 삽입하는 방법에 대해 다루었다. 텍스트 또는 이미지를 클릭했을 때 다른 문서나 외부 웹 페이지로 이동하게 만드는 링크는 웹의 핵심 기능 중 하나이다."
 Author: YoungHoon Ko
 date: 2022-07-25 16:14:38 +0900
 categories: [HTML, HTML-Study]
 tags: [html]
 image: /assets/img/lang/html.png
 ---
-
-[toc]
 
 # 4. 웹 문서에 내용 입력하기
 

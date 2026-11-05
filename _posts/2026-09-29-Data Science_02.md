@@ -1,5 +1,6 @@
 ---
 title: 02. Data Science_Python Data Processing
+description: "NumPy는 다차원 균일 배열인 ndarray, 벡터화 연산, 선형대수 및 수치 계산 기능을 제공함, 이미지·신호의 행렬 연산, 대규모 로그·측정값의 통계 처리, 머신러닝 전처리 및 특성 공학 등에 활용됨"
 Author: YoungHoon Ko
 date: 2026-09-29 18:15:32 +0900
 categories: [University(2026-Second-Semester), Data Science]
@@ -7,8 +8,6 @@ tags: [python, data]
 math: true
 image: /assets/img/lang/data.png
 ---
-
-[toc]
 
 ## Python 데이터 처리에서 NumPy와 Pandas의 역할
 

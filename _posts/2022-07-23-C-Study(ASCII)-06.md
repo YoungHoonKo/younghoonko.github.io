@@ -1,13 +1,12 @@
 ---
 title: 06. C Language(ASCII)
+description: "문자를 숫자로 표현하는 약속인 ASCII 코드의 유래와 구성, 확장 ASCII와 1바이트 문자 표현 정리."
 Author: YoungHoon Ko
 date: 2022-07-23 19:49:00 +0900
 categories: [C, C-Study]
 tags: [c]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # A Promise to Express Letters in Numbers: ASCII
 

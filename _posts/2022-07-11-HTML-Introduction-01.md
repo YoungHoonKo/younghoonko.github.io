@@ -1,5 +1,6 @@
 ---
 title: 01. HTML-Introduction
+description: "HTML이란 무엇인지, 일반 문서와 HTML 문서의 차이, 기본 태그 예시로 살펴보는 HTML 시작하기."
 Author: YoungHoon Ko
 date: 2022-07-11 16:33:00 +0900
 categories: [HTML, HTML-Study]
@@ -8,8 +9,6 @@ image: /assets/img/lang/html.png
 ---
 
 # 1. HTML 시작하기
-
-[toc]
 
 **소스 코드는 cmd(ctrl)+ /로 확인할 수 있습니다.**
 

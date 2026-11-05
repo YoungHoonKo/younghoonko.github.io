@@ -1,13 +1,12 @@
 ---
 title: 04. Artificial Intelligence(AI)_Statistic-based Language Representation
+description: "Bag of Words, TF-IDF, N-gram Language Model, Subword Segmentation (BPE, BBPE, WordPiece, Unigram LM), Limitations & Transition"
 date: 2026-11-02 21:27:00 +0900
 categories: [University(2026-Second-Semester), Artificial Intelligence(AI)]
 tags: [ai, nlp]
 math: true
 image: /assets/img/lang/ai.png
 ---
-
-[toc]
 
 ## 1. 강의의 학습 목표
 

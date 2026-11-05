@@ -1,13 +1,12 @@
 ---
 title: 10. C-Programming(Structure & Array & Pointer)
+description: "C 구조체 실습: 구조체, 구조체 배열, 구조체 포인터로 사람의 나이, 몸무게, 키를 입력받아 출력하기."
 Author: YoungHoon Ko
 date: 2022-12-04 12:24:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # 구조체 실습
 

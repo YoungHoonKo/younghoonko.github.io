@@ -1,13 +1,12 @@
 ---
 title: 05. C Language(Memory)
+description: "이번 학습에서는 컴퓨터에서 데이터를 저장하는 공간인 메모리에 대해 구조와 단위를 중심으로 학습하였다. 특히 비트(Bit)와 바이트(Byte)의 개념, 주소 체계, 그리고 메모리를 효율적으로 사용하는 방법에 대해서도 살펴보았다."
 Author: YoungHoon Ko
 date: 2022-07-22 17:33:00 +0900
 categories: [C, C-Study]
 tags: [c]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # Memory (메모리)
 

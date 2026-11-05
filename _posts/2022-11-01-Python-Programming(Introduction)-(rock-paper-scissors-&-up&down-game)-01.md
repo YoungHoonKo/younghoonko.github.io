@@ -1,13 +1,12 @@
 ---
 title: 01. Python-Programming(Introduction)(rock paper scissors & up&down game)
+description: "파이썬(입문) 과제 1: 가위바위보 게임(비기는 경우 포함, 미포함)과 Up-Down 숫자 맞히기 게임."
 Author: YoungHoon Ko
 date: 2022-11-01 13:45:23 +0900
 categories: [University(2022-First-Semester), Python-Programming(Introduction)]
 tags: [python, introduction]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # 파이썬(입문) 과제1
 

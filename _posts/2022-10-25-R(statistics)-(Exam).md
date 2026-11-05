@@ -1,13 +1,12 @@
 ---
 title: Statistics Exam
+description: "통계학 시험 대비 정리: 기본 용어, 자료의 척도, 일변수 기술통계(평균, 분산, 표준편차)와 연습문제 풀이."
 Author: YoungHoon Ko
 date: 2022-10-24 11:33:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
 tags: [r, statistics, exam]
 image: /assets/img/lang/r.png
 ---
-
-[toc]
 
 # 통계학 정리
 

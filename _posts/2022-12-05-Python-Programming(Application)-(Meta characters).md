@@ -1,13 +1,12 @@
 ---
 title: 04. Python-Programming(Application)(Meta characters)
+description: "파이썬 정규표현식의 메타 문자(., ^, $, *, +, ?, [], {} 등) 정리와 사용 예."
 Author: YoungHoon Ko
 date: 2022-12-05 00:45:00 +0900
 categories: [University(2022-Second-Semester), Python-Programming(Application)]
 tags: [python, application]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # 메타 문자 정리
 

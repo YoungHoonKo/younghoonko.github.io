@@ -1,5 +1,6 @@
 ---
 title: 04. Communication Theory_Amplitude Modulation
+description: "변조의 의미와 AM 계열(AM, DSB-SC, SSB, VSB)의 차이 이해, AM(DSB-LC) 신호의 시간 영역 표현과 스펙트럼, 대역폭 이해, 단일톤 변조의 변조지수와 반송파/측파대 전력 분배 이해, 포락선 검파기의 동작과 RC 시정수 조건 이해"
 Author: YoungHoon Ko
 date: 2026-11-03 21:45:00 +0900
 categories: [University(2026-Second-Semester), Communication Theory]
@@ -7,8 +8,6 @@ tags: [communication, signal]
 math: true
 image: /assets/img/lang/comm.png
 ---
-
-[toc]
 
 ## 학습 목표
 

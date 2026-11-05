@@ -1,13 +1,12 @@
 ---
 title: 01. Computer_Architecture_1
+description: "컴퓨터구조 과제 1: 두 수를 입력받아 그 사이 정수의 합을 출력하는 프로그램을 MIPS 어셈블리로 작성."
 Author: YoungHoon Ko
 date: 2025-10-01 17:03:32 +0900
 categories: [University(2025-Second-Semester), Computer Architecture]
 tags: [assembly, mips_programming]
 image: /assets/img/lang/asm.png
 ---
-
-[toc]
 
 # Computer Architecture 1
 

@@ -1,13 +1,12 @@
 ---
 title: 02. Computer_Architecture_3
+description: "컴퓨터구조 과제 3: 배열 인덱싱이 들어간 C 식(f = B[h] - g 등)을 MIPS 어셈블리로 변환하기."
 Author: YoungHoon Ko
 date: 2025-11-03 11:43:32 +0900
 categories: [University(2025-Second-Semester), Computer Architecture]
 tags: [assembly, mips_programming]
 image: /assets/img/lang/asm.png
 ---
-
-[toc]
 
 # Computer Architecture 3
 

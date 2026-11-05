@@ -1,13 +1,12 @@
 ---
 title: 02. C Language(Programming Concepts of Electronic Computer)
+description: "프로그래밍 언어는 컴퓨터를 대상으로 하기 때문에 기본적으로 유사한 구성 요소를 가진다. 따라서 하나의 언어를 익히면, 다른 언어도 쉽게 학습할 수 있는 기반이 된다. 'Every programming language has a similar element'."
 Author: YoungHoon Ko
 date: 2022-07-19 20:58:00 +0900
 categories: [C, C-Study]
 tags: [c]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # 전자계산기의 원리와 프로그래밍 개념
 

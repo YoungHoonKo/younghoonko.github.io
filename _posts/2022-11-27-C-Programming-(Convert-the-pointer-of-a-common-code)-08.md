@@ -1,13 +1,12 @@
 ---
 title: 08. C-Programming(Convert the pointer of a common code)
+description: "C 프로그래밍 실습 8: 일반 코드로 작성한 문제들을 포인터를 사용하는 코드로 변환하기."
 Author: YoungHoon Ko
 date: 2022-11-27 01:34:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # C Programming 실습8
 

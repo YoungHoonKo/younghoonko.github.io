@@ -1,13 +1,12 @@
 ---
 title: 07. C Language(Data-type)(int)
+description: "이번 학습에서는 정수형 데이터를 표현할 때 사용하는 다양한 C 언어의 자료형에 대해 살펴보았다. 왜 자료형이 필요한지부터 시작하여 char, int, short, long 등 각각의 비트 수에 따른 범위와 용도를 정리하였다."
 Author: YoungHoon Ko
 date: 2022-07-24 20:59:00 +0900
 categories: [C, C-Study]
 tags: [c]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # C 언어에서 정수형 자료형 (Integer Data Types in C)
 

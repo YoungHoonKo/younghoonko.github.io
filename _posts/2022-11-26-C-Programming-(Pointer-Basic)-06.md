@@ -1,13 +1,12 @@
 ---
 title: 06. C-Programming(Pointer Basic)
+description: "C 프로그래밍 실습 6: 포인터 기초, 포인터 값과 주소 값, 포인터로 두 변수를 바꾸는 swap 함수."
 Author: YoungHoon Ko
 date: 2022-11-26 15:34:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # C Programming 실습6
 

@@ -1,13 +1,12 @@
 ---
 title: 06. Introduction and practice of engineering computer(Deep coding)(1)
+description: "공학컴퓨터입문및실습 과제 6 (C): 반복 가위바위보, 구구단, 총가격 계산, 나이 맞히기 등 심화 코딩."
 Author: YoungHoon Ko
 date: 2022-11-11 02:45:00 +0900
 categories: [University(2022-First-Semester), Introduction and practice of engineering computer]
 tags: [c, computer_engineering]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # 공학컴퓨터입문및실습 과제6
 

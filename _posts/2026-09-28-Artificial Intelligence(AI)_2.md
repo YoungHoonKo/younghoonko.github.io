@@ -1,5 +1,6 @@
 ---
 title: 02. Artificial Intelligence(AI)_Representation
+description: "텍스트를 모델이 계산할 수 있는 형태로 바꾸는 텍스트 표현(Representation)의 필요성과 기본 개념 정리."
 Author: YoungHoon Ko
 date: 2026-09-28 21:15:32 +0900
 categories: [University(2026-Second-Semester), Artificial Intelligence(AI)]
@@ -7,8 +8,6 @@ tags: [ai, nlp]
 math: true
 image: /assets/img/lang/ai.png
 ---
-
-[toc]
 
 ## 1. 기계에 표현이 필요한 이유
 

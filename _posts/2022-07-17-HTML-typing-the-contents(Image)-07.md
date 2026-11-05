@@ -1,13 +1,12 @@
 ---
 title: 07. HTML-Typing the contents(Image)
+description: "HTML 이미지 삽입: img 태그와 src, alt 속성, width와 height로 크기를 조절하는 방법."
 Author: YoungHoon Ko
 date: 2022-07-17 20:45:38 +0900
 categories: [HTML, HTML-Study]
 tags: [html]
 image: /assets/img/lang/html.png
 ---
-
-[toc]
 
 # 4. 웹 문서에 내용 입력하기
 

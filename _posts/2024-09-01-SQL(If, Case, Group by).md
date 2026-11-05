@@ -1,13 +1,12 @@
 ---
 title: 06. SQL(If, Case, Group by)
+description: "이번 학습에서는 SQL에서 조건 분기 처리를 위한 IF, CASE, 그리고 데이터를 그룹화하여 집계하는 GROUP BY 문법을 실습하였다. IF: 조건이 하나일 때 간단히 사용 가능. CASE: 여러 조건을 순차적으로 검사할 수 있음."
 Author: YoungHoon Ko
 date: 2024-09-01 10:50:00 +0900
 categories: [SQL, Practice_SQL]
 tags: [sql, basic, sql_p]
 image: /assets/img/lang/sql.png
 ---
-
-[toc]
 
 # 분기문과 집계문
 

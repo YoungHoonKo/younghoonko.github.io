@@ -1,13 +1,12 @@
 ---
 title: 01. Statistics(R Basic Practicing)
+description: "R 기초 명령어 연습: 계산기처럼 쓰기, 변수와 객체 관리, 벡터와 행렬 만들기, 연습문제 풀이."
 Author: YoungHoon Ko
 date: 2022-09-05 16:33:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
 tags: [r, statistics]
 image: /assets/img/lang/r.png
 ---
-
-[toc]
 
 #  R 명령어 연습과 연습문제 풀이
 

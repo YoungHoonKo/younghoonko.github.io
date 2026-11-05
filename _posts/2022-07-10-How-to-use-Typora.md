@@ -1,5 +1,6 @@
 ---
 title: How to use Typora
+description: "Typora에서 쓰는 마크다운 문법 정리: 목차, 헤더, 인용, 목록, 코드 블록 등 블록 요소와 인라인 요소의 작성법."
 Author: YoungHoon Ko
 date: 2022-07-10 10:31:00 +0900
 categories: [Markdown, Md-Basics]
@@ -8,8 +9,6 @@ image: /assets/img/lang/md.png
 ---
 
 # 마크다운 문법
-
-[toc]
 
 **소스 코드는 cmd(ctrl)+ /로 확인할 수 있습니다.**
 

@@ -1,13 +1,12 @@
 ---
 title: 04. C Language(Execution File)
+description: "이번 학습에서는 C 언어로 작성된 프로그램이 어떻게 실행 가능한 파일로 만들어지는지를 단계별로 알아보았다. 소스 파일 → 목적 파일 → 실행 파일의 흐름을 이해하면 컴파일러와 링커의 역할을 보다 명확하게 파악할 수 있다."
 Author: YoungHoon Ko
 date: 2022-07-21 18:20:00 +0900
 categories: [C, C-Study]
 tags: [c]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # C 프로그램 실행 파일 생성 과정
 

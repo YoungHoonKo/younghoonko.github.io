@@ -1,13 +1,12 @@
 ---
 title: 06-1. Statistics(Regression analysis)(hp & mpg)
+description: "마력(hp)과 연비(mpg)의 단순회귀분석: 분산분석표, 계수추정표, 회귀계수의 유의성 검정과 회귀식 해석."
 Author: YoungHoon Ko
 date: 2022-11-24 12:33:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
 tags: [r, statistics]
 image: /assets/img/lang/r.png
 ---
-
-[toc]
 
 # 마력과 연비에 대한 회귀분석
 

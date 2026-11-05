@@ -1,13 +1,12 @@
 ---
 title: 02. Digital_Engineering_HW2
+description: "디지털공학 과제 2 (C): 양자화 레벨을 입력받는 양자화, 코딩과 2진 실수를 IEEE 754 부동소수점으로 변환하는 프로그램."
 Author: YoungHoon Ko
 date: 2025-08-10 08:25:32 +0900
 categories: [University(2025-First-Semester), Digital_Engineering]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # Digital_Engineering_HW2
 

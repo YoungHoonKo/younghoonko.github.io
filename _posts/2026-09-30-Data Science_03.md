@@ -1,5 +1,6 @@
 ---
 title: 03. Data Science_Data Visualization
+description: "데이터 시각화란?, 수치와 복잡한 데이터를 그래프나 차트로 표현해 의미를 직관적으로 이해하도록 돕는 과정, 단순히 숫자를 그림으로 바꾸는 데 그치지 않고, 데이터의 추세·패턴·이상치를 드러내는 것이 목적, 시각화는 다음과 같은 역할을 함"
 Author: YoungHoon Ko
 date: 2026-09-30 15:15:32 +0900
 categories: [University(2026-Second-Semester), Data Science]
@@ -7,8 +8,6 @@ tags: [python, data]
 math: true
 image: /assets/img/lang/data.png
 ---
-
-[toc]
 
 ### 데이터 시각화의 의미와 역할
 

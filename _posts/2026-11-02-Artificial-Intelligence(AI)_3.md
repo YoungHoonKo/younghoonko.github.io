@@ -1,13 +1,12 @@
 ---
 title: 03. Artificial Intelligence(AI)_Text Preprocessing
+description: "실습 환경 구축: Docker, WSL을 이용한 NLP 실습 환경 만들기, 언어 빅데이터 수집: 코퍼스를 어디서, 어떻게 확보하는가?, 언어 빅데이터 전처리: 정규표현식을 이용한 노이즈 제거, 딥러닝·NLP 실습에서 가장 흔한 문제"
 date: 2026-11-02 21:00:00 +0900
 categories: [University(2026-Second-Semester), Artificial Intelligence(AI)]
 tags: [ai, nlp]
 math: true
 image: /assets/img/lang/ai.png
 ---
-
-[toc]
 
 ## 1. 강의의 학습 목표
 

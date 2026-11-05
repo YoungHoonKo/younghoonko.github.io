@@ -1,13 +1,12 @@
 ---
 title: 05. Statistics(Two samples t-test report)
+description: "이표본 t-검정 보고서: 두 집단 데이터를 추출, 결합해 상자그림으로 비교하고 R로 t-검정을 수행해 해석."
 Author: YoungHoon Ko
 date: 2022-11-17 13:33:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
 tags: [r, statistics]
 image: /assets/img/lang/r.png
 ---
-
-[toc]
 
 # 이표본 t-검정 보고서
 

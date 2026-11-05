@@ -1,13 +1,12 @@
 ---
 title: 06. Artificial Intelligence(AI)_RNN in NLP
+description: "Sequential Data의 특징과 RNN이 필요한 이유, 기본 순환 신경망(Vanilla RNN)의 구조와 순전파 계산, RNN의 입출력 텐서 구조와 PyTorch nn.RNN, 다층·양방향 RNN, BPTT(시간 펼침 역전파)와 기울기 소실·폭주"
 date: 2026-11-02 21:45:00 +0900
 categories: [University(2026-Second-Semester), Artificial Intelligence(AI)]
 tags: [ai, nlp]
 math: true
 image: /assets/img/lang/ai.png
 ---
-
-[toc]
 
 ## 1. 강의의 학습 목표
 

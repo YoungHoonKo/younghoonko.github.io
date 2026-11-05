@@ -1,5 +1,6 @@
 ---
 title: 05. Communication Theory_Angle Modulation (FM, PM)
+description: "각변조의 의미와 순시 주파수의 정의 이해, 위상 변조(PM)와 주파수 변조(FM)의 정의, 둘 사이의 관계 이해, 각변조의 특성(일정한 전력, 비선형성, 불규칙한 영점 교차) 이해, 협대역 FM의 근사식과 AM과의 차이(페이저 해석) 이해"
 Author: YoungHoon Ko
 date: 2026-11-03 21:50:00 +0900
 categories: [University(2026-Second-Semester), Communication Theory]
@@ -7,8 +8,6 @@ tags: [communication, signal]
 math: true
 image: /assets/img/lang/comm.png
 ---
-
-[toc]
 
 ## 학습 목표
 

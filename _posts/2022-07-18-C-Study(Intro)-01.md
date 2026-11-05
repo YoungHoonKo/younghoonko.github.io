@@ -1,13 +1,12 @@
 ---
 title: 01. C Language(Intro)
+description: "1960년대에 개발된 운영체제들은 하드웨어에 종속적인 언어로 제작되었다. 하드웨어가 변경되면 운영체제도 많은 부분을 다시 개발해야 했기 때문에 매우 비효율적이었다. 이를 해결하기 위해 벨 연구소의 데니스 리치(Dennis Ritchie)와 켄 톰슨(Ken Thompson)은 새로운…"
 Author: YoungHoon Ko
 date: 2022-07-18 16:33:00 +0900
 categories: [C, C-Study]
 tags: [c]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # Introduction to C Language
 

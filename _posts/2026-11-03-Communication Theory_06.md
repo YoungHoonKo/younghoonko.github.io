@@ -1,5 +1,6 @@
 ---
 title: 06. Communication Theory_Hilbert Transform
+description: "힐베르트 변환의 정의(주파수 영역, 시간 영역) 이해, 변환쌍 유도, 힐베르트 변환으로 한쪽 측파대만 남기는 방법 이해, 해석 신호(pre-envelope) 와 SSB 신호의 관계 이해, 힐베르트 변환의 주요 성질 이해와 수치 확인"
 Author: YoungHoon Ko
 date: 2026-11-03 22:15:00 +0900
 categories: [University(2026-Second-Semester), Communication Theory]
@@ -7,8 +8,6 @@ tags: [communication, signal]
 math: true
 image: /assets/img/lang/comm.png
 ---
-
-[toc]
 
 ## 학습 목표
 

@@ -1,13 +1,12 @@
 ---
 title: 07. C-Programming(Array & Pointer)
+description: "C 프로그래밍 실습 7: 배열과 포인터의 관계, 배열과 포인터를 이용한 평균 함수, malloc 메모리 할당."
 Author: YoungHoon Ko
 date: 2022-11-27 15:34:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # C Programming 실습7
 

@@ -1,13 +1,12 @@
 ---
 title: 03. Circuit Theory(Sum of the series and parallel resistors)
+description: "회로이론 과제 3: 파이썬으로 직렬, 병렬로 연결된 저항의 합성 저항을 구하는 프로그램."
 Author: YoungHoon Ko
 date: 2022-10-10 17:45:00 +0900
 categories: [University(2022-Second-Semester), Circuit Theory]
 tags: [circuit_theory, python]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # Circuit Theory HW3
 

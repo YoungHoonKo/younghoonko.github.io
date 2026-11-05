@@ -1,5 +1,6 @@
 ---
 title: 01. Communication Theory_Introduction
+description: "통신 기술이 어떤 흐름으로 발전해 왔는지 이해, 통신 시스템의 기본 구성 요소(정보 소스 → 송신기 → 채널 → 수신기 → 목적지) 이해, 무선 통신 송신기와 수신기를 이루는 블록과 각각의 역할 이해, 모스 부호(Morse code): 점(dot), 선(dash), 글자 간격, 단…"
 Author: YoungHoon Ko
 date: 2026-11-02 22:10:00 +0900
 categories: [University(2026-Second-Semester), Communication Theory]
@@ -7,8 +8,6 @@ tags: [communication, signal]
 math: true
 image: /assets/img/lang/comm.png
 ---
-
-[toc]
 
 ## 학습 목표
 

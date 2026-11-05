@@ -1,13 +1,12 @@
 ---
 title: 03. Introduction and practice of engineering computer(Factorial & Stars)
+description: "공학컴퓨터입문및실습 과제 3 (C): 팩토리얼 계산, 입력한 범위까지 소수 찾기, 반복문으로 별 출력하기."
 Author: YoungHoon Ko
 date: 2022-11-08 09:00:00 +0900
 categories: [University(2022-First-Semester), Introduction and practice of engineering computer]
 tags: [c, computer_engineering]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # 공학컴퓨터입문및실습 과제3
 

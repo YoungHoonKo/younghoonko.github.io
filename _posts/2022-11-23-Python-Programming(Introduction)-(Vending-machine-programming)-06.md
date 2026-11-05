@@ -1,13 +1,12 @@
 ---
 title: 06. Python-Programming(Introduction)(Vending machine programming)
+description: "파이썬(입문) 과제: 클래스를 활용한 자판기 프로그램 구현과 실행 결과, 소감."
 Author: YoungHoon Ko
 date: 2022-11-23 16:31:45 +0900
 categories: [University(2022-First-Semester), Python-Programming(Introduction)]
 tags: [python, introduction]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # 파이썬(입문) 자판기 프로그래밍
 

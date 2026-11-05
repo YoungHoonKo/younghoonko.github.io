@@ -1,13 +1,12 @@
 ---
 title: 03. Python-Programming(Introduction)(Turtle, Remove special characters)
+description: "파이썬(입문) 과제 3: 로또 번호 추출, 문자열 뒤집기와 문자 치환, 정규표현식으로 특수문자 제거하기."
 Author: YoungHoon Ko
 date: 2022-11-03 14:15:34 +0900
 categories: [University(2022-First-Semester), Python-Programming(Introduction)]
 tags: [python, introduction]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # 파이썬(입문) 과제3
 

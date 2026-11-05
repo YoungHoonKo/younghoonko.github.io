@@ -1,13 +1,12 @@
 ---
 title: 02. Introduction and practice of engineering computer(Basic Coding Test)(2)
+description: "공학컴퓨터입문및실습 과제 2 (C): 아스키코드 찾기, 2차 함수 계산, 몫과 나머지, 최댓값 찾기, 조건문 실습."
 Author: YoungHoon Ko
 date: 2022-11-07 03:12:00 +0900
 categories: [University(2022-First-Semester), Introduction and practice of engineering computer]
 tags: [c, computer_engineering]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # 공학컴퓨터입문및실습 과제2
 

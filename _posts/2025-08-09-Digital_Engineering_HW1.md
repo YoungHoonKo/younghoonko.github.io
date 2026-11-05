@@ -1,13 +1,12 @@
 ---
 title: 01. Digital_Engineering_HW1
+description: "디지털공학 과제 1 (C): 샘플링한 아날로그 값을 8레벨로 양자화하고 2진 코드로 변환하는 프로그램."
 Author: YoungHoon Ko
 date: 2025-08-09 09:55:32 +0900
 categories: [University(2025-First-Semester), Digital_Engineering]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # Digital_Engineering_HW1
 

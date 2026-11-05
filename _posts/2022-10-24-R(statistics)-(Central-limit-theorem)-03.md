@@ -1,13 +1,12 @@
 ---
 title: 03. Statistics(Central limit theorem)
+description: "중심극한정리 실습: 이항분포 B(3, 1/6)에서 표본 크기 n = 3, 10, 30일 때 표본평균의 분포를 R로 확인."
 Author: YoungHoon Ko
 date: 2022-10-24 11:33:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
 tags: [r, statistics]
 image: /assets/img/lang/r.png
 ---
-
-[toc]
 
 # 중심극한정리 B(3, 1/6)의 표본평균의 분포
 

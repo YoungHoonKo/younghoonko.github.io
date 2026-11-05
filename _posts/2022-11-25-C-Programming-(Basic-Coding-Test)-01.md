@@ -1,13 +1,12 @@
 ---
 title: 01. C-Programming(Basic Coding Test)
+description: "C 프로그래밍 실습 1: 도형의 넓이, 부호 반전, 홀짝 판별, 복합 조건문과 switch문."
 Author: YoungHoon Ko
 date: 2022-11-25 08:50:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # C Programming 실습1
 

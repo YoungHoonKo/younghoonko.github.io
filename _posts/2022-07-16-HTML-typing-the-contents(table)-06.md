@@ -1,5 +1,6 @@
 ---
 title: 06. HTML-Typing the contents(Table)
+description: "이번 학습에서는 HTML에서 테이블을 만드는 다양한 태그들을 정리하였다. 표는 정보를 구조적으로 표현할 수 있는 중요한 구성 요소로, 콘텐츠를 행(row)과 열(column)로 구분하여 표시할 수 있게 해준다."
 Author: YoungHoon Ko
 date: 2022-07-16 18:49:20 +0900
 categories: [HTML, HTML-Study]
@@ -8,8 +9,6 @@ image: /assets/img/lang/html.png
 ---
 
 # 4. 웹 문서에 내용 입력하기
-
-[toc]
 
 ## 4-3. 표 만들기
 

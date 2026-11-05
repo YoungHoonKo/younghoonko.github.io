@@ -1,13 +1,12 @@
 ---
 title: 02. Python-Programming(Introduction)(Turtle, List, Tuple, Dictionary, Set)
+description: "파이썬(입문) 과제 2: Turtle로 무작위 방향 그림 그리기, 리스트 내포, 튜플, 딕셔너리, 집합, zip 활용."
 Author: YoungHoon Ko
 date: 2022-11-02 13:50:09 +0900
 categories: [University(2022-First-Semester), Python-Programming(Introduction)]
 tags: [python, introduction]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # 파이썬(입문) 과제2
 

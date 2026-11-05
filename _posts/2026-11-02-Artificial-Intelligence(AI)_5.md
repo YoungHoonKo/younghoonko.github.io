@@ -1,13 +1,12 @@
 ---
 title: 05. Artificial Intelligence(AI)_Word Embedding
+description: "Word Embedding의 개념과 필요성, Word2Vec의 구조와 학습 원리 이해, 주요 Word Embedding 알고리즘 (Word2Vec, GloVe, FastText), Word Embedding의 의미적 특성과 한계"
 date: 2026-11-02 21:30:00 +0900
 categories: [University(2026-Second-Semester), Artificial Intelligence(AI)]
 tags: [ai, nlp]
 math: true
 image: /assets/img/lang/ai.png
 ---
-
-[toc]
 
 ## 1. 강의의 학습 목표
 

@@ -1,13 +1,12 @@
 ---
 title: 03. Python-Programming(Application)(import re, string, wordcloud,matplotlib.pyplot, wikipedia)
+description: "파이썬(응용) 과제 3: re, string으로 특수문자 제거, wikipedia 텍스트로 wordcloud와 matplotlib 그림 그리기."
 Author: YoungHoon Ko
 date: 2022-11-13 00:45:00 +0900
 categories: [University(2022-Second-Semester), Python-Programming(Application)]
 tags: [python, application]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # 파이썬(응용) 과제3
 

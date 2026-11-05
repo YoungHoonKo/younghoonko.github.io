@@ -1,13 +1,12 @@
 ---
 title: 03. C-Programming(Array & Macro Variables)
+description: "C 프로그래밍 실습 3: 배열 기초, 배열과 for문, 배열 인덱싱, 매크로 변수 활용."
 Author: YoungHoon Ko
 date: 2022-11-26 10:34:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # C Programming 실습3
 

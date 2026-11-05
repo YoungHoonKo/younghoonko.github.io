@@ -1,5 +1,6 @@
 ---
 title: 02. HTML-Basic structure
+description: "HTML 문서의 기본 구조(DOCTYPE, html, head, body)와 lang 속성, head와 body 안에 들어가는 요소 정리."
 Author: YoungHoon Ko
 date: 2022-07-12 12:45:00 +0900
 categories: [HTML, HTML-Study]
@@ -8,8 +9,6 @@ image: /assets/img/lang/html.png
 ---
 
 # HTML 구조 파악하기
-
-[toc]
 
 ## HTML 기본 구조 살펴보기
 

@@ -1,13 +1,12 @@
 ---
 title: 04. Statistics(One sample t-test report)
+description: "일표본 t-검정 보고서: 상자그림으로 데이터를 확인하고 R의 t.test()로 가설검정을 수행해 결과를 해석."
 Author: YoungHoon Ko
 date: 2022-11-11 23:33:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
 tags: [r, statistics]
 image: /assets/img/lang/r.png
 ---
-
-[toc]
 
 # 일표본 t-검정 보고서
 

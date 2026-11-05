@@ -1,13 +1,12 @@
 ---
 title: 03. Digital_Engineering_HW3
+description: "디지털공학 과제 3 (C): 텍스트 파일에서 읽은 이진수와 4비트 생성 코드로 CRC를 계산하는 프로그램."
 Author: YoungHoon Ko
 date: 2025-08-11 11:00:32 +0900
 categories: [University(2025-First-Semester), Digital_Engineering]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # Digital_Engineering_HW3
 

@@ -1,5 +1,6 @@
 ---
 title: 07. Time Series Analysis
+description: "시계열 데이터 이해, 데이터 준비와 탐색, 시계열 분해 (Time Series Decomposition), 정상성과 차분 (Stationarity & Differencing), ARIMA 계열 모델링, 대안 모델과 최신 도구"
 Author: YoungHoon Ko
 date: 2026-11-02 21:50:00 +0900
 categories: [University(2026-Second-Semester), Data Science]
@@ -7,8 +8,6 @@ tags: [python, data]
 math: true
 image: /assets/img/lang/data.png
 ---
-
-[toc]
 
 ## 학습 목표
 

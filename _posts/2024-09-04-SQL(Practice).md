@@ -1,13 +1,12 @@
 ---
 title: 09. SQL(Practice)
+description: "SQL 실습 문제 풀이: 2014년 주문 중 State별 평균 주문금액 정렬 등 WHERE, JOIN, GROUP BY, ORDER BY를 조합한 쿼리."
 Author: YoungHoon Ko
 date: 2024-09-04 16:45:00 +0900
 categories: [SQL, Practice_SQL]
 tags: [sql, basic, sql_p]
 image: /assets/img/lang/sql.png
 ---
-
-[toc]
 
 # Practice 문제 풀이
 

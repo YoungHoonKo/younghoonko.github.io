@@ -6,7 +6,7 @@ theme: jekyll-theme-chirpy
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
 # otherwise, the layout language will use the default value of 'en'.
-lang: en
+lang: ko-KR
 
 # Change to your timezone › https://kevinnovak.github.io/Time-Zone-Picker
 timezone: Asia/Seoul
@@ -19,10 +19,10 @@ author:
 
 title: YoungHoonKo # the main title
 
-tagline: Computer Science && Data Science # it will display as the subtitle
+tagline: Computer Science & Data Science # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  홍익대학교 소프트웨어·데이터공학 전공 고영훈의 수업 정리 블로그. 데이터 사이언스, 인공지능, 통신이론, R, Python, C, SQL 등을 직접 실행한 코드와 함께 정리합니다.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -130,14 +130,14 @@ comments:
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: # <gh-username>/<repo>
-    repo_id:
-    category:
-    category_id:
+    repo: YoungHoonKo/younghoonko.github.io
+    repo_id: # giscus.app에서 발급 (R_로 시작)
+    category: Announcements
+    category_id: # giscus.app에서 발급 (DIC_로 시작)
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
     input_position: # optional, default to 'bottom'
-    lang: # optional, default to the value of `site.lang`
+    lang: ko # optional, default to the value of `site.lang`
     reactions_enabled: # optional, default to the value of `1`
 
 # Self-hosted static assets, optional › https://github.com/cotes2020/chirpy-static-assets

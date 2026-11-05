@@ -1,13 +1,12 @@
 ---
 title: 02. Computer_Architecture_2
+description: "컴퓨터구조 과제 2: C 함수 leaf_example을 MIPS 어셈블리 프로시저로 변환하고 같은 결과 출력하기."
 Author: YoungHoon Ko
 date: 2025-10-10 16:12:32 +0900
 categories: [University(2025-Second-Semester), Computer Architecture]
 tags: [assembly, mips_programming]
 image: /assets/img/lang/asm.png
 ---
-
-[toc]
 
 # Computer Architecture 2
 

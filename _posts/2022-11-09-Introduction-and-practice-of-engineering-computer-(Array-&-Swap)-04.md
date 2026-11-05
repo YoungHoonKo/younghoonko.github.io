@@ -1,13 +1,12 @@
 ---
 title: 04. Introduction and practice of engineering computer(Array & Swap)
+description: "공학컴퓨터입문및실습 과제 4 (C): 1차원, 2차원 배열 실습, 난수 빈도 세기, swap 함수 실습."
 Author: YoungHoon Ko
 date: 2022-11-09 13:30:00 +0900
 categories: [University(2022-First-Semester), Introduction and practice of engineering computer]
 tags: [c, computer_engineering]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # 공학컴퓨터입문및실습 과제4
 

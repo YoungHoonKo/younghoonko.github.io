@@ -1,5 +1,6 @@
 ---
 title: 03. HTML-Semantic tags
+description: "시맨틱 태그의 의미와 필요성, header, nav, main, article, section, aside, footer 등 웹 문서 구조를 만드는 태그 정리."
 Author: YoungHoon Ko
 date: 2022-07-13 11:00:00 +0900
 categories: [HTML, HTML-Study]
@@ -8,8 +9,6 @@ image: /assets/img/lang/html.png
 ---
 
 # 3. 웹 문서 구조를 만드는 시맨틱 태그
-
-[toc]
 
 ## 1. 시맨틱 태그란?
 

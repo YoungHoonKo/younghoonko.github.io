@@ -1,13 +1,12 @@
 ---
 title: 05. Circuit Theory(OP Amp)
+description: "회로이론 과제 5: 파이썬으로 OP Amp 가중치 덧셈(반전 가산 증폭기) 출력 전압을 계산하는 프로그램."
 Author: YoungHoon Ko
 date: 2022-11-28 20:00:00 +0900
 categories: [University(2022-Second-Semester), Circuit Theory]
 tags: [circuit_theory, python]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # Circuit Theory HW5
 

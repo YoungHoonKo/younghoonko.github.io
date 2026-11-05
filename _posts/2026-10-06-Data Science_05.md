@@ -1,5 +1,6 @@
 ---
 title: 05. Data Science Basic Statistic
+description: "평균(Mean), 중앙값(Median), 최빈값(Mode), 분산(Variance), 표준편차(Standard Deviation), 확률분포 (이항분포, 포아송분포, 정규분포 등), 추정(Estimation): 점추정과 구간추정"
 Author: YoungHoon Ko
 date: 2026-10-06 18:15:32 +0900
 categories: [University(2026-Second-Semester), Data Science]
@@ -7,8 +8,6 @@ tags: [python, data]
 math: true
 image: /assets/img/lang/data.png
 ---
-
-[toc]
 
 ## 주요 개념
 

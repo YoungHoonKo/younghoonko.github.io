@@ -1,5 +1,6 @@
 ---
 title: 08. Text Data Analysis
+description: "텍스트 마이닝 흐름과 비정형 데이터 특성 이해, 수집 → 전처리 → 분석 → 시각화, 영어·한국어 전처리 기법, 토큰화, 정규화, 불용어·어간/표제어 처리, 단어 빈도 분석과 시각화, 감성 분석 수행과 결과 해석, 워드 클라우드 등 시각화 기법 적용"
 Author: YoungHoon Ko
 date: 2026-11-02 21:58:00 +0900
 categories: [University(2026-Second-Semester), Data Science]
@@ -7,8 +8,6 @@ tags: [python, data]
 math: true
 image: /assets/img/lang/data.png
 ---
-
-[toc]
 
 ## 학습 목표
 

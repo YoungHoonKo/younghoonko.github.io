@@ -1,13 +1,12 @@
 ---
 title: 02. Git(User Setting)
+description: "Git 설치와 설치 확인, git config로 사용자 이름과 이메일을 설정하고 확인하는 방법."
 Author: YoungHoon Ko
 date: 2022-07-27 16:12:38 +0900
 categories: [Git, Git-Study]
 tags: [git, terminal, github]
 image: /assets/img/lang/git.png
 ---
-
-[toc]
 
 # Getting Started with Git
 

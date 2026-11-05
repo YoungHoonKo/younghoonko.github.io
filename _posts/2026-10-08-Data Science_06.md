@@ -1,5 +1,6 @@
 ---
 title: 06. Correlation Regression
+description: "공분산과 피어슨 상관계수, 코사인 유사도와의 차이, 상관행렬 히트맵, 단순·다중 선형회귀(최소제곱법)와 잔차 분석 정리."
 Author: YoungHoon Ko
 date: 2026-10-08 14:15:32 +0900
 categories: [University(2026-Second-Semester), Data Science]
@@ -7,8 +8,6 @@ tags: [python, data]
 math: true
 image: /assets/img/lang/data.png
 ---
-
-[toc]
 
 ## 상관 분석
 

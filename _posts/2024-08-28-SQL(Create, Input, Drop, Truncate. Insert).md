@@ -1,13 +1,12 @@
 ---
 title: 03. SQL(Create, Input, Drop, Truncate. Insert)
+description: "SQL 스키마와 테이블의 개념, CREATE로 테이블 만들기, INSERT로 데이터 입력, DROP과 TRUNCATE의 차이 정리."
 Author: YoungHoon Ko
 date: 2024-08-28 11:45:00 +0900
 categories: [SQL, Practice_SQL]
 tags: [sql, basic]
 image: /assets/img/lang/sql.png
 ---
-
-[toc]
 
 # 스키마와 테이블의 정의
 

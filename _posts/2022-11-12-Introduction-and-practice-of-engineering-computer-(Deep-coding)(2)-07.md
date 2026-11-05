@@ -1,13 +1,12 @@
 ---
 title: 07. Introduction and practice of engineering computer(Deep coding)(2)
+description: "공학컴퓨터입문및실습 과제 7 (C): 다항식 계산, 아스키 코드 출력, 자동판매기 프로그램 등 심화 코딩."
 Author: YoungHoon Ko
 date: 2022-11-12 06:50:32 +0900
 categories: [University(2022-First-Semester), Introduction and practice of engineering computer]
 tags: [c, computer_engineering]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # 공학컴퓨터입문및실습 과제7
 

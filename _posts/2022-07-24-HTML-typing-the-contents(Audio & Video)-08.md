@@ -1,13 +1,12 @@
 ---
 title: 08. HTML-typing the contents(Audio & Video)
+description: "HTML 멀티미디어 삽입: audio, video 태그와 공통 속성, 브라우저별 미디어 파일 지원과 실습 예제."
 Author: YoungHoon Ko
 date: 2022-07-24 13:14:38 +0900
 categories: [HTML, HTML-Study]
 tags: [html]
 image: /assets/img/lang/html.png
 ---
-
-[toc]
 
 # 4. 웹 문서에 내용 입력하기
 

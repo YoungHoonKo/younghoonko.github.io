@@ -1,13 +1,12 @@
 ---
 title: 04. Digital_Engineering_HW4
+description: "디지털공학 과제 4 (C): 두 5비트 이진수를 입력받아 컨볼루션(다항식 곱셈) 결과를 출력하는 프로그램."
 Author: YoungHoon Ko
 date: 2025-08-15 14:53:32 +0900
 categories: [University(2025-First-Semester), Digital_Engineering]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # Digital_Engineering_HW4
 

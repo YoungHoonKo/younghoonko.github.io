@@ -1,5 +1,6 @@
 ---
 title: 04. Data Preprocessing
+description: "결측치란?, 변수의 값이 비어 있거나 기록되지 않은 상태, 단순한 빈칸이 아니라 분석 전반에 큰 영향, 불완전한 데이터 사용시 → 잘못된 분석 결과, 즉, 결측치 처리가 데이터 전처리의 핵심 과제, 결측치를 무시하면 발생하는 일"
 Author: YoungHoon Ko
 date: 2026-10-06 15:15:32 +0900
 categories: [University(2026-Second-Semester), Data Science]
@@ -7,8 +8,6 @@ tags: [python, data]
 math: true
 image: /assets/img/lang/data.png
 ---
-
-[toc]
 
 # 결측치(Missing Value) 처리
 

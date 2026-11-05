@@ -1,13 +1,12 @@
 ---
 title: 02. Statistics(R Problem Solving)
+description: "R 함수를 활용한 통계 문제 풀이: mtcars의 mpg와 wt 산점도와 회귀식 등 교재 연습문제."
 Author: YoungHoon Ko
 date: 2022-09-25 16:33:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
 tags: [r, statistics]
 image: /assets/img/lang/r.png
 ---
-
-[toc]
 
 # R 함수를 활용한 문제 풀이
 

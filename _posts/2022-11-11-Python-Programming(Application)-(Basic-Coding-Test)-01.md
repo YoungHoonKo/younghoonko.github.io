@@ -1,13 +1,12 @@
 ---
 title: 01. Python-Programming(Application)(Basic Coding Test)
+description: "파이썬(응용) 과제 1: 평균 구하기, 섭씨-화씨 변환, 원의 둘레와 넓이 등 함수 완성 문제와 결과 검증."
 Author: YoungHoon Ko
 date: 2022-11-11 02:20:00 +0900
 categories: [University(2022-Second-Semester), Python-Programming(Application)]
 tags: [python, application]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # 파이썬(응용) 과제1
 

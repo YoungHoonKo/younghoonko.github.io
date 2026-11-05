@@ -1,5 +1,6 @@
 ---
 title: 08. Communication Theory_Random Variables (Random Variables 2)
+description: "순열과 조합으로 경우의 수 세기, 확률변수의 의미와 이산형·연속형의 차이 이해, PMF, CMF, PDF, CDF의 정의와 성질, 서로의 관계 이해, 결합 PDF, 주변 PDF, 결합 CDF 계산, 기대값, 분산, 공분산, 상관계수의 정의와 성질 이해"
 Author: YoungHoon Ko
 date: 2026-11-03 22:22:00 +0900
 categories: [University(2026-Second-Semester), Communication Theory]
@@ -7,8 +8,6 @@ tags: [communication, probability]
 math: true
 image: /assets/img/lang/comm.png
 ---
-
-[toc]
 
 ## 학습 목표
 

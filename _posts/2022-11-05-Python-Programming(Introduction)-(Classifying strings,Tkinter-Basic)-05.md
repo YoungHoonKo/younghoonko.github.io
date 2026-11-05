@@ -1,13 +1,12 @@
 ---
 title: 05. Python-Programming(Introduction)(Classifying strings, Tkinter Basic)
+description: "파이썬(입문) 예제: 문자열을 대문자, 소문자, 한글, 숫자, 특수문자로 분류하기와 Tkinter로 이미지 확대, 축소하기."
 Author: YoungHoon Ko
 date: 2022-11-05 15:45:45 +0900
 categories: [University(2022-First-Semester), Python-Programming(Introduction)]
 tags: [python, introduction]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # 파이썬(입문) 예제풀이
 

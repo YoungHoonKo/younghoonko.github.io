@@ -1,5 +1,6 @@
 ---
 title: 01. Data Science_What is Data Science?
+description: "데이터사이언스는 데이터에서 가치와 인사이트를 도출하는 학문입니다. 주요 구성 요소는 수학·통계, 컴퓨터공학, 도메인지식입니다. 이 세 영역이 결합되는 지점에 데이터사이언스와 데이터사이언티스트의 역할이 놓입니다."
 Author: YoungHoon Ko
 date: 2026-09-29 17:15:32 +0900
 categories: [University(2026-Second-Semester), Data Science]
@@ -7,8 +8,6 @@ tags: [python, data]
 math: true
 image: /assets/img/lang/data.png
 ---
-
-[toc]
 
 # 01_데이터 사이언스 개요
 

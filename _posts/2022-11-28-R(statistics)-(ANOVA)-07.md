@@ -1,13 +1,12 @@
 ---
 title: 07. Statistics(ANOVA)
+description: "석회황 농도가 벌에 미치는 효과에 대한 일원분산분석(ANOVA) 보고서: 기술통계, 상자그림, Tukey HSD 사후검정."
 Author: YoungHoon Ko
 date: 2022-11-28 15:07:00 +0900
 categories: [University(2022-Second-Semester), Statistics]
 tags: [r, statistics]
 image: /assets/img/lang/r.png
 ---
-
-[toc]
 
 # 석회황이 벌에게 미치는 효과 분산분석 보고서
 

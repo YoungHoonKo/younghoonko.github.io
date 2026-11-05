@@ -1,13 +1,12 @@
 ---
 title: 01. Internet Engineering - Intro
+description: "인터넷공학 개요: 네트워크들의 네트워크로서의 인터넷, 프로토콜의 의미, 네트워크 엣지와 코어 등 인터넷의 기본 구조."
 Author: YoungHoon Ko
 date: 2026-03-20 09:05:32 +0900
 categories: [University(2026-First-Semester), Internet Engineering]
 tags: [internet, network]
 image: /assets/img/lang/internet.png
 ---
-
-[toc]
 
 # Internet Engineering – Internet의 구조, 원리, 그리고 설계 철학
 

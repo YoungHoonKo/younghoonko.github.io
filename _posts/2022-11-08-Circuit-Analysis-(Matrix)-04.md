@@ -1,13 +1,12 @@
 ---
 title: 04. Circuit Theory(Matrix)
+description: "회로이론 과제 4: 파이썬으로 2×2 행렬을 입력받아 행렬식과 역행렬을 구하고 코드를 간결하게 개선하기."
 Author: YoungHoon Ko
 date: 2022-11-08 02:20:00 +0900
 categories: [University(2022-Second-Semester), Circuit Theory]
 tags: [circuit_theory, python]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # Circuit Theory HW4
 

@@ -1,13 +1,12 @@
 ---
 title: 02. C-Programming(Repeating sentence)
+description: "C 프로그래밍 실습 2: 반복문으로 별 출력, 대각선 별, 입력한 수까지의 합 구하기."
 Author: YoungHoon Ko
 date: 2022-11-25 09:55:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # C Programming 실습2
 

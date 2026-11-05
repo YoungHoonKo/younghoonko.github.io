@@ -1,5 +1,6 @@
 ---
 title: 03. Communication Theory_LTI System
+description: "선형성(가산성, 동차성, 중첩의 원리)과 시불변성의 의미 이해, 임펄스 응답과 컨볼루션으로 LTI 시스템의 출력을 구하는 방법 이해, 인과성과 BIBO 안정성을 임펄스 응답으로 판정하는 방법 이해, 주파수 응답(전달함수) H(f)와 의 의미 이해"
 Author: YoungHoon Ko
 date: 2026-11-03 21:20:00 +0900
 categories: [University(2026-Second-Semester), Communication Theory]
@@ -7,8 +8,6 @@ tags: [communication, signal]
 math: true
 image: /assets/img/lang/comm.png
 ---
-
-[toc]
 
 ## 학습 목표
 

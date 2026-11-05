@@ -1,13 +1,12 @@
 ---
 title: 05. Introduction and practice of engineering computer(Coding Quiz)
+description: "공학컴퓨터입문및실습 과제 5 (C): 저축 함수 save() 만들기 등 함수를 활용한 코딩 퀴즈 풀이."
 Author: YoungHoon Ko
 date: 2022-11-10 12:45:00 +0900
 categories: [University(2022-First-Semester), Introduction and practice of engineering computer]
 tags: [c, computer_engineering]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # 공학컴퓨터입문및실습 과제5
 

@@ -1,13 +1,12 @@
 ---
 title: 04. SQL(SELECT절의 활용, 표현식과 별칭, 연결 연산자(CONCAT()))
+description: "이번 학습에서는 SQL에서 가장 기본이 되는 SELECT 절을 다양한 방식으로 활용하는 방법을 배웠다. 조건 지정, 표현식 사용, 별칭(alias), 그리고 문자열 연결 함수(CONCAT)까지 함께 실습하였다."
 Author: YoungHoon Ko
 date: 2024-08-29 15:40:00 +0900
 categories: [SQL, Practice_SQL]
 tags: [sql, select]
 image: /assets/img/lang/sql.png
 ---
-
-[toc]
 
 # SELECT 절의 다양한 활용
 

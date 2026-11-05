@@ -1,5 +1,6 @@
 ---
 title: 01. Artificial Intelligence(AI)_NLP
+description: "NLP란 무엇인가?, NLP는 왜 어려운가?, NLP로 무엇을 할 수 있는가?, NLP는 어떻게 발전해 왔는가?, 앞으로 NLP는 어떤 방향으로 나아가는가?, 자연어(Natural Language)란?, 사람들이 일상적으로 사용하는 언어를 인공적으로 만들어진 언어인 인공어와 구분하…"
 Author: YoungHoon Ko
 date: 2026-09-28 17:55:32 +0900
 categories: [University(2026-Second-Semester), Artificial Intelligence(AI)]
@@ -7,8 +8,6 @@ tags: [ai, nlp]
 math: true
 image: /assets/img/lang/ai.png
 ---
-
-[toc]
 
 ## 1. 강의의 학습 목표
 

@@ -1,13 +1,12 @@
 ---
 title: 08. C Language(Data type)(float)
+description: "이번 학습에서는 C 언어에서 실수를 표현하기 위한 자료형인 float와 double에 대해 정리하였다. 컴퓨터는 실수를 저장할 때 부동소수점 방식(Floating-Point Representation)을 사용하며, 이 방식은 IEEE 754 표준에 기반한다."
 Author: YoungHoon Ko
 date: 2022-07-25 18:26:00 +0900
 categories: [C, C-Study]
 tags: [c]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # 실수형 자료형: float와 double
 

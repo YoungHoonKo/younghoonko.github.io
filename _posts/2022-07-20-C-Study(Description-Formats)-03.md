@@ -1,13 +1,12 @@
 ---
 title: 03. C Language(Description Formats)
+description: "이번 학습에서는 C 언어에서 사용되는 다양한 서술문(Statement)의 형태와 각각의 역할에 대해 학습하였다. 단일 서술문, 복합 서술문, 조건문, 반복문, 분기문, 주석 등은 모두 프로그램의 논리 흐름을 구성하는 중요한 요소이다."
 Author: YoungHoon Ko
 date: 2022-07-20 16:45:00 +0900
 categories: [C, C-Study]
 tags: [c]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # C Language Description Formats (C 언어의 서술 형식)
 

@@ -1,13 +1,12 @@
 ---
 title: 02. Python-Programming(Application)(Tkinter)
+description: "파이썬(응용) 과제 2: Tkinter로 창 크기, 위치, 패딩, pack 배치를 설정해 GUI 프로그램 만들기."
 Author: YoungHoon Ko
 date: 2022-11-12 00:20:00 +0900
 categories: [University(2022-Second-Semester), Python-Programming(Application)]
 tags: [python, application]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # 파이썬(응용) 과제2
 

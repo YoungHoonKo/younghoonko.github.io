@@ -1,13 +1,12 @@
 ---
 title: 10. HTML-Typing the contents(Forms)
+description: "이번 학습에서는 사용자가 웹 페이지에 정보를 입력하고 서버로 전송할 수 있도록 하는 폼(form) 요소를 학습하였다. 입력 양식은 로그인, 회원가입, 설문조사 등 다양한 용도로 활용되며, HTML과 서버 언어의 연계가 핵심이다."
 Author: YoungHoon Ko
 date: 2022-07-26 16:04:38 +0900
 categories: [HTML, HTML-Study]
 tags: [html]
 image: /assets/img/lang/html.png
 ---
-
-[toc]
 
 # 5. 입력 양식 작성하기
 

@@ -1,13 +1,12 @@
 ---
 title: 04. Python-Programming(Introduction)(Object-oriented Paint, Multi Thread)
+description: "파이썬(입문) 과제 4: 객체 지향 방식의 그림판 만들기와 멀티 스레드 실습."
 Author: YoungHoon Ko
 date: 2022-11-04 14:40:11 +0900
 categories: [University(2022-First-Semester), Python-Programming(Introduction)]
 tags: [python, introduction]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # 파이썬(입문) 과제4
 

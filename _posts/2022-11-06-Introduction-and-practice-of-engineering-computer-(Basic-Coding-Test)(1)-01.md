@@ -1,13 +1,12 @@
 ---
 title: 01. Introduction and practice of engineering computer(Basic Coding Test)(1)
+description: "공학컴퓨터입문및실습 과제 1 (C): 사칙연산, 여행비용 계산, 변수 교환, float와 double 차이, 오버플로우와 언더플로우."
 Author: YoungHoon Ko
 date: 2022-11-06 00:45:00 +0900
 categories: [University(2022-First-Semester), Introduction and practice of engineering computer]
 tags: [c, computer_engineering]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # 공학컴퓨터입문및실습 과제1
 

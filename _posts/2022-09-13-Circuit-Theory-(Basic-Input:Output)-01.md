@@ -1,13 +1,12 @@
 ---
 title: 01. Circuit Theory(Basic Input/Output)
+description: "회로이론 과제 1: 파이썬으로 학번, 이름, 입학년도, 휴학 여부를 입력받아 한 문장으로 출력하기."
 Author: YoungHoon Ko
 date: 2022-09-13 16:33:00 +0900
 categories: [University(2022-Second-Semester), Circuit Theory]
 tags: [circuit_theory, python]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # Circuit Theory HW1
 

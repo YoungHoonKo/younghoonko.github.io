@@ -1,13 +1,12 @@
 ---
 title: 04. C-Programming(Function)
+description: "C 프로그래밍 실습 4: 함수 정의와 호출, 매개변수와 인수, 전역변수와 지역변수, static 변수."
 Author: YoungHoon Ko
 date: 2022-11-26 15:34:32 +0900
 categories: [University(2022-Second-Semester), C-Programming]
 tags: [c, c_programming]
 image: /assets/img/lang/C.png
 ---
-
-[toc]
 
 # C Programming 실습4
 

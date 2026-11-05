@@ -1,5 +1,6 @@
 ---
 title: 05. HTML- Typing the contents(List)
+description: "HTML 목록 태그 정리: 순서 있는 목록(ol, li), 순서 없는 목록(ul, li), 설명 목록(dl, dt, dd)의 사용법."
 Author: YoungHoon Ko
 date: 2022-07-15 16:07:00 +0900
 categories: [HTML, HTML-Study]
@@ -8,8 +9,6 @@ image: /assets/img/lang/html.png
 ---
 
 # 4. 웹 문서에 내용 입력하기
-
-[toc]
 
 ## 4-2. 목록 만들기
 

@@ -1,13 +1,12 @@
 ---
 title: 03. Git(Practicing Linux commands)(1)
+description: "Git을 터미널에서 쓰기 위한 리눅스 기본 명령어(pwd, ls, cd, mkdir, rm, cat 등)와 Vim 편집기 실습."
 Author: YoungHoon Ko
 date: 2022-07-28 17:22:38 +0900
 categories: [Git, Git-Study]
 tags: [git, terminal, github]
 image: /assets/img/lang/git.png
 ---
-
-[toc]
 
 # Practicing Linux Commands
 

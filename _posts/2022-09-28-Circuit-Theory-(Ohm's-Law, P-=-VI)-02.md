@@ -1,13 +1,12 @@
 ---
 title: 02. Circuit Theory(Ohm's Law, P = VI)
+description: "회로이론 과제 2: 파이썬으로 P = VI 공식을 이용해 0으로 입력된 미지의 값(전압, 전류, 전력)을 구하는 프로그램."
 Author: YoungHoon Ko
 date: 2022-09-28 16:55:00 +0900
 categories: [University(2022-Second-Semester), Circuit Theory]
 tags: [circuit_theory, python]
 image: /assets/img/lang/py.png
 ---
-
-[toc]
 
 # Circuit Theory HW2
 
