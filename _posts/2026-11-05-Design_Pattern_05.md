@@ -17,6 +17,7 @@ image: /assets/img/lang/design.png
 - 순차 다이어그램 표기와 객체 스테레오타입(boundary, control, entity)
 - 과제 5: 온라인 쇼핑몰 회원 관리 순차도
 - 복합 객체를 정의하는 세 방법과 합성/집약 구분, ATM 예제 코드
+- disjoint/complete 네 가지 조합 예시, ATM 이체를 순차도와 스테레오타입으로 표현하고 실패 경로까지 실행
 
 > 시험은 영어와 한국어를 섞어 약 10문제. 핵심 개념은 **영어 이름**으로 외워 둘 것 (UML, LSP, Polymorphism 등). 1~4장 내용은 [01](/posts/Design_Pattern_01/) ~ [04편](/posts/Design_Pattern_04/)에 있음
 {: .prompt-info }
@@ -54,6 +55,17 @@ image: /assets/img/lang/design.png
 - complete: A = A1 ∪ A2 ∪ A3
 - disjoint: A1 ∩ A2 = ∅, A2 ∩ A3 = ∅, A1 ∩ A3 = ∅ (서로 배타적)
 
+두 제약은 서로 독립이라 네 가지 조합이 나옴. 예시로 외우면 헷갈리지 않음.
+
+| 제약 | 의미 | 예 |
+| --- | --- | --- |
+| {disjoint, complete} | 모든 객체가 정확히 하나의 자식에 속함 | 회원 = 일반회원 ∪ VIP회원 (둘 다일 수 없고, 둘 중 하나는 반드시) |
+| {disjoint, incomplete} | 많아야 하나에 속하고, 어디에도 안 속할 수 있음 | 차량 ⊇ 승용차, 트럭 (오토바이는 어느 자식에도 없음) |
+| {overlapping, complete} | 둘 이상에 속할 수 있고, 하나에는 반드시 속함 | 학교 구성원 = 학생 ∪ 직원 (조교는 학생이면서 직원) |
+| {overlapping, incomplete} | 둘 이상에 속할 수 있고, 어디에도 안 속할 수 있음 | 사람 ⊇ 운동선수, 음악가 |
+
+자바 클래스로 구현하면 객체 하나는 클래스 하나로만 만들어지므로 상속 구조는 기본적으로 disjoint임. overlapping을 표현하려면 역할(Role) 객체를 여러 개 가지게 하는 식으로 **합성**을 씀.
+
 ---
 
 ## 3. 메시지와 순차 다이어그램
@@ -64,6 +76,8 @@ image: /assets/img/lang/design.png
 - 예: 홍길동이 TV에게 보내는 메시지 `TV.상품검색('보르도')`
 - 송신 객체는 수신 객체가 **외부에 공개한(public) 함수**에 대해서만 메시지를 보낼 수 있음. 따라서 메시지의 오퍼레이션은 수신 객체의 공용 함수
 - 메시지가 아닌 것: 클래스 이름, 속성 이름, 인터페이스 이름, 객체 이름처럼 **동작(함수 호출)이 아닌 것**과, public으로 공개되지 않은 오퍼레이션
+
+ATM 예제(5절)의 `atm.deposit("u01", 2000)`을 나눠 보면 수신 객체는 `atm`, 오퍼레이션은 `deposit`, 매개변수는 `"u01"`, `2000`. 반면 `Account`의 `balance` 필드는 private이라 `account.balance = 0`처럼 보낼 수 없고, 반드시 공개된 `deposit()`, `withdraw()`를 거쳐야 함. **메시지를 public 함수로 제한하는 것이 곧 캡슐화**이며, private 접근은 컴파일 오류가 남 ([01편](/posts/Design_Pattern_01/)의 3/9 실습).
 
 ### 순차 다이어그램 표기
 
@@ -85,6 +99,40 @@ image: /assets/img/lang/design.png
 | entity | 시스템의 핵심 데이터와 상태를 저장, 관리 |
 
 한 줄 암기: **boundary는 바깥과 안을 연결, control은 흐름 제어, entity는 데이터 보관**.
+
+| 예제 | boundary | control | entity |
+| --- | --- | --- | --- |
+| ATM (5절) | `ATM_UI` (화면, 비어 있음) | `ATM` (등록, 입금, 출금, 이체 흐름) | `User`, `Account` |
+| 쇼핑몰 회원 관리 (과제 5) | `MemberManagementUI` | (UI가 직접 호출, 별도 control 없음) | `Member` |
+| 팀 프로젝트 ([06편](/posts/Design_Pattern_06/)) | `Main`의 메뉴와 입력 함수 | `Main`의 흐름 + `AdviceProvider` 분석 | `UserProfile`, `Expense`, `SpendingDate` |
+
+### 표기를 한 번에: ATM 이체 순차도
+
+ATM 코드의 `transfer`를 순차도로 그리면 `alt`(조건)과 스테레오타입이 모두 들어감.
+
+```mermaid
+sequenceDiagram
+    actor C as 고객
+    participant UI as <<boundary>> :ATM_UI
+    participant A as <<control>> :ATM
+    participant F as <<entity>> from:Account
+    participant T as <<entity>> to:Account
+    C->>UI: 이체 요청 (u01 → u02, 3000원)
+    UI->>A: transfer("u01", "u02", 3000)
+    A->>F: transferTo(to, 3000)
+    F->>F: withdraw(3000)
+    alt 잔액 충분
+        F->>T: deposit(3000)
+        F-->>A: true
+        A-->>UI: 이체 완료, 두 사람의 잔액
+    else 잔액 부족 또는 잘못된 금액
+        F-->>A: false
+        A-->>UI: 이체 실패
+    end
+```
+
+- control(`ATM`)은 계산하지 않고 entity(`Account`)에게 **위임**하며, 이체할 때 `Account`끼리 메시지를 주고받음
+- 화면(`ATM_UI`)이 비어 있어서 실제 코드에서는 `main`이 boundary 역할을 대신함
 
 ### 과제 5: 온라인 쇼핑몰 회원 관리 순차도
 
@@ -248,6 +296,30 @@ Lee 출금 완료. 현재 잔액: 4000.0
 Kim 잔액: 9000.0
 Lee 잔액: 7000.0
 ```
+
+실패 경로(위 순차도의 `else`)도 실행해 확인했음.
+
+```java
+atm.registerUser("u01", "Park", "1003", 0);      // 같은 ID 다시 등록
+atm.transfer("u02", "u01", 8000);                // Lee 잔액 5,000원인데 8,000원 이체
+atm.withdraw("u01", -500);                       // 음수 출금
+atm.deposit("u99", 1000);                        // 없는 사용자
+ATM.getInstance() == atm                         // 싱글톤 확인
+```
+
+```text
+사용자 등록 완료: Kim
+사용자 등록 완료: Lee
+이미 존재하는 사용자입니다.
+이체 실패: 잔액 부족 또는 잘못된 금액
+출금 실패: 잔액 부족 또는 잘못된 금액
+사용자를 찾을 수 없습니다.
+같은 ATM 객체? true
+```
+
+- 잘못된 요청을 entity(`Account`)가 `false`로 거절하고 control(`ATM`)이 메시지로 바꿔 보여 줌
+- 실패 이유가 "잔액 부족 또는 잘못된 금액"으로 합쳐져 있어 사용자는 둘 중 무엇인지 알 수 없음. 이유를 enum이나 예외로 구분하는 것이 좋음
+- `getInstance()`에는 동기화가 없음. 여러 스레드에서 처음 호출하면 ATM이 여러 개 생길 수 있음 ([04편](/posts/Design_Pattern_04/)의 실험)
 
 | 예상 질문 | 답 |
 | --- | --- |

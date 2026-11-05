@@ -17,6 +17,7 @@ image: /assets/img/lang/design.png
 - 하나의 클래스에 섞인 책임을 나누고 계산 정책을 인터페이스로 분리하기 (과제 3)
 - 테스트하기 어려운 의존성을 인터페이스로 바꾸는 DIP (과제 4)
 - 리팩터링 전후 코드를 실제로 실행해서 결과가 같은지 확인
+- 원칙별 예제 위치를 정리하고, 과제에 없던 ISP를 보충 예제로 확인
 
 ---
 
@@ -35,6 +36,82 @@ image: /assets/img/lang/design.png
 
 - SRP의 반대 현상인 **산탄총 수술(shotgun surgery)**: 하나의 책임이 여러 클래스에 흩어져 있어서, 작은 변경 하나를 위해 여러 파일을 동시에 고쳐야 하는 것
 - SRP를 지키다 보면 로깅, 보안, 트랜잭션처럼 여러 클래스에 공통으로 걸치는 **횡단 관심사**가 남는데, 이것은 AOP(Aspect Oriented Programming)로 분리함. AOP 용어 다섯 개는 조인포인트, 포인트컷, 어드바이스, 애스펙트, 위빙 (단답형 출제)
+
+### 원칙별로 어디서 확인하나
+
+| 원칙 | 핵심 질문 | 예제 위치 |
+| --- | --- | --- |
+| SRP | 이 클래스가 바뀌는 이유가 둘 이상인가? | 이 글의 과제 3 (급여 계산기), [06편](/posts/Design_Pattern_06/) 회의 1 |
+| OCP | 새 종류를 추가할 때 기존 코드를 고치는가? | 이 글의 과제 2 (할인 정책), [07편](/posts/Design_Pattern_07/) 주간 전략 추가 실험 |
+| LSP | 자식 객체를 부모 자리에 넣어도 기대대로 동작하는가? | [01편](/posts/Design_Pattern_01/) 할인 가방 예제 |
+| ISP | 구현 클래스가 쓰지도 않는 메서드를 억지로 구현하는가? | 아래 (보충) 예제, [06편](/posts/Design_Pattern_06/) 대시보드 |
+| DIP | 바꾸기 어려운 구체 클래스에 직접 의존하는가? | 이 글의 과제 4 (시간 알림) |
+
+### (보충) ISP: 복합기 예제
+
+과제에서 ISP를 직접 다루지 않아서 짧은 예제로 확인했음. 인쇄, 스캔, 팩스를 한 인터페이스에 모으면, 인쇄만 되는 저가 프린터도 스캔과 팩스를 "구현"해야 함.
+
+```mermaid
+flowchart LR
+    subgraph Before["위반: 뚱뚱한 인터페이스"]
+        direction TB
+        I["MultiFunctionDevice<br/>print, scan, fax"]
+        I -.-> OM1["OfficeMachine"]
+        I -.-> CP1["CheapPrinter<br/>scan, fax는 예외"]
+    end
+    subgraph After["준수: 역할별 인터페이스"]
+        direction TB
+        P["Printer"] -.-> OM2["OfficeMachine"]
+        S["Scanner"] -.-> OM2
+        F["Fax"] -.-> OM2
+        P -.-> CP2["CheapPrinter"]
+    end
+    Before ==> After
+```
+
+```java
+// 위반
+interface MultiFunctionDevice { void print(String doc); void scan(String doc); void fax(String doc); }
+class CheapPrinter implements MultiFunctionDevice {
+    public void print(String d) { System.out.println("  저가 프린터 인쇄: " + d); }
+    public void scan(String d)  { throw new UnsupportedOperationException("스캔 기능 없음"); }
+    public void fax(String d)   { throw new UnsupportedOperationException("팩스 기능 없음"); }
+}
+
+// 준수
+interface Printer { void print(String doc); }
+interface Scanner { void scan(String doc); }
+interface Fax     { void fax(String doc); }
+class OfficeMachine implements Printer, Scanner, Fax { ... }
+class CheapPrinter implements Printer { ... }          // 필요한 것만
+static void sendAll(Fax[] fs) { for (Fax f : fs) f.fax("계약서.pdf"); }
+```
+
+실행 결과 (위반: 두 기기에 팩스를 보냄)
+
+```text
+  복합기 팩스: 계약서.pdf
+  실행 중 예외: 팩스 기능 없음
+```
+
+실행 결과 (준수)
+
+```text
+  복합기 인쇄: 과제.docx
+  저가 프린터 인쇄: 과제.docx
+  복합기 팩스: 계약서.pdf
+```
+
+준수 버전에서 저가 프린터를 팩스 목록에 넣으려고 하면 **실행이 아니라 컴파일 단계에서** 막힘.
+
+```text
+IspBad.java:4: error: incompatible types: CheapPrinter cannot be converted to Fax
+public class IspBad { public static void main(String[] a) { Fax[] fs = { new CheapPrinter() }; } }
+                                                                         ^
+```
+
+- 위반 버전은 `UnsupportedOperationException`이 **실행해 봐야** 드러나고, 이는 LSP 위반이기도 함 (부모 타입 자리에서 기대대로 동작하지 않음)
+- 인터페이스를 쪼개면 "팩스가 되는 기기만 받는다"는 조건을 **타입으로 표현**할 수 있음
 
 ---
 
@@ -463,7 +540,7 @@ public class Hw4Run {
 
 ## 최종 핵심 정리
 
-1. SOLID: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
+1. SOLID: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion. 쓰지 않는 메서드를 억지로 구현하게 하는 큰 인터페이스는 역할별로 쪼갬 (ISP)
 2. 문자열 조건문으로 종류를 나누는 코드는 오타에 약하고, 새 종류가 생길 때마다 수정해야 해서 OCP를 어김
 3. 분기 대신 각 객체가 스스로 값을 정하게(다형성) 하면 호출하는 코드는 바뀌지 않음
 4. 할인 정책이나 회원 등급처럼 바뀌는 것은 상속이 아니라 합성(전략)이나 속성으로 표현해야 함
