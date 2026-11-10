@@ -3,7 +3,7 @@ title: "공주를 걷다, 데이터를 남기다: AI/GIS 감정지도 (공주 �
 description: "공주 지산학 아카데미에서 국립공주대 공산성과 제민천 일대를 걸으며 '좋은 곳, 나쁜 곳'을 기록하고 커널 밀도 추정(KDE)으로 감정지도를 만든 과정. 데이터 구조, QGIS Heatmap과 같은 원리의 Python 재현 코드, 결과 해석, 예시 데이터라는 한계와 좌표계, 대역폭 등 개선 사항, 느낀 점"
 Author: YoungHoon Ko
 date: 2025-11-22 20:00:00 +0900
-categories: [Extracurricular Activities, Projects]
+categories: [Extracurricular Activities, Academy]
 tags: [gis, data-visualization]
 math: true
 mermaid: true
