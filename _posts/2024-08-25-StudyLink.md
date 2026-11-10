@@ -3,7 +3,7 @@ title: "StudyLink: 개발자 스터디 커뮤니티 웹 서비스 (Project Busan
 description: "2024 프로젝트 부산에서 4인 팀으로 만든 개발자 스터디 커뮤니티 StudyLink. Spring Boot, Spring Security, JWT, MySQL, Redis, Docker로 회원 인증과 게시판, 관리자 페이지를 구현했고, 프론트엔드(화면 디자인, 마이페이지)를 맡음. 기술 스택과 인증 흐름, ERD, 내가 작성한 프론트 코드, 2년 뒤 코드를 다시 읽으며 찾은 보안 문제와 개선 방향, 느낀 점"
 Author: YoungHoon Ko
 date: 2024-08-25 20:00:00 +0900
-categories: [Extracurricular Activities]
+categories: [Extracurricular Activities, Projects]
 tags: [spring-boot, jwt]
 mermaid: true
 image: /assets/img/activities/studylink/a.png
