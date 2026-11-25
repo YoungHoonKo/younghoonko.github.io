@@ -20,6 +20,7 @@ image: /assets/img/lang/comm.png
 - 실제 보간(ZOH, FOH)과 인과성, 대역통과 신호 샘플링
 - 정현파를 나이퀴스트 율로 샘플링하면 생기는 문제
 - PAM, PDM, PPM의 차이
+- 숙제 7 연습문제 5.2, 5.5 ~ 5.7 풀이
 
 > 이번 장의 흐름을 한 줄로: **연속 신호를 일정 간격으로 찍으면(샘플링) 주파수 영역에서는 스펙트럼이 $$f_s$$ 간격으로 복제된다. 복제본이 겹치지 않으면(= $$f_s \ge 2W$$) 저역 통과 필터 하나로 원래 신호를 완벽히 되살릴 수 있다.**
 {: .prompt-info }
@@ -645,6 +646,109 @@ flowchart LR
 | 보안성 | 강력한 암호화 알고리즘 사용 가능 |
 | 효율성 | 대역폭과 SNR이 trade-off 관계: 대역폭을 더 쓰는 대신 필요한 SNR을 낮출 수 있어 아날로그보다 효율적 |
 | 시스템 통합 | 컴퓨터 데이터와 디지털화된 아날로그 신호를 하나로 통합 |
+
+---
+
+## 연습문제 풀이 (숙제 7)
+
+숙제 7(샘플링)의 교재 연습문제 5.2, 5.5 ~ 5.7. 수업 판서와 맞춰 봤고, 5.6은 스펙트럼을 직접 그려서 확인했다.
+
+### 연습문제 5.2 표본열로부터 $$G(f)$$ 유도
+
+**문제**: 식 (5.3)의 $$G_\delta(f)$$를 이용해 $$G(f)$$를 유도하라. 임계 샘플링 $$T_s = \frac{1}{2W}$$, $$G(f) = 0$$ ($$\lvert f \rvert \ge W$$)
+
+**풀이**
+
+① 표본 신호 $$g_\delta(t) = \sum_n g(nT_s)\delta(t - nT_s)$$를 그대로 푸리에 변환 ($$T_s = \frac{1}{2W}$$ 대입)
+
+$$
+G_\delta(f) = \sum_{n=-\infty}^{\infty} g\left(\frac{n}{2W}\right)\exp\left(-\frac{j\pi n f}{W}\right)
+$$
+
+② 한편 샘플링은 스펙트럼을 $$f_s = 2W$$ 간격으로 복제한다
+
+$$
+G_\delta(f) = 2W\sum_{m=-\infty}^{\infty} G(f - 2mW)
+$$
+
+③ $$-W < f < W$$에서는 $$m = 0$$ 항만 남는다 (대역제한 + $$f_s = 2W$$라서 복제본이 들어오지 않음)
+
+**답**
+
+$$
+G(f) = \frac{1}{2W}G_\delta(f) = \frac{1}{2W}\sum_{n=-\infty}^{\infty} g\left(\frac{n}{2W}\right)\exp\left(-\frac{j\pi n f}{W}\right), \quad -W < f < W
+$$
+
+- 이걸 역변환하면 본문의 sinc 보간 공식 $$g(t) = \sum_n g\left(\frac{n}{2W}\right)\mathrm{sinc}(2Wt - n)$$이 된다
+- 의미: 표본값 $$\{g(n/2W)\}$$만 알면 $$G(f)$$, 즉 $$g(t)$$ 전체가 정해진다
+
+### 연습문제 5.5 나이퀴스트 율과 간격
+
+**문제**: (a) $$\mathrm{sinc}(200t)$$ (b) $$\mathrm{sinc}^2(200t)$$ (c) $$\mathrm{sinc}(200t) + \mathrm{sinc}^2(200t)$$
+
+**풀이**: $$\mathrm{sinc}(200t) \rightleftharpoons \frac{1}{200}\mathrm{rect}\left(\frac{f}{200}\right)$$이므로 대역은 $$\lvert f \rvert \le 100$$ Hz
+
+| 신호 | 스펙트럼 | $$W$$ | 나이퀴스트 율 $$2W$$ | 나이퀴스트 간격 $$1/2W$$ |
+| --- | --- | --- | --- | --- |
+| (a) $$\mathrm{sinc}(200t)$$ | 직사각형 | 100 Hz | 200 Hz | 5 ms |
+| (b) $$\mathrm{sinc}^2(200t)$$ | 삼각형 (rect * rect) | 200 Hz | 400 Hz | 2.5 ms |
+| (c) 두 신호의 합 | 두 스펙트럼의 합 | 200 Hz | 400 Hz | 2.5 ms |
+
+- (b)가 핵심: 시간 영역의 **곱**은 주파수 영역의 **컨볼루션**이고, 컨볼루션은 지지 구간을 더한다($$100 + 100 = 200$$). 제곱하면 대역폭이 2배
+- (c)는 합이므로 넓은 쪽(sinc²)이 결정
+
+### 연습문제 5.6 $$\cos(\pi t)$$의 임펄스 샘플링 스펙트럼
+
+**문제**: $$g(t) = \cos(\pi t)$$를 (a) $$T_s = 0.25$$ s (b) $$T_s = 1$$ s (c) $$T_s = 1.5$$ s로 샘플링한 $$g_\delta(t)$$의 푸리에 변환
+
+**풀이**: $$\cos(\pi t) = \cos(2\pi \cdot 0.5\, t)$$이므로 $$f_0 = 0.5$$ Hz, 나이퀴스트 율은 1 Hz
+
+$$
+G(f) = \frac{1}{2}\left[\delta(f - 0.5) + \delta(f + 0.5)\right], \quad G_\delta(f) = \frac{f_s}{2}\sum_m\left[\delta(f - mf_s - 0.5) + \delta(f - mf_s + 0.5)\right]
+$$
+
+(a) $$f_s = 4$$ Hz: 가중치 2, 선은 $$4m \pm 0.5$$ Hz. 표본은 $$\cos(n\pi/4)$$
+
+$$
+G_\delta(f) = 2\sum_m\left[\delta(f - 4m - 0.5) + \delta(f - 4m + 0.5)\right]
+$$
+
+(b) $$f_s = 1$$ Hz: $$+0.5$$의 복제선과 $$-0.5$$의 복제선이 같은 반정수 위치에 떨어져 가중치 $$\frac{1}{2} + \frac{1}{2} = 1$$로 합쳐진다. 표본은 $$\cos(n\pi) = (-1)^n$$
+
+$$
+G_\delta(f) = \sum_k \delta\left(f - \left(k + \tfrac{1}{2}\right)\right)
+$$
+
+(c) $$f_s = \frac{2}{3}$$ Hz < 1 Hz: **앨리어싱**. 가중치 $$\frac{1}{3}$$
+
+$$
+G_\delta(f) = \frac{1}{3}\sum_m\left[\delta\left(f - \tfrac{2m}{3} - 0.5\right) + \delta\left(f - \tfrac{2m}{3} + 0.5\right)\right]
+$$
+
+![a](/assets/img/comm/comm_9/i.png)
+
+- (c)에서 기저대역 $$[-\frac{1}{3}, \frac{1}{3}]$$ 안에 들어온 선은 $$\pm\frac{1}{6}$$ Hz ($$0.5 - \frac{2}{3} = -\frac{1}{6}$$). 복원하면 0.5 Hz가 아니라 **1/6 Hz 코사인**이 나온다
+- 실제로 표본 $$\cos(1.5\pi n) = \cos(\pi n/2)$$은 $$\cos(2\pi \cdot \frac{1}{6} \cdot 1.5n)$$과 모든 $$n$$에서 같다 (NumPy로 확인)
+
+> (b)는 운이 좋은 경우다. 같은 1 Hz로 $$\sin(\pi t)$$를 샘플링하면 표본이 $$\sin(n\pi) = 0$$, **전부 0**이 된다. 본문 10절 "나이퀴스트 율로 샘플링하면 생기는 문제"가 바로 이것이고, 그래서 교재는 정현파에 대해 $$f_s > 2W$$(엄격 부등식)를 요구한다.
+{: .prompt-warning }
+
+### 연습문제 5.7 sinc 신호의 표본 간격
+
+**문제**: $$g(t) = \frac{\sin(\pi t)}{\pi t}$$를 완전히 복원하기 위한 나이퀴스트 율, 나이퀴스트 간격, $$T_s$$의 조건
+
+**풀이**: $$\mathrm{sinc}(t) \rightleftharpoons \mathrm{rect}(f)$$, 대역은 $$\lvert f \rvert < 0.5$$ Hz → $$W = 0.5$$ Hz
+
+- 나이퀴스트 율 $$2W = 1$$ Hz, 나이퀴스트 간격 1 s
+- 조건: $$f_s \ge 1$$ Hz, 즉 $$T_s \le 1$$ s
+
+**검토**: 숙제 답안에는 "$$T_s \le 1$$ (이상적 한계), 엄격 표기에서는 $$T_s < 1$$"로 둘 다 적었고, 판서는 "$$T_s < 1$$이면 완전 복원"이었다. 다시 따져 보면 이 신호는 $$T_s = 1$$에서도 복원된다.
+
+- $$T_s = 1$$이면 표본은 $$g(n) = \mathrm{sinc}(n)$$ = $$n = 0$$에서 1, 나머지 0
+- sinc 보간식에 넣으면 $$g(t) = 1 \cdot \mathrm{sinc}(t - 0) = \mathrm{sinc}(t)$$, 원래 신호 그대로
+- 엄격 부등식이 꼭 필요한 건 5.6(b)처럼 **대역 끝 $$\pm W$$에 델타(정현파)가 있는 경우**다. sinc의 스펙트럼은 끝점에 델타가 없어서 경계값에서도 문제가 없다
+
+**답**: 나이퀴스트 율 1 Hz, 나이퀴스트 간격 1 s, $$T_s \le 1$$ s (실제 시스템에서는 필터 여유를 위해 $$T_s < 1$$ s로 샘플링)
 
 ---
 
