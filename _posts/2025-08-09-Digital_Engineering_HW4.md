@@ -1,99 +1,162 @@
 ---
-title: 04. Digital_Engineering_HW4
-description: "디지털공학 과제 4 (C): 두 5비트 이진수를 입력받아 컨볼루션(다항식 곱셈) 결과를 출력하는 프로그램."
+title: 04. Digital_Engineering_HW4 Convolution of Binary Signals
+description: "디지털공학 과제 4 (C): 5비트 2진 신호 두 개의 컨볼루션. 슬라이딩 과정과 y[n] = Σx[k]h[n-k], 비트 연산 구현과 배열 구현 비교, 대칭 입력 예시로는 구분되지 않는 컨볼루션과 상관(correlation)의 차이"
 Author: YoungHoon Ko
 date: 2025-08-15 14:53:32 +0900
 categories: [University(2025-First-Semester), Digital_Engineering]
-tags: [c, c_programming]
+tags: [c, digital]
+math: true
 image: /assets/img/lang/C.png
 ---
 
-# Digital_Engineering_HW4
+## 학습 목표
 
-## 문제
-
-```markdown
-1. Program in C language to print as follows:
-- When your program is executed,
-- it asks a user to input two 5 digit bynary number.
-```Please, type the 1st 5-bit Binary number: 10101
-```Please, type the 2nd 5-bit Binary number: 10101
-- Then do the following process.
-
-The results is : 0 1 0 2 0 3 0 2 0 1 0
-```
+- 이산 컨볼루션의 정의 $$y[n] = \sum_k x[k]\,h[n-k]$$
+- 한 신호를 다른 신호 위로 밀면서 겹치는 부분의 곱을 더하는 과정
+- 길이 5인 두 신호의 컨볼루션 길이(5 + 5 - 1 = 9)
+- 비트 연산으로 2진 문자열을 정수에 담고 비트를 꺼내는 방법
+- 컨볼루션과 상관(correlation)의 차이
 
 ---
 
-## 정답
+## 1. 과제
+
+> 두 5비트 2진수를 입력받아 컨볼루션을 계산하라.
+>
+> ```text
+> Please, type the 1st 5-bit Binary number: 10101
+> Please, type the 2nd 5-bit Binary number: 10101
+> The results is : 0 1 0 2 0 3 0 2 0 1 0
+> ```
+>
+> 화면에 출력한다(파일 출력 아님). 제출한 C 파일을 실행해 동작하지 않으면 0점.
+{: .prompt-info }
+
+---
+
+## 2. 컨볼루션
+
+$$y[n] = \sum_{k} x[k]\, h[n-k]$$
+
+과제 설명 그림은 한 신호를 한 칸씩 밀면서(▶) 겹친 칸끼리 곱해 더하는 과정을 보여 준다. `10101`과 `10101`이면
+
+| 겹친 칸 수 | 1 | 2 | 3 | 4 | 5 | 4 | 3 | 2 | 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 곱의 합 | 1 | 0 | 2 | 0 | 3 | 0 | 2 | 0 | 1 |
+
+길이는 $$5 + 5 - 1 = 9$$. 과제 출력은 처음과 끝에 0을 하나씩 더 붙여 **11개**를 보여 준다(신호가 겹치기 전과 완전히 지나간 뒤).
+
+---
+
+## 3. 코드
+
+### 제출한 방식: 정수에 비트로 담기
+
+입력 문자열을 6비트 정수로 바꿀 때 첫 신호는 `101010`(끝에 0), 둘째 신호는 `010101`(앞에 0)이 되도록 배치해서, 6 × 6 곱을 더하면 결과의 처음과 끝에 0이 생기게 했다.
 
 ```c
-// Homework #4 - 두 개의 바이너리 신호에 대한 컨볼루션(Convolution) 을 수행하는 C 프로그램
+#define SIZE_ORIG 5
+#define SIZE_CAL 6
+#define RESULT_SIZE (2 * SIZE_CAL - 1)       /* 11 */
 
+for (int i = 0; i < SIZE_ORIG; i++)
+    if (bin1[i] == '1') a |= (1 << (SIZE_ORIG - i - 1));
+a = a << 1;                                   /* 0b10101 → 0b101010 (끝에 0) */
+
+for (int i = 0; i < SIZE_ORIG; i++)
+    if (bin2[i] == '1') b |= (1 << (SIZE_CAL - i - 2));   /* 0b010101 (앞에 0) */
+
+for (int i = 0; i < SIZE_CAL; i++) {
+    int bit_a = (a >> (SIZE_CAL - 1 - i)) & 1;          /* 왼쪽부터 i번째 비트 */
+    for (int j = 0; j < SIZE_CAL; j++) {
+        int bit_b = (b >> (SIZE_CAL - 1 - j)) & 1;
+        result[i + j] += bit_a & bit_b;                 /* 0/1의 곱 = AND */
+    }
+}
+```
+
+### 같은 계산을 배열로
+
+비트 위치 계산 없이 정의를 그대로 옮기면 읽기 쉽다. 출력 인덱스를 1부터 채워 앞뒤에 0이 남게 했다.
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#define N 5
 
-#define SIZE_ORIG 5               // 원래 이진 입력의 비트 수 (문제에서 5비트라고 명시됨)
-#define SIZE_CAL 6                // 계산용 확장 비트 수 (입력 앞 또는 뒤에 0을 붙여 6비트로 확장)
-#define RESULT_SIZE (2 * SIZE_CAL - 1)  // 컨볼루션 결과는 항상 입력+필터-1 크기, 즉 11
+int main(void) {
+    char s1[N + 1] = {0}, s2[N + 1] = {0};
+    int x[N] = {0}, h[N] = {0}, y[2 * N + 1] = {0};   /* 앞뒤 0 포함 11칸 */
 
-int main() {
-    char bin1[SIZE_ORIG + 1], bin2[SIZE_ORIG + 1]; // +1은 null 문자 포함을 위한 공간
-    int result[RESULT_SIZE] = {0};                 // 컨볼루션 결과 저장용 배열, 전부 0으로 초기화
-    unsigned int a = 0, b = 0;                     // 입력된 이진 문자열을 정수로 바꿔서 저장
-
-    // 입력 받기
     printf("Please, type the 1st 5-bit Binary number: ");
-    scanf("%5s", bin1);
+    scanf("%5s", s1);
     printf("Please, type the 2nd 5-bit Binary number: ");
-    scanf("%5s", bin2);
+    scanf("%5s", s2);
+    for (int i = 0; i < N; i++) { x[i] = s1[i] - '0'; h[i] = s2[i] - '0'; }
 
-    // 첫 번째 입력 변환: 앞에 0을 붙여야 하므로, 입력을 오른쪽으로 shift
-    // 예: 입력 "10101" → 0b10101 → shift-left 1 → 0b101010 (앞에 0 붙인 효과)
-    for (int i = 0; i < SIZE_ORIG; i++) {
-        if (bin1[i] == '1') {
-            a |= (1 << (SIZE_ORIG - i - 1));  // 왼쪽 비트부터 채우기 (직접 계산해 봄)
-        }
-    }
-    a = a << 1; // 실제로 앞에 0을 붙이는 건 왼쪽 시프트 1번이면 됨
+    for (int k = 0; k < N; k++)
+        for (int m = 0; m < N; m++)
+            y[1 + k + m] += x[k] * h[m];               /* n = k + m */
 
-    // 두 번째 입력 변환: 뒤에 0을 붙이는 건 특별한 처리 없이 바로 정렬하면 됨
-    for (int i = 0; i < SIZE_ORIG; i++) {
-        if (bin2[i] == '1') {
-            b |= (1 << (SIZE_CAL - i - 2));  // SIZE_CAL=6이므로 가장 왼쪽부터 오른쪽으로 정렬
-        }
-    }
-
-    // 본격적인 컨볼루션 계산
-    // CNN에서 필터가 입력 위를 슬라이딩하며 계산하는 것과 동일한 구조
-    for (int i = 0; i < SIZE_CAL; i++) {
-        int bit_a = (a >> (SIZE_CAL - 1 - i)) & 1;  // a의 i번째 비트 추출 (왼쪽부터)
-        for (int j = 0; j < SIZE_CAL; j++) {
-            int bit_b = (b >> (SIZE_CAL - 1 - j)) & 1;  // b의 j번째 비트 추출
-            result[i + j] += bit_a & bit_b;  // 비트 곱셈 대신 AND 연산 사용
-        }
-    }
-
-    // 결과 출력
     printf("The results is : ");
-    for (int i = 0; i < RESULT_SIZE; i++) {
-        printf("%d", result[i]);
-        if (i < RESULT_SIZE - 1) printf(" ");
-    }
+    for (int n = 0; n < 2 * N + 1; n++) printf("%d ", y[n]);
     printf("\n");
-
     return 0;
 }
 ```
 
 ---
 
-## 결과
+## 4. 실행 결과
 
-```markdown
-The results is : 0 1 0 2 0 3 0 2 0 1 0
-```
+두 구현의 출력이 모두 같았다.
+
+| 입력 1 | 입력 2 | 출력 |
+| --- | --- | --- |
+| 10101 | 10101 | 0 1 0 2 0 3 0 2 0 1 0 |
+| 11011 | 10011 | 0 1 1 0 2 3 1 1 2 1 0 |
+| 11111 | 11111 | 0 1 2 3 4 5 4 3 2 1 0 |
+| 10000 | 00001 | 0 0 0 0 0 1 0 0 0 0 0 |
+
+`11011`과 `10011`의 가운데 9개 `1 1 0 2 3 1 1 2 1`은 NumPy의 `np.convolve([1,1,0,1,1], [1,0,0,1,1])` 결과와 같다.
+
+### 컨볼루션과 상관
+
+컨볼루션은 $$h[n-k]$$처럼 **한 신호를 뒤집어서** 민다. 뒤집지 않고 그대로 밀면 상관(correlation)이 된다.
+
+| 입력 | 컨볼루션 | 상관 |
+| --- | --- | --- |
+| 10101, 10101 | 1 0 2 0 3 0 2 0 1 | 1 0 2 0 3 0 2 0 1 |
+| 11011, 10011 | 1 1 0 2 3 1 1 2 1 | 1 2 1 1 3 2 0 1 1 |
+
+과제 예시 `10101`은 좌우 대칭이라 두 방법의 결과가 같다. 예시만으로는 어느 쪽을 의도했는지 구분할 수 없으므로, 비대칭 입력으로 한 번 더 확인하는 것이 좋다. 제출 코드는 인덱스 `i + j`에 더하므로 **컨볼루션**이다.
+
+> **(중요!!)** 0과 1만 있는 신호에서는 곱 `x * h`와 AND `x & h`가 같다. 하지만 결과값은 겹친 1의 **개수**라서 2, 3처럼 1보다 커질 수 있으므로, 결과 배열은 int로 더해야 한다(OR로 합치면 안 됨).
+{: .prompt-warning }
+
+---
+
+### 강의 자료 및 정리 노트에서 정정한 부분 정리
+
+| 위치 | 원래 | 정정 | 이유 |
+| --- | --- | --- | --- |
+| 과제 원문 | bynary, scree | binary, screen | 철자 |
+| 과제 출력 문구 | The results is | (그대로 사용) | 문법상 "The result is"지만 채점이 출력 비교라 원문 유지 |
+| 제출 코드 주석 | 첫 입력은 "앞에 0을 붙임(오른쪽으로 shift)", 둘째 입력은 "뒤에 0을 붙임" | 첫 입력은 `<< 1`로 **끝에** 0(`101010`), 둘째 입력은 **앞에** 0(`010101`) | 주석과 실제 비트 배치가 반대. 결과는 대칭이라 같게 나옴 |
+| 제출 코드 첫 줄 | `#define _CRT_SECURE_NO_WARNINGS` 없음 | 추가 | HW1부터 "이후 모든 과제에 적용" 조건 |
+
+---
+
+## 최종 핵심 정리
+
+1. 이산 컨볼루션은 $$y[n] = \sum_k x[k]h[n-k]$$이다
+2. 길이 5인 두 신호의 컨볼루션 길이는 9이고, 과제는 앞뒤 0을 더해 11개를 출력한다
+3. 10101과 10101의 컨볼루션은 1 0 2 0 3 0 2 0 1이다
+4. 두 인덱스 i, j의 곱은 결과의 i + j 위치에 더한다
+5. 0/1 신호에서는 곱과 AND가 같지만, 결과는 개수이므로 정수로 누적한다
+6. 컨볼루션은 한 신호를 뒤집어 밀고, 상관은 뒤집지 않는다
+7. 대칭인 예시로는 컨볼루션과 상관을 구분할 수 없어 비대칭 입력으로 확인해야 한다
+8. 비트 연산 구현과 배열 구현은 같은 결과를 내며, 배열 구현이 정의와 바로 대응된다
 
 ---
 
