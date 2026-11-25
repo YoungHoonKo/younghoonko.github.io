@@ -10,7 +10,7 @@ image: /assets/img/lang/C.png
 
 # C Programming 실습2
 
-## 반목문
+## 반복문
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -37,16 +37,23 @@ int main(void){
 #include <stdio.h>
 
 int main(void){
-   for (int i = 1; i <= 5; i++)
-   {
-     printf("반복하고 있습니다.\n");
-   }
+  int num;
 
-  printf("반복을 종료했습니다.\n");
-  
+  printf("몇 개의 *을 출력할까요?\n");
+  scanf("%d", &num);
+
+  for (int i = 1; i <= num; i++)
+  {
+    printf("*");
+  }
+  printf("\n");
+
   return 0;
 }
 ```
+
+> 처음 올릴 때 위 "반복문" 예제 코드가 이 자리에 한 번 더 붙어 있어서, 제목에 맞는 코드로 고쳤다.
+{: .prompt-info }
 
 ---
 
@@ -116,7 +123,7 @@ int main(void){
 int main(void){
   int res;
 
-  printf("몇 번째 자리를 건너뛸가요? (1-10)\n");
+  printf("몇 번째 자리를 건너뛸까요? (1-10)\n");
   scanf("%d", &res);
 
   for (int i = 1; i <= 10; i++)
