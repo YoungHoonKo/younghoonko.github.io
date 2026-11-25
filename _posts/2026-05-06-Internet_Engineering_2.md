@@ -10,7 +10,7 @@ image: /assets/img/lang/internet.png
 
 # 인터넷 공학(2) - Wireshark 실습
 
-작성 : C289002 고영훈
+작성 : 고영훈
 
 ---
 

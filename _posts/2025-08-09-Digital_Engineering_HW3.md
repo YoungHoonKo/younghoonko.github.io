@@ -28,7 +28,7 @@ image: /assets/img/lang/C.png
 #include <stdio.h>
 #include <string.h>
 #define DATA_FILE "data.txt"
-#define OUTPUT_FILE "501_C289002_HW3.txt"
+#define OUTPUT_FILE "501_STUDENTID_HW3.txt"
 
 // XOR 함수
 void xor(char *a, const char *b, int len) {
